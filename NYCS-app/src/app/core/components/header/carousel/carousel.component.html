@@ -1,0 +1,12 @@
+<ngu-carousel #carousel
+[inputs]="carouselTile"
+(carouselLoad)="carouselTileLoad($event)">
+
+      <ngu-tile NguCarouselItem *ngFor="let Tile of carouselTileItems">
+          <h1>{{Tile + 1}}</h1>
+      </ngu-tile>
+
+    <button NguCarouselPrev class='leftRs'>&lt;</button>
+    <button NguCarouselNext class='rightRs'>&gt;</button>
+</ngu-carousel>
+<button (click)="resetFn()">Reset</button>
