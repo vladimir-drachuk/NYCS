@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MenuItem } from '../../../models/menu-item.model';
+import { MenuService } from '../../../services/menu.service';
+
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavMenuComponent implements OnInit {
 
-  constructor() { }
+  public menuList: MenuItem[];
+
+  constructor(private menu: MenuService) {
+    this.menuList = this.menu.menuItems;
+  }
 
   ngOnInit(): void {
   }

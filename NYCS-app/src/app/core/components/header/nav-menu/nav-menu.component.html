@@ -1,1 +1,9 @@
-<p>nav-menu works!</p>
+<nav>
+  <ul>
+      <li *ngFor="let item of menuList">
+        <mat-button-toggle [routerLink]=" item.path "
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">{{ item.title }}</mat-button-toggle>
+      </li>
+  </ul>
+</nav>
