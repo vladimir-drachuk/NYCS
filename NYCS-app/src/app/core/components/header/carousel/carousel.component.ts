@@ -1,57 +1,39 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
+import { Component, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { NguCarouselConfig } from '@ngu/carousel';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements AfterViewInit {
+  name = 'Angular';
+  slideNo = 0;
+  withAnim = true;
+  resetAnim = true;
 
-  private carouselToken: string;
+  @ViewChild('myCarousel') myCarousel;
+  carouselConfig: NguCarouselConfig = {
+    grid: { xs: 1, sm: 1, md: 5, lg: 5, all: 0 },
+    slide: 1,
+    interval: {timing: 4000, initialDelay: 1000},
+    touch: true,
+    velocity: 0.2
+  }
+  carouselItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
-  public carouselTileItems: Array<any>;
-  public carouselTile: NguCarouselConfig;
-  @ViewChild('carousel') carousel;
+  constructor(private cdr: ChangeDetectorRef) { }
 
-  constructor() {  }
-
-  ngOnInit(){
-    this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-
-    this.carouselTile = {
-      grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
-      slide: 2,
-      speed: 400,
-      animation: 'lazy',
-      point: {
-        visible: true
-      },
-      load: 2,
-      touch: true,
-      easing: 'ease'
-    }
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+    this.moveTo(10)
   }
 
-  initDataFn(key) {
-    this.carouselToken = key.token;
-  }
+  // reset() {
+  //   this.myCarousel.reset(!this.resetAnim);
+  // }
 
-  resetFn() {
-    this.carousel.reset(this.carouselToken);
-  }
-
-  moveToSlide() {
-    this.carousel.moveToSlide(this.carouselToken, 2, false);
-  }
-
-  public carouselTileLoad(evt: any) {
-
-    const len = this.carouselTileItems.length
-    if (len <= 30) {
-      for (let i = len; i < len + 10; i++) {
-        this.carouselTileItems.push(i);
-      }
-    }
+  moveTo(slide) {
+    this.myCarousel.moveTo(slide, this.withAnim);
   }
 }
