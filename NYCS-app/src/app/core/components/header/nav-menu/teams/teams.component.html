@@ -1,0 +1,14 @@
+<a class="nav-menu-item" [matMenuTriggerFor]="halfs">Teams</a>
+
+<mat-menu #halfs="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="white">White</button>
+  <button mat-menu-item [matMenuTriggerFor]="black">Black</button>
+</mat-menu>
+
+<mat-menu #white="matMenu">
+  <button mat-menu-item *ngFor="let item of whiteTeams">{{ item.team }}</button>
+</mat-menu>
+
+<mat-menu #black="matMenu">
+  <button mat-menu-item *ngFor="let item of blackTeams">{{ item.team }}</button>
+</mat-menu>

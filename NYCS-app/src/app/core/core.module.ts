@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NguCarouselModule } from '@ngu/carousel';
 import { RouterModule } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { HeaderComponent } from './components/header/header.component';
 import { CarouselComponent } from './components/header/carousel/carousel.component';
@@ -9,7 +11,7 @@ import { MatchesListComponent } from './components/header/matches-list/matches-l
 import { NavMenuComponent } from './components/header/nav-menu/nav-menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuService } from './services/menu.service';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { TeamsComponent } from './components/header/nav-menu/teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     CarouselComponent,
     MatchesListComponent,
     NavMenuComponent,
-    FooterComponent
+    FooterComponent,
+    TeamsComponent
   ],
   imports: [
     CommonModule,
     NguCarouselModule,
     RouterModule,
+    MatMenuModule,
     MatButtonToggleModule
   ],
   exports: [

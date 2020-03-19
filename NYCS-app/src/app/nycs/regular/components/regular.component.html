@@ -1,1 +1,22 @@
-<p>regular works!</p>
+<mat-tab-group>
+
+  <mat-tab label="Half">
+    <ng-template matTabContent>
+      <app-regular-table [teams]="whiteTeams | sort"></app-regular-table>
+      <app-regular-table [teams]="blackTeams | sort"></app-regular-table>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="NYCS">
+    <ng-template matTabContent>
+      <app-regular-table [teams]="teams | sort"></app-regular-table>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Matches">
+    <ng-template matTabContent>
+      Content 3 - Loaded
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>

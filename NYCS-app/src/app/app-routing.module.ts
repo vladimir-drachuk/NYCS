@@ -6,13 +6,17 @@ const routes: Routes = [
   { path: 'regular', loadChildren: () => import('./nycs/regular/regular.module')
       .then(modulE => modulE.RegularModule) },
   { path: 'playoff', loadChildren: () => import('./nycs/playoff/playoff.module')
-      .then(modulE => modulE.PlayoffModule) }
+      .then(modulE => modulE.PlayoffModule) },
+  { path: ':id', loadChildren: () => import('./teams/teams.module')
+      .then(modulE => modulE.TeamsModule) }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
+  imports: [
+    RouterModule.forRoot(routes, {
     scrollPositionRestoration: 'top'
-  })],
-  exports: [RouterModule]
+  })
+  ],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }
