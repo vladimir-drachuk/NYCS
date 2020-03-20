@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid grey;
+}
+.stat-wrapper{
+  display: flex;
+
+  .team-one, .team-two {
+    display: flex;
+  }
+
+  .team-two {
+    flex-direction: row-reverse;
+    margin-left: 20px;
+  }
+}
+
+
+
+

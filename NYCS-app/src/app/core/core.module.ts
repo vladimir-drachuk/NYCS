@@ -12,6 +12,7 @@ import { NavMenuComponent } from './components/header/nav-menu/nav-menu.componen
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuService } from './services/menu.service';
 import { TeamsComponent } from './components/header/nav-menu/teams/teams.component';
+import { Page404Component } from './components/page404/page404.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TeamsComponent } from './components/header/nav-menu/teams/teams.compone
     MatchesListComponent,
     NavMenuComponent,
     FooterComponent,
-    TeamsComponent
+    TeamsComponent,
+    Page404Component
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { TeamsComponent } from './components/header/nav-menu/teams/teams.compone
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    Page404Component,
   ],
   providers: [
     MenuService

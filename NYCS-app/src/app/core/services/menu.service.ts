@@ -13,6 +13,10 @@ export class MenuService {
       title: 'Playoff',
       path: 'playoff'
     },
+    {
+      title: 'Schedule',
+      path: 'schedule'
+    },
   ];
 
   constructor() { }

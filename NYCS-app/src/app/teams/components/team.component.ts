@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { teams } from '../../../temporary storage/teams';
 
 @Component({
   selector: 'app-team',
@@ -10,12 +12,15 @@ export class TeamComponent implements OnInit {
 
   public team;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.params.subscribe((params) => {
+      this.team = teams.find(team => team.id === params.id);
+    });
+    if (!this.team) { this.router.navigateByUrl('error'); }
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.team = params;
-    });
+
   }
 
 }

@@ -1,10 +1,14 @@
 <nav>
   <mat-button-toggle-group>
+
     <mat-button-toggle
-    *ngFor="let item of menuList"
-    [routerLink]="item.path">{{ item.title }}</mat-button-toggle>
+      *ngFor="let item of menuList"
+      [routerLink]="item.path">{{ item.title }}
+    </mat-button-toggle>
+
     <mat-button-toggle checked>
       <app-teams></app-teams>
     </mat-button-toggle>
+
   </mat-button-toggle-group>
 </nav>
