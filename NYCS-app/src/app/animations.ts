@@ -9,12 +9,15 @@ export const animations = {
             ])
         ])
     ],
-    appearMatch: (delay: number) => [
-        trigger('appear', [
-            state('void', style({ opacity: '0'})),
-            transition(':enter', [
-            animate(delay * 100)
-            ])
-        ])
+    appear: (value) => [
+      trigger('state', [
+        state('none', style({ backgroundColor: 'white' })),
+        state('color', style({ backgroundColor: 'grey' })),
+        transition('none<=>color', animate(1000))
+      ]),
+      trigger('appear', [
+        state('void', style({ opacity: '0' })),
+        transition(':enter', animate(value))
+      ])
     ]
-}
+};
