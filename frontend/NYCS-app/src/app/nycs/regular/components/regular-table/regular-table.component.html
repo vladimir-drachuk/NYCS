@@ -2,22 +2,22 @@
 
   <ng-container matColumnDef="position">
     <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-    <mat-cell *matCellDef="let element;"> {{ teams.indexOf(element) + 1 }} </mat-cell>
+    <mat-cell *matCellDef="let element;">{{ teams.indexOf(element) + 1 }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="team">
     <mat-header-cell *matHeaderCellDef> team </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="half">
     <mat-header-cell *matHeaderCellDef> half </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.half }} </mat-cell>
+    <mat-cell *matCellDef="let element">{{ element.half }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="result">
     <mat-header-cell *matHeaderCellDef> points </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.score }} </mat-cell>
+    <mat-cell *matCellDef="let element">{{ element.score }}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

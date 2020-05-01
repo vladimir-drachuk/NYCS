@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const teamSchema = new Schema(
   {
     name: String,
-    teamtag: String, // unique
+    teamtag: String,
     half: String,
     description: String,
     score: Number
@@ -15,35 +15,35 @@ const teamSchema = new Schema(
 const Team = mongoose.model('Team', teamSchema);
 
 // Team.create({
-//   name: 'Spartak',
-//   teamtag: 'spartak',
+//   name: 'Rotor',
+//   teamtag: 'rotor',
 //   half: 'white',
-//   description: 'Best Russian team',
-//   score: 9000
+//   description: 'Russian team',
+//   score: 3000
 // });
 
 // Team.create({
-//   name: 'Chelsea',
-//   teamtag: 'che',
+//   name: 'Arsenal',
+//   teamtag: 'ars',
 //   half: 'black',
-//   description: 'Not Best English team',
-//   score: 7000
+//   description: 'English team',
+//   score: 7500
 // });
 
 // Team.create({
-//   name: 'Dynamo',
-//   teamtag: 'dynamo',
+//   name: 'Zenit',
+//   teamtag: 'zenit',
 //   half: 'white',
-//   description: 'Not Best Russian team',
-//   score: 8000
+//   description: 'Russian team',
+//   score: 4500
 // });
 
 // Team.create({
-//   name: 'Manchester',
-//   teamtag: 'mu',
+//   name: 'Liverpool',
+//   teamtag: 'liv',
 //   half: 'black',
-//   description: 'Best English team',
-//   score: 6000
+//   description: 'English team',
+//   score: 4000
 // });
 
 module.exports = Team;

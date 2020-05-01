@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { teams } from '../../../temporary storage/teams';
+import { DbService } from '../../shared/services/db.service';
+import { Team } from '../../shared/models/team.model';
 
 @Component({
   selector: 'app-team',
@@ -10,11 +11,13 @@ import { teams } from '../../../temporary storage/teams';
 })
 export class TeamComponent implements OnInit {
 
-  public team;
+  public team: Team;
+  public teams: Team[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private db: DbService, private route: ActivatedRoute, private router: Router) {
+    this.db.teams.subscribe((teams) => this.teams = teams);
     this.route.params.subscribe((params) => {
-      this.team = teams.find(team => team.id === params.id);
+      this.team = this.teams.find(team => team.teamtag === params.teamtag);
     });
     if (!this.team) { this.router.navigateByUrl('error'); }
   }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { teams } from '../../../../temporary storage/teams';
 import { Team } from '../../../shared/models/team.model';
 import { animations } from '../../../animations';
 import { DbService } from '../../../shared/services/db.service'

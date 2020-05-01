@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { teams } from '../../../../../../temporary storage/teams';
+import { Team } from '../../../../../shared/models/team.model';
+import { DbService } from '../../../../../shared/services/db.service'
 
 @Component({
   selector: 'app-teams',
@@ -9,8 +10,16 @@ import { teams } from '../../../../../../temporary storage/teams';
 })
 export class TeamsComponent {
 
-  public teams = teams;
-  public whiteTeams = teams.filter((team) => team.half === 'white');
-  public blackTeams = teams.filter((team) => team.half === 'black');
+  public teams: Team[] = [];
+  public whiteTeams: Team[] = [];
+  public blackTeams: Team[] = [];
 
+  constructor(private db: DbService) {
+    this.db.teams.subscribe((items: Team[]) => {
+      this.teams = items;
+      this.whiteTeams = this.teams.filter((team) => team.half === 'white');
+      this.blackTeams = this.teams.filter((team) => team.half === 'black');
+    });
+  }
+  
 }

@@ -2,7 +2,7 @@ export interface Team {
     _id: String;
     name: String;
     half: String;
-    nametag: String;
+    teamtag: String;
     description: String;
     score: Number;
 }

@@ -2,4 +2,6 @@ const Team = require('./team.model');
 
 const getAll = () => Team.find({});
 
-module.exports = { getAll };
+const getByName = name => Team.findOne({ name });
+
+module.exports = { getAll, getByName };

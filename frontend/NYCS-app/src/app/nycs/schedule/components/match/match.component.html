@@ -1,16 +1,16 @@
-<div>REGULAR</div>
+<div>{{ match.tourneyStatus.toUpperCase() }}</div>
 <div class="stat-wrapper">
 
   <div class="team-one">
-    <div>TEAMONE</div>
+    <div>{{ match.team1 ? match.team1.toUpperCase() : '' }}</div>
     <div class="icon">logo</div>
-    <div class="result">32</div>
+    <div class="result">{{ match.team1Score }}</div>
   </div>
 
   <div class="team-two">
-    <div>TEAMTWO</div>
+    <div>{{ match.team2 ? match.team2.toUpperCase() : '' }}</div>
     <div class="icon">logo</div>
-    <div class="result">28</div>
+    <div class="result">{{ match.team2Score }}</div>
   </div>
 
 </div>

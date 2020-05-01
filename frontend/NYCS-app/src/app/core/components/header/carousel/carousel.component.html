@@ -1,6 +1,6 @@
 <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems">
 	<div *nguCarouselDef="let item;" class="item">
-    <app-matches-list></app-matches-list>
+    <app-matches-list [match]="item"></app-matches-list>
 	</div>
 	<button NguCarouselNext class="rightRs">&gt;</button>
 	<button NguCarouselPrev class="leftRs">&lt;</button>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Match } from '../../../../shared/models/match.model';
 
 @Component({
   selector: 'app-matches-list',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./matches-list.component.scss']
 })
 export class MatchesListComponent implements OnInit {
+
+  @Input() match: Match;
 
   constructor() { }
 

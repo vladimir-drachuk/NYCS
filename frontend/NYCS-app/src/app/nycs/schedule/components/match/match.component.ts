@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Match } from '../../../../shared/models/match.model';
 
 @Component({
   selector: 'app-match',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchComponent implements OnInit {
 
-  constructor() { }
+  @Input() match: Match;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

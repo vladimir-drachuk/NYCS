@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'schedule', loadChildren: () => import('./nycs/schedule/schedule.module')
       .then(modulE => modulE.ScheduleModule) },
   { path: 'error', component: Page404Component },
-  { path: ':id', loadChildren: () => import('./teams/teams.module')
+  { path: ':teamtag', loadChildren: () => import('./teams/teams.module')
       .then(modulE => modulE.TeamsModule) },
   { path: '**', component: Page404Component }
 ];
