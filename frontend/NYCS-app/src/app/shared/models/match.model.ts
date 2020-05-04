@@ -10,6 +10,8 @@ interface Match {
     isOT: Boolean;
     isKR: Boolean;
     tourneyStatus: String;
+    winner: String;
+    loser: String;
 }
 
 const defaultMatch: Match = {
@@ -24,6 +26,8 @@ const defaultMatch: Match = {
     isOT: false,
     isKR: false,
     tourneyStatus: null,
+    winner: null,
+    loser: null
 }
 
 export { Match, defaultMatch };

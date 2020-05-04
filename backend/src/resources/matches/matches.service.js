@@ -4,6 +4,8 @@ const matchCreator = require('./utils/matchCreator');
 
 const getAll = () => matchesRepo.getAll();
 
+const getAllComplete = () => matchesRepo.getAllComplete();
+
 const createMatch = async matchInfo => {
   const team1 = await teamsRepo.getByName(matchInfo.team1);
   const team2 = await teamsRepo.getByName(matchInfo.team2);
@@ -16,4 +18,4 @@ const createMatch = async matchInfo => {
   return match;
 };
 
-module.exports = { getAll, createMatch };
+module.exports = { getAll, createMatch, getAllComplete };

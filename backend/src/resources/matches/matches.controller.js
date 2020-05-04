@@ -1,50 +1,41 @@
-const matchesServise = require('./matches.service');
+const matchesService = require('./matches.service');
+// const teamsService = require('../teams/teams.service');
 
 const getAll = async (req, res) => {
-  const matches = await matchesServise.getAll();
+  const matches = await matchesService.getAll();
   res.json(matches);
 };
 
-const mock = async () => {
-  // await matchesServise.createMatch({
-  //   team1: 'Arsenal',
-  //   team2: 'Zenit',
-  //   team1Score: 16,
-  //   team2Score: 14
-  // });
+// function getRandomInt(max) {
+//   return Math.floor(Math.random() * Math.floor(max));
+// }
 
-  // await matchesServise.createMatch({
-  //   team1: 'Rotor',
-  //   team2: 'Zenit',
-  //   team1Score: 16,
-  //   team2Score: 15
-  // });
+// const mock = async () => {
+//   const teams = await teamsService.getAll();
+//   for (let i = 0; i < 65; i++) {
+//     console.log(i);
+//     const team1 = teams[getRandomInt(teams.length)].name;
+//     let team2 = teams[getRandomInt(teams.length)].name;
+//     while (team2 === team1) {
+//       team2 = teams[getRandomInt(teams.length)].name;
+//     }
+//     let team1Score = getRandomInt(24);
+//     let team2Score = 24 - team1Score;
+//     if (team1Score === team2Score) {
+//       team1Score = 16;
+//       team2Score = getRandomInt(3) + 12;
+//     }
+//     await matchesService.createMatch({
+//       team1,
+//       team2,
+//       team1Score,
+//       team2Score
+//     });
+//   }
 
-  // await matchesServise.createMatch({
-  //   team1: 'Liverpool',
-  //   team2: 'Arsenal',
-  //   team1Score: 13,
-  //   team2Score: 11
-  // });
+//   return;
+// };
 
-  // await matchesServise.createMatch({
-  //   team1: 'Arsenal',
-  //   team2: 'Rotor'
-  // });
-
-  // await matchesServise.createMatch({
-  //   team1: 'Zenit',
-  //   team2: 'Liverpool'
-  // });
-
-  // await matchesServise.createMatch({
-  //   team1: 'Rotor',
-  //   team2: 'Liverpool'
-  // });
-
-  return;
-};
-
-mock();
+// mock();
 
 module.exports = { getAll };

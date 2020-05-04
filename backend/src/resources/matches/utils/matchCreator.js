@@ -1,7 +1,6 @@
 const { REGULAR, REGULAR_OT, PLAYOFF } = require('../../../common/config');
 
 const completeMatch = matchData => {
-  const roundsToWinRegular = REGULAR + 1;
   const roundsToWinPlayoff = PLAYOFF + 1;
   const roundsToKnife = (REGULAR + REGULAR_OT) * 2 + 1;
 
@@ -18,10 +17,7 @@ const completeMatch = matchData => {
 
   // Regular
   if (matchData.tourneyStatus === 'Regular' || !matchData.tourneyStatus) {
-    if (
-      matchData.team1Score > roundsToWinRegular ||
-      matchData.team2Score > roundsToWinRegular
-    ) {
+    if (matchData.team1Score + matchData.team2Score > REGULAR * 2) {
       matchData.isOT = true;
     }
     if (matchData.team1Score + matchData.team2Score >= roundsToKnife) {

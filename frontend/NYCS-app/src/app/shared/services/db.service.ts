@@ -14,7 +14,8 @@ export class DbService {
   public matches: BehaviorSubject<Match[]> = new BehaviorSubject([]);
 
   constructor(private http: HttpClient) {
-    this.getAllTeams().subscribe((items: Team[]) => this.teams.next(items));
+    this.getAllTeams().subscribe((items: Team[]) => {
+      this.teams.next(items) });
     this.getAllMatches().subscribe((items: Match[]) => this.matches.next(items));
   }
 

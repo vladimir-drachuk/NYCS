@@ -7,7 +7,8 @@ const teamSchema = new Schema(
     teamtag: String,
     half: String,
     description: String,
-    score: Number
+    score: Number,
+    stats: Object
   },
   { versionKey: false }
 );
@@ -15,7 +16,7 @@ const teamSchema = new Schema(
 const Team = mongoose.model('Team', teamSchema);
 
 // Team.create({
-//   name: 'Rotor',
+//   name: 'Dynamo',
 //   teamtag: 'rotor',
 //   half: 'white',
 //   description: 'Russian team',
@@ -23,7 +24,15 @@ const Team = mongoose.model('Team', teamSchema);
 // });
 
 // Team.create({
-//   name: 'Arsenal',
+//   name: 'Lokomotiv',
+//   teamtag: 'rotor',
+//   half: 'white',
+//   description: 'Russian team',
+//   score: 3000
+// });
+
+// Team.create({
+//   name: 'Manchester',
 //   teamtag: 'ars',
 //   half: 'black',
 //   description: 'English team',
@@ -31,7 +40,7 @@ const Team = mongoose.model('Team', teamSchema);
 // });
 
 // Team.create({
-//   name: 'Zenit',
+//   name: 'Spartak',
 //   teamtag: 'zenit',
 //   half: 'white',
 //   description: 'Russian team',
@@ -39,7 +48,15 @@ const Team = mongoose.model('Team', teamSchema);
 // });
 
 // Team.create({
-//   name: 'Liverpool',
+//   name: 'Newcastle',
+//   teamtag: 'liv',
+//   half: 'black',
+//   description: 'English team',
+//   score: 4000
+// });
+
+// Team.create({
+//   name: 'Chelsea',
 //   teamtag: 'liv',
 //   half: 'black',
 //   description: 'English team',
