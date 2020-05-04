@@ -7,6 +7,14 @@ const matchSchema = new Schema(
     team1ID: String,
     team2: String,
     team2ID: String,
+    winner: {
+      type: String,
+      default: null
+    },
+    loser: {
+      type: String,
+      default: null
+    },
     team1Score: {
       type: Number,
       default: ''

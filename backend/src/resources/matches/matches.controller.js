@@ -10,20 +10,21 @@ const mock = async () => {
   //   team1: 'Arsenal',
   //   team2: 'Zenit',
   //   team1Score: 16,
-  //   team2Score: 12,
-  //   isComplete: true,
-  //   isOT: true,
-  //   isKR: false
+  //   team2Score: 14
+  // });
+
+  // await matchesServise.createMatch({
+  //   team1: 'Rotor',
+  //   team2: 'Zenit',
+  //   team1Score: 16,
+  //   team2Score: 15
   // });
 
   // await matchesServise.createMatch({
   //   team1: 'Liverpool',
   //   team2: 'Arsenal',
   //   team1Score: 13,
-  //   team2Score: 11,
-  //   isComplete: true,
-  //   isOT: false,
-  //   isKR: false
+  //   team2Score: 11
   // });
 
   // await matchesServise.createMatch({
@@ -35,6 +36,12 @@ const mock = async () => {
   //   team1: 'Zenit',
   //   team2: 'Liverpool'
   // });
+
+  // await matchesServise.createMatch({
+  //   team1: 'Rotor',
+  //   team2: 'Liverpool'
+  // });
+
   return;
 };
 
