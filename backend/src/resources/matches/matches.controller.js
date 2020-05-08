@@ -6,6 +6,13 @@ const getAll = async (req, res) => {
   res.json(matches);
 };
 
+matchesService.createMatch({
+  team1: 'Zenit',
+  team2: 'Chelsea',
+  team1Score: 16,
+  team2Score: 14
+});
+
 // function getRandomInt(max) {
 //   return Math.floor(Math.random() * Math.floor(max));
 // }
@@ -13,7 +20,6 @@ const getAll = async (req, res) => {
 // const mock = async () => {
 //   const teams = await teamsService.getAll();
 //   for (let i = 0; i < 65; i++) {
-//     console.log(i);
 //     const team1 = teams[getRandomInt(teams.length)].name;
 //     let team2 = teams[getRandomInt(teams.length)].name;
 //     while (team2 === team1) {
@@ -31,6 +37,7 @@ const getAll = async (req, res) => {
 //       team1Score,
 //       team2Score
 //     });
+//     console.log(`${i} complete`);
 //   }
 
 //   return;

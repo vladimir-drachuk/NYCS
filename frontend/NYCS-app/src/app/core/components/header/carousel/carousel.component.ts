@@ -35,7 +35,7 @@ export class CarouselComponent implements AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.cdr.detectChanges();
-    this.moveTo(10)
+    this.moveTo(20);
   }
 
   private fillCarousel(matches: Match[]): Match[] {

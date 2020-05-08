@@ -4,7 +4,6 @@ interface Team {
     half: String;
     teamtag: String;
     description: String;
-    score: number;
     stats: Stats;
 }
 
@@ -15,7 +14,10 @@ interface Stats {
     losesOT: number;
     roundWin: number;
     roundLost: number;
+    winsHalf: number;
+    losesHalf: number;
     wlStr: String;
+    score: number;
 }
 
 export { Team, Stats }

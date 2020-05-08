@@ -8,13 +8,8 @@ import { Team, Stats } from '../../../../shared/models/team.model'
 })
 export class RegularTableComponent {
 
-  displayedColumns: string[] = ['position', 'team', 'half', 'games', 'win-lost', 'rounds', 'plus-minus', 'last-4', 'points'];
+  displayedColumns: string[] = ['position', 'team', 'half', 'games', 'rounds', 'plus-minus', 'win-lost', 'pct1', 'halfstat', 'pct2', 'last-4', 'points'];
   @Input() teams: Team[];
-
-  public showGames(stats: Stats): number {
-    const { wins, winsOT, loses, losesOT } = stats;
-    return wins + winsOT + loses + losesOT;
-  }
 
   public showRounds(stats: Stats): string {
     const { roundLost, roundWin } = stats;
@@ -26,14 +21,32 @@ export class RegularTableComponent {
     return roundWin - roundLost;
   }
 
-  public showWinLostStat(stats: Stats): string {
+  public showNycsStat(stats: Stats): string {
     const { wins, winsOT, loses, losesOT } = stats;
     return `${wins}-${winsOT}-${losesOT}-${loses}`;
   }
 
-  public showPoints(stats: Stats): number {
-    const { wins, winsOT, losesOT } = stats;
-    return wins * 3 + winsOT * 2 + losesOT;
+  public showHalfStat(stats: Stats): string {
+    const { winsHalf, losesHalf } = stats;
+    return `${winsHalf}-${losesHalf}`;
+  }
+
+  public showPercent(percent: number): string {
+    let result;
+    switch(percent) {
+      case null:
+        result = '-';
+        break;
+      case 0:
+        result = '.000';
+        break;
+      case 1000:
+        result = '1.000'
+        break;
+      default:
+        result = `.${percent}` 
+    }
+    return result;
   }
 
   public showWinLostString(string: string): string {

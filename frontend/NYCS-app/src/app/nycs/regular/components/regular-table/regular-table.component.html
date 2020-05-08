@@ -1,48 +1,63 @@
 <mat-table [dataSource]="teams" class="mat-elevation-z8">
 
   <ng-container matColumnDef="position">
-    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
     <mat-cell *matCellDef="let element;">{{ teams.indexOf(element) + 1 }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="team">
-    <mat-header-cell *matHeaderCellDef> team </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="half">
-    <mat-header-cell *matHeaderCellDef> half </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.half }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="games">
-    <mat-header-cell *matHeaderCellDef> games </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showGames(element.stats) }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef> GAMES </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.stats.games }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="win-lost">
-    <mat-header-cell *matHeaderCellDef> win-lost </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showWinLostStat(element.stats) }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef> NYCS </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ showNycsStat(element.stats) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="pct1">
+    <mat-header-cell *matHeaderCellDef> pct </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ showPercent(element.stats.nycsPercent) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="halfstat">
+    <mat-header-cell *matHeaderCellDef> HALF </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ showHalfStat(element.stats) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="pct2">
+    <mat-header-cell *matHeaderCellDef> pct </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ showPercent(element.stats.halfPercent) }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="rounds">
-    <mat-header-cell *matHeaderCellDef> rounds </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> ROUNDS </mat-header-cell>
     <mat-cell *matCellDef="let element">{{ showRounds(element.stats) }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="plus-minus">
-    <mat-header-cell *matHeaderCellDef> +/- </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> DIFF </mat-header-cell>
     <mat-cell *matCellDef="let element">{{ showPlusMinus(element.stats) }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="last-4">
-    <mat-header-cell *matHeaderCellDef> last 4 </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> LAST 4 </mat-header-cell>
     <mat-cell *matCellDef="let element">{{ showWinLostString(element.stats.wlStr) }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="points">
-    <mat-header-cell *matHeaderCellDef> points </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showPoints(element.stats) }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef> PTS </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.stats.points }}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

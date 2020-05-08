@@ -2,8 +2,11 @@ const Match = require('./match.model');
 
 const getAll = () => Match.find({});
 
-const getAllComplete = () => Match.find({ isComplete: true });
+const getAllCompleteRegular = () =>
+  Match.find({ isComplete: true, tourneyStatus: 'Regular' });
+
+const getAllByTeamId = id => Match.find({ id });
 
 const createMatch = matchInfo => Match.create(matchInfo);
 
-module.exports = { getAll, createMatch, getAllComplete };
+module.exports = { getAll, getAllByTeamId, getAllCompleteRegular, createMatch };

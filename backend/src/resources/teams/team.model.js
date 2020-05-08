@@ -7,7 +7,6 @@ const teamSchema = new Schema(
     teamtag: String,
     half: String,
     description: String,
-    score: Number,
     stats: Object
   },
   { versionKey: false }
