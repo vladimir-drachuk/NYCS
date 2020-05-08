@@ -1,0 +1,11 @@
+<form class="form" (mouseover)="mouseOver($event)" (mouseout)=mouseOut($event)>
+    <div class="team team1">{{ match.team1 }}</div>
+    <input class="score team1-score" type="text" [(ngModel)]="match.team1Score" name="team1" disabled>
+    <span>:</span>
+    <input class="score" type="text" [(ngModel)]="match.team2Score" name="team2" disabled>
+    <div class="team team2">{{ match.team2 }}</div>
+    <div class="match-stats">{{ match.tourneyStatus }}
+        <div class="ot" *ngIf="overTime">{{ showOT() }}</div>
+    </div>
+</form>
+

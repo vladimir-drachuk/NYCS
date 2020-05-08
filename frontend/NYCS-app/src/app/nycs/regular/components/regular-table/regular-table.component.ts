@@ -59,7 +59,7 @@ export class RegularTableComponent {
         showedString = `${string[string.length - 1]}`;
       break;
       case 2:
-        showedString = `${string[string.length - 2]}-${string[string.length - 3]}`;
+        showedString = `${string[string.length - 2]}-${string[string.length - 1]}`;
       break;
       case 3:
         showedString = `${string[string.length - 3]}-${string[string.length - 2]}-${string[string.length - 1]}`;

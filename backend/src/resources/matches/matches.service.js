@@ -5,10 +5,6 @@ const getStat = require('../teams/utils/getStat');
 
 const getAll = () => matchesRepo.getAll();
 
-const getAllCompleteRegular = () => matchesRepo.getAllCompleteRegular();
-
-const getAllByTeamId = id => matchesRepo.getAllByTeamId(id);
-
 const createMatch = async matchInfo => {
   const team1 = await teamsRepo.getByName(matchInfo.team1);
   const team2 = await teamsRepo.getByName(matchInfo.team2);
@@ -25,4 +21,4 @@ const createMatch = async matchInfo => {
   return match;
 };
 
-module.exports = { getAll, createMatch, getAllCompleteRegular, getAllByTeamId };
+module.exports = { getAll, createMatch };

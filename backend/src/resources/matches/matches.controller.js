@@ -6,12 +6,12 @@ const getAll = async (req, res) => {
   res.json(matches);
 };
 
-matchesService.createMatch({
-  team1: 'Zenit',
-  team2: 'Chelsea',
-  team1Score: 16,
-  team2Score: 14
-});
+// matchesService.createMatch({
+//   team1: 'Liverpool',
+//   team2: 'Spartak',
+//   team1Score: 16,
+//   team2Score: 15
+// });
 
 // function getRandomInt(max) {
 //   return Math.floor(Math.random() * Math.floor(max));

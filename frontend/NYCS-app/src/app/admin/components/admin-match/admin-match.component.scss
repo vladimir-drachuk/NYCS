@@ -1,0 +1,45 @@
+.form {
+    display: flex;
+    font-size: 20px;
+    border: 1px solid transparent;
+    margin: 0 10px;
+}
+
+.team {
+    width: calc(30% - 30px);
+}
+
+.team1 {
+    text-align: end;
+}
+
+.team2 {
+    text-align: start;
+}
+
+.team1-score {
+    text-align: end;
+}
+
+.score {
+    width: 30px;
+    margin: 0 5px;
+    font-size: 20px;
+    &:disabled {
+        border: none;
+        background-color: white;
+    }
+}
+
+.match-stats{
+    position: relative;
+    .ot {
+        position: absolute;
+        top: 0;
+        left: -40px;
+    }
+}
+
+.focus {
+    border: 1px solid lightgrey;
+}

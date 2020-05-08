@@ -1,9 +1,9 @@
 interface Team {
-    _id: String;
-    name: String;
-    half: String;
-    teamtag: String;
-    description: String;
+    _id: string;
+    name: string;
+    half: string;
+    teamtag: string;
+    description: string;
     stats: Stats;
 }
 
@@ -16,7 +16,7 @@ interface Stats {
     roundLost: number;
     winsHalf: number;
     losesHalf: number;
-    wlStr: String;
+    wlStr: string;
     score: number;
 }
 

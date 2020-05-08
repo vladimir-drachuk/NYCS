@@ -1,17 +1,17 @@
 interface Match {
-    _id: String;
-    team1: String;
-    team2: String;
-    team1ID: String;
-    team2ID: String;
-    team1Score: Number;
-    team2Score: Number;
-    isComplete: Boolean;
-    isOT: Boolean;
-    isKR: Boolean;
-    tourneyStatus: String;
-    winner: String;
-    loser: String;
+    _id: string;
+    team1: string;
+    team2: string;
+    team1ID: string;
+    team2ID: string;
+    team1Score: number;
+    team2Score: number;
+    isComplete: boolean;
+    isOT: boolean;
+    isKR: boolean;
+    tourneyStatus: string;
+    winner: string;
+    loser: string;
 }
 
 const defaultMatch: Match = {

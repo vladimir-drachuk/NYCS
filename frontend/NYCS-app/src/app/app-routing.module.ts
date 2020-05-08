@@ -11,6 +11,8 @@ const routes: Routes = [
       .then(modulE => modulE.PlayoffModule) },
   { path: 'schedule', loadChildren: () => import('./nycs/schedule/schedule.module')
       .then(modulE => modulE.ScheduleModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module')
+      .then(modulE => modulE.AdminModule)},
   { path: 'error', component: Page404Component },
   { path: ':teamtag', loadChildren: () => import('./teams/teams.module')
       .then(modulE => modulE.TeamsModule) },

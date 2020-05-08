@@ -1,0 +1,14 @@
+<p>admin-page works!</p>
+<div class="admin-wrapper">
+    <div class="matches">
+        <app-admin-match *ngFor="let match of matches" [match]="match"></app-admin-match>
+        <button (click)="show()">btn</button>
+    </div>
+    <div class="options">
+        <button mat-stroked-button (click)="openEditSchedule()">Edit Schedule</button>
+    </div>
+</div>
+
+
+
+

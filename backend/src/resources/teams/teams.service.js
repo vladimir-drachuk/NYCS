@@ -13,10 +13,4 @@ const initTeams = async () => {
 
 const getAll = () => teamsRepo.getAll();
 
-const getByName = name => teamsRepo.getByName(name);
-
-const getTeamStat = team => getStat(team);
-
-const updateTeam = (id, updateInfo) => teamsRepo.updateTeam(id, updateInfo);
-
-module.exports = { initTeams, getAll, getByName, getTeamStat, updateTeam };
+module.exports = { initTeams, getAll };
