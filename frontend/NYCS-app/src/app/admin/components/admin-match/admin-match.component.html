@@ -1,11 +1,16 @@
-<form class="form" (mouseover)="mouseOver($event)" (mouseout)=mouseOut($event)>
+<form class="form" (mouseover)="mouseOver($event)" (mouseout)=mouseOut($event) (dblclick)="getEdit()">
     <div class="team team1">{{ match.team1 }}</div>
-    <input class="score team1-score" type="text" [(ngModel)]="match.team1Score" name="team1" disabled>
+    <input class="score team1-score" type="text" [(ngModel)]="match.team1Score" name="team1" #team1 disabled>
     <span>:</span>
-    <input class="score" type="text" [(ngModel)]="match.team2Score" name="team2" disabled>
+    <input class="score" type="text" [(ngModel)]="match.team2Score" name="team2" #team2 disabled>
     <div class="team team2">{{ match.team2 }}</div>
     <div class="match-stats">{{ match.tourneyStatus }}
         <div class="ot" *ngIf="overTime">{{ showOT() }}</div>
+    </div>
+    <div class="option-buttons">
+        <button mat-icon-button color="primary" class="hide" (click)="getEdit()" #edit><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="accent" class="hide" (click)="getClear()" #clear><mat-icon>refresh</mat-icon></button>
+        <button mat-icon-button color="warn" class="hide" (click)="getDelete()" #delete><mat-icon>delete</mat-icon></button>
     </div>
 </form>
 

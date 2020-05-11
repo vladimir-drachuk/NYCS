@@ -1,12 +1,19 @@
 .form {
     display: flex;
-    font-size: 20px;
+    position: relative;
+    font-size: 22px;
     border: 1px solid transparent;
     margin: 0 10px;
 }
 
+.option-buttons {
+    position: absolute;
+    top: -6px;
+    left: 0;
+}
+
 .team {
-    width: calc(30% - 30px);
+    width: calc(40% - 30px);
 }
 
 .team1 {
@@ -24,14 +31,15 @@
 .score {
     width: 30px;
     margin: 0 5px;
-    font-size: 20px;
+    font-size: 22px;
     &:disabled {
         border: none;
-        background-color: white;
+        background-color: transparent;
     }
 }
 
 .match-stats{
+    display: flex;
     position: relative;
     .ot {
         position: absolute;
@@ -41,5 +49,11 @@
 }
 
 .focus {
+    background-color: rgb(241, 238, 238);
     border: 1px solid lightgrey;
+    border-radius: 4px;
+}
+
+.hide {
+    display: none;
 }

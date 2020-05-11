@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule }   from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AdminPageComponent } from './components/admin-page.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MatButtonModule,
+    MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
     FormsModule,
