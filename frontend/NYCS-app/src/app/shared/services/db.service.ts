@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { Team } from '../models/team.model';
 import { Match } from '../models/match.model';
-import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class DbService {
@@ -13,16 +14,16 @@ export class DbService {
   public teams: BehaviorSubject<Team[]> = new BehaviorSubject([]);
   public matches: BehaviorSubject<Match[]> = new BehaviorSubject([]);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private store: Store) {
     this.getAllTeams().subscribe((items: Team[]) => this.teams.next(items));
     this.getAllMatches().subscribe((items: Match[]) => this.matches.next(items));
   }
 
-  private getAllTeams(): Observable<Object> {
+  public getAllTeams(): Observable<Object> {
     return this.http.get(`${this.url}/teams`);
   }
 
-  private getAllMatches(): Observable<Object> {
+  public getAllMatches(): Observable<Object> {
     return this.http.get(`${this.url}/matches`);
   }
 }
