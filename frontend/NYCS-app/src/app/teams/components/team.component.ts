@@ -1,29 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { switchMap } from 'rxjs/operators';
 
-import { DbService } from '../../shared/services/db.service';
 import { Team } from '../../shared/models/team.model';
+import * as teamsSelectors from '../../redux/selectors/teams.selectors' 
+
+
+
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent {
 
   public team: Team;
-  public teams: Team[] = [];
 
-  constructor(private db: DbService, private route: ActivatedRoute, private router: Router) {
-    this.db.teams.subscribe((teams) => this.teams = teams);
-    this.route.params.subscribe((params) => {
-      this.team = this.teams.find(team => team.teamtag === params.teamtag);
-    });
+  constructor(private store: Store, private route: ActivatedRoute, private router: Router) {
+    this.route.params.pipe(
+      switchMap(params => this.store.pipe(select(teamsSelectors.getByTag, { teamtag: params.teamtag }))
+    ))
+    .subscribe(team => this.team = team);
+    
     if (!this.team) { this.router.navigateByUrl('error'); }
   }
-
-  ngOnInit(): void {
-
-  }
-
 }

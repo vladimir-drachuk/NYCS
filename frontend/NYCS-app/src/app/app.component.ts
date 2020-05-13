@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import { animations } from './animations';
-
-import { Store } from '@ngrx/store';
 import { getTeamsAction } from './redux/actions/teams.actions';
 import { getMatchesAction } from './redux/actions/matches.actions';
 

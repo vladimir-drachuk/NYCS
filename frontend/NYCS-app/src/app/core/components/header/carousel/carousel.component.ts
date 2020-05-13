@@ -1,8 +1,9 @@
 import { Component, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { NguCarouselConfig } from '@ngu/carousel';
+import { Store } from '@ngrx/store';
 
-import { DbService } from '../../../../shared/services/db.service';
 import { Match, defaultMatch } from '../../../../shared/models/match.model';
+import * as matchesSelector from '../../../../redux/selectors/matches.selectors';
 
 @Component({
   selector: 'app-carousel',
@@ -26,8 +27,8 @@ export class CarouselComponent implements AfterViewInit {
     velocity: 0.2
   }
 
-  constructor(private cdr: ChangeDetectorRef, private db: DbService) {
-    this.db.matches.subscribe((matches: Match[]) => {
+  constructor(private cdr: ChangeDetectorRef, private store: Store) {
+    this.store.select(matchesSelector.getAll).subscribe((matches: Match[]) => {
       matches.sort((a, b) => +b.isComplete - +a.isComplete)
       this.carouselItems = this.fillCarousel(matches);
     });

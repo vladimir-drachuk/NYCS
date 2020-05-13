@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 
 import { EditRegularMatchesComponent } from './edit-regular-matches/edit-regular-matches.component';
-import { DbService } from '../../shared/services/db.service';
 import { Match } from '../../shared/models/match.model';
+import * as matchesSelectors from '../../redux/selectors/matches.selectors'
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-admin-page',
@@ -12,11 +15,9 @@ import { Match } from '../../shared/models/match.model';
 })
 export class AdminPageComponent {
 
-  public matches: Match[] = [];
+  public matches: Observable<Match[]> = this.store.select(matchesSelectors.getAll);
 
-  constructor(public dialog: MatDialog, private db: DbService) {
-    this.db.matches.subscribe(matches => this.matches = matches)
-  };
+  constructor(public dialog: MatDialog, private store: Store) { };
 
   public openEditSchedule(): void {
     this.dialog.open(EditRegularMatchesComponent, {

@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ActionPayload } from '../store';
-import { Match } from 'src/app/shared/models/match.model';
+import { ActionPayload, MatchesState } from '../store';
 
 export enum matchesActionType {
     getMatches = '[MATCHES] get all matches',
@@ -9,5 +8,5 @@ export enum matchesActionType {
 }
 
 export const getMatchesAction = createAction(matchesActionType.getMatches);
-export const getMatchesSuccessAction = createAction(matchesActionType.getMatchesSuccess, props<ActionPayload<Match[]>>());
-export const getMatchesErrorAction = createAction(matchesActionType.getMatchesError, props<ActionPayload<Match[]>>());
+export const getMatchesSuccessAction = createAction(matchesActionType.getMatchesSuccess, props<ActionPayload<MatchesState>>());
+export const getMatchesErrorAction = createAction(matchesActionType.getMatchesError, props<ActionPayload<MatchesState>>());

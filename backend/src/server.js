@@ -1,7 +1,6 @@
 const app = require('./app');
 const mongoose = require('mongoose');
 const { PORT, MONGO_CONNECTION_STRING } = require('./common/config');
-
 const teamsService = require('./resources/teams/teams.service');
 
 mongoose.connect(MONGO_CONNECTION_STRING, {

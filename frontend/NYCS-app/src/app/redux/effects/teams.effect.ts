@@ -12,8 +12,8 @@ export class TeamsEffects {
       ofType(teamsActionType.getTeams),
       mergeMap(() => this.db.getAllTeams()
         .pipe(
-            map(teams => ({ type: teamsActionType.getTeamsSuccess, payload: teams })),
-            catchError(() => of({ type: teamsActionType.getTeamsError, payload: [] }))
+            map(teams => ({ type: teamsActionType.getTeamsSuccess, payload: { data: teams, isLoaded: true, isError: false } })),
+            catchError(() => of({ type: teamsActionType.getTeamsError, payload: { data: [], isLoaded: false, isError: true } }))
         ))
     )
   );

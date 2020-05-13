@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ActionPayload } from '../store';
-import { Team } from 'src/app/shared/models/team.model';
+import { ActionPayload, TeamsState } from '../store';
 
 export enum teamsActionType {
     getTeams = '[TEAMS] get all teams',
@@ -9,5 +8,5 @@ export enum teamsActionType {
 }
 
 export const getTeamsAction = createAction(teamsActionType.getTeams);
-export const getTeamsSuccessAction = createAction(teamsActionType.getTeamsSuccess, props<ActionPayload<Team[]>>());
-export const getTeamsErrorAction = createAction(teamsActionType.getTeamsError, props<ActionPayload<Team[]>>());
+export const getTeamsSuccessAction = createAction(teamsActionType.getTeamsSuccess, props<ActionPayload<TeamsState>>());
+export const getTeamsErrorAction = createAction(teamsActionType.getTeamsError, props<ActionPayload<TeamsState>>());

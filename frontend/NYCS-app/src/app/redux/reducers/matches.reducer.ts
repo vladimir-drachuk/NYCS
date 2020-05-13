@@ -1,9 +1,13 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
-import { Match } from '../../shared/models/match.model';
 import { getMatchesAction, getMatchesSuccessAction, getMatchesErrorAction } from '../actions/matches.actions';
+import { MatchesState } from '../store';
 
-const initialState: Match[] = [];
+const initialState: MatchesState = {
+  data: [],
+  isLoaded: false,
+  isError: false
+};
 
 const reducer = createReducer(initialState,
   on(getMatchesAction),
@@ -12,6 +16,6 @@ const reducer = createReducer(initialState,
 )
 
 
-export function matchReducer(state: Match[] | [], action: Action) {
+export function matchReducer(state: MatchesState, action: Action) {
   return reducer(state, action);
 }

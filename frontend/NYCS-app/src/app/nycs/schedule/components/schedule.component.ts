@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { DbService } from '../../../shared/services/db.service';
 import { Match } from '../../../shared/models/match.model';
+import * as matchesSelectors from '../../../redux/selectors/matches.selectors';
+
+
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent {
 
-  public matches: Match[] = [];
+  public matches: Observable<Match[]> = this.store.select(matchesSelectors.getAll);
 
-  constructor(private db: DbService) {
-    this.db.matches.subscribe((matches: Match[]) => {
-      this.matches = matches});
-  }
-
-  ngOnInit(): void {
-  }
-
+  constructor(private store: Store) { }
 }

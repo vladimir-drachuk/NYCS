@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
-import { reducers, metaReducers } from './redux/reducers';
+import { reducers } from './redux/reducers/app.reducer';
 import { TeamsEffects } from './redux/effects/teams.effect';
 import { MatchesEffects } from './redux/effects/matches.effect';
 
@@ -29,7 +29,6 @@ import { MatchesEffects } from './redux/effects/matches.effect';
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, {
-      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true

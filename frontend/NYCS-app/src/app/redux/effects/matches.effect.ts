@@ -13,9 +13,8 @@ export class MatchesEffects {
       mergeMap(() => this.db.getAllMatches()
         .pipe(
             map(matches => {
-                console.log(matches);
-                return { type: matchesActionType.getMatchesSuccess, payload: matches }}),
-            catchError(() => of({ type: matchesActionType.getMatchesError, payload: [] }))
+                return { type: matchesActionType.getMatchesSuccess,payload: { data: matches, isLoaded: true, isError: false } }}),
+            catchError(() => of({ type: matchesActionType.getMatchesError, payload: { data: [], isLoaded: false, isError: true } }))
         ))
     )
   );

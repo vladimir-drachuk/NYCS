@@ -1,7 +1,7 @@
 <h2 class="title">NYCS Administation Panel</h2>
 <div class="admin-wrapper">
     <div class="matches">
-        <app-admin-match *ngFor="let match of matches" [match]="match"></app-admin-match>
+        <app-admin-match *ngFor="let match of matches | async" [match]="match"></app-admin-match>
         <button (click)="show()">btn</button>
     </div>
     <div class="options">

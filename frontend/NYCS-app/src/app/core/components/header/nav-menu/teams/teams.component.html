@@ -6,9 +6,9 @@
 </mat-menu>
 
 <mat-menu #white="matMenu">
-  <button mat-menu-item *ngFor="let item of whiteTeams" [routerLink]="item.teamtag">{{ item.name }}</button>
+  <button mat-menu-item *ngFor="let item of whiteTeams | async" [routerLink]="item.teamtag">{{ item.name }}</button>
 </mat-menu>
 
 <mat-menu #black="matMenu">
-  <button mat-menu-item *ngFor="let item of blackTeams" [routerLink]="item.teamtag">{{ item.name }}</button>
+  <button mat-menu-item *ngFor="let item of blackTeams | async" [routerLink]="item.teamtag">{{ item.name }}</button>
 </mat-menu>

@@ -1,10 +1,14 @@
 import { createReducer, on, Action } from '@ngrx/store';
 
-import { Team } from '../../shared/models/team.model';
+import { TeamsState } from '../store';
 import { getTeamsAction, getTeamsSuccessAction, getTeamsErrorAction } from '../actions/teams.actions';
 
 
-const initialState: Team[] = [];
+const initialState: TeamsState = {
+    data: [],
+    isLoaded: false,
+    isError: false
+}
 
 const reducer = createReducer(initialState,
     on(getTeamsAction),
@@ -12,7 +16,7 @@ const reducer = createReducer(initialState,
     on(getTeamsErrorAction, (state, action) => action.payload)
 );
 
-export function teamReducer(state: Team[] | [], action: Action) {
+export function teamReducer(state: TeamsState, action: Action) {
     return reducer(state, action)
 }
 

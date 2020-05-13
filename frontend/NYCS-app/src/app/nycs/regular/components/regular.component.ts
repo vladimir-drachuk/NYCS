@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Team } from '../../../shared/models/team.model';
 import { animations } from '../../../animations';
-import { DbService } from '../../../shared/services/db.service'
+import * as teamsSelectors from '../../../redux/selectors/teams.selectors';
+
 
 @Component({
   selector: 'app-regular',
@@ -12,16 +15,10 @@ import { DbService } from '../../../shared/services/db.service'
 })
 export class RegularComponent {
 
-  public teams: Team[] = [];
-  public whiteTeams: Team[] = [];
-  public blackTeams: Team[] = [];
 
-  constructor(private db: DbService) {
-    this.db.teams.subscribe((items: Team[]) => {
-      this.teams = items;
-      this.whiteTeams = this.teams.filter((team) => team.half === 'white');
-      this.blackTeams = this.teams.filter((team) => team.half === 'black');
-    });
-  }
+  public teams: Observable<Team[]> = this.store.select(teamsSelectors.getAll);
+  public whiteTeams: Observable<Team[]> = this.store.select(teamsSelectors.getWhite);
+  public blackTeams: Observable<Team[]> = this.store.select(teamsSelectors.getBlack);
 
+  constructor(private store: Store) { }
 }

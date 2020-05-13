@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { Team } from '../../../../../shared/models/team.model';
-import { DbService } from '../../../../../shared/services/db.service'
+import * as teamsSelectors from '../../../../../redux/selectors/teams.selectors';
+
+
 
 @Component({
   selector: 'app-teams',
@@ -10,16 +14,9 @@ import { DbService } from '../../../../../shared/services/db.service'
 })
 export class TeamsComponent {
 
-  public teams: Team[] = [];
-  public whiteTeams: Team[] = [];
-  public blackTeams: Team[] = [];
+  public whiteTeams: Observable<Team[]> = this.store.select(teamsSelectors.getWhite);
+  public blackTeams: Observable<Team[]> = this.store.select(teamsSelectors.getBlack);
 
-  constructor(private db: DbService) {
-    this.db.teams.subscribe((items: Team[]) => {
-      this.teams = items;
-      this.whiteTeams = this.teams.filter((team) => team.half === 'white');
-      this.blackTeams = this.teams.filter((team) => team.half === 'black');
-    });
-  }
-  
+  constructor(private store: Store) { }
 }
+

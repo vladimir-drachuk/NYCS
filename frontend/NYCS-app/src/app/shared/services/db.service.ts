@@ -11,13 +11,7 @@ export class DbService {
 
   private url = 'http://localhost:4000';
 
-  public teams: BehaviorSubject<Team[]> = new BehaviorSubject([]);
-  public matches: BehaviorSubject<Match[]> = new BehaviorSubject([]);
-
-  constructor(private http: HttpClient, private store: Store) {
-    this.getAllTeams().subscribe((items: Team[]) => this.teams.next(items));
-    this.getAllMatches().subscribe((items: Match[]) => this.matches.next(items));
-  }
+  constructor(private http: HttpClient) { }
 
   public getAllTeams(): Observable<Object> {
     return this.http.get(`${this.url}/teams`);
