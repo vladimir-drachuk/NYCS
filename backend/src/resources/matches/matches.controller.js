@@ -7,12 +7,86 @@ const getAll = async (req, res) => {
 };
 
 // matchesService.createMatch({
-//   team1: 'Liverpool',
-//   team2: 'Spartak',
-//   team1Score: 16,
-//   team2Score: 15
+//   team1: 'Lokomotiv',
+//   team2: 'Rotor',
+//   team1Score: 13,
+//   team2Score: 6
 // });
 
+// matchesService.createMatch({
+//   team1: 'Zenit',
+//   team2: 'Chelsea',
+//   team1Score: 13,
+//   team2Score: 6
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Manchester',
+//   team1Score: 13,
+//   team2Score: 6
+// });
+
+// matchesService.createMatch({
+//   team1: 'Lokomotiv',
+//   team2: 'Manchester',
+//   team1Score: 13,
+//   team2Score: 6
+// });
+
+// matchesService.createMatch({
+//   team1: 'Zenit',
+//   team2: 'Arsenal',
+//   team1Score: 13,
+//   team2Score: 6
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle',
+//   team1Score: 13,
+//   team2Score: 6
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle'
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle'
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle'
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle'
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle'
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle'
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle'
+// });
+
+// matchesService.createMatch({
+//   team1: 'Dynamo',
+//   team2: 'Newcastle'
+// });
 // function getRandomInt(max) {
 //   return Math.floor(Math.random() * Math.floor(max));
 // }

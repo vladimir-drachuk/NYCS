@@ -4,6 +4,7 @@
     font-size: 22px;
     border: 1px solid transparent;
     margin: 0 10px;
+    user-select: none;
 }
 
 .option-buttons {
@@ -48,12 +49,16 @@
     }
 }
 
+.green {
+    color: limegreen;
+}
+
+.red {
+    color: lightcoral;
+}
+
 .focus {
     background-color: rgb(241, 238, 238);
     border: 1px solid lightgrey;
     border-radius: 4px;
-}
-
-.hide {
-    display: none;
 }

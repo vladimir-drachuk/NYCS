@@ -3,15 +3,15 @@ import { State, TeamsState } from '../store';
 
 const selectTeamsObj = createFeatureSelector<State, TeamsState>('teams');
 
-// export const isLoaded = createSelector(
-//     selectTeamsObj,
-//     (obj: TeamsState) => obj.isLoaded
-// )
+export const isLoaded = createSelector(
+    selectTeamsObj,
+    (obj: TeamsState) => obj.isLoaded
+)
 
-// export const isError = createSelector(
-//     selectTeamsObj,
-//     (obj: TeamsState) => obj.isError
-// )
+export const isError = createSelector(
+    selectTeamsObj,
+    (obj: TeamsState) => obj.isError
+)
 
 export const getAll = createSelector(
     selectTeamsObj,

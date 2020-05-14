@@ -1,4 +1,4 @@
-import { Component, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { Store } from '@ngrx/store';
 
@@ -10,7 +10,7 @@ import * as matchesSelector from '../../../../redux/selectors/matches.selectors'
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements AfterViewInit {
+export class CarouselComponent {
   public name = 'Angular';
   public slideNo = 0;
   public withAnim = true;
@@ -20,7 +20,7 @@ export class CarouselComponent implements AfterViewInit {
 
   @ViewChild('myCarousel') myCarousel;
   carouselConfig: NguCarouselConfig = {
-    grid: { xs: 3, sm: 4, md: 5, lg: this.maxCount, all: 0 },
+    grid: { xs: this.maxCount - 3, sm: this.maxCount - 2, md: this.maxCount - 1, lg: this.maxCount, all: 0 },
     slide: 1,
     interval: {timing: 4000, initialDelay: 1000},
     touch: true,
@@ -31,12 +31,12 @@ export class CarouselComponent implements AfterViewInit {
     this.store.select(matchesSelector.getAll).subscribe((matches: Match[]) => {
       matches.sort((a, b) => +b.isComplete - +a.isComplete)
       this.carouselItems = this.fillCarousel(matches);
-    });
-  }
 
-  public ngAfterViewInit(): void {
-    this.cdr.detectChanges();
-    this.moveTo(20);
+      if (matches.length > this.maxCount) {
+        this.cdr.detectChanges();
+        this.moveTo(7);
+      }
+    });
   }
 
   private fillCarousel(matches: Match[]): Match[] {

@@ -26,6 +26,7 @@ export class AdminPageComponent {
   }
 
   public show() {
-    console.log(this.matches);
+    const sbsc = this.matches.subscribe(matches => console.log(matches));
+    sbsc.unsubscribe();
   }
 }

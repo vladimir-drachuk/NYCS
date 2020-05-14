@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Store } from '@ngrx/store';
-
-import { Team } from '../models/team.model';
-import { Match } from '../models/match.model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class DbService {
