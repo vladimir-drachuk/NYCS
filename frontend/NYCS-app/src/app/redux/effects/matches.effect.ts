@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
+
 import { DbService } from '../../shared/services/db.service';
 import { matchesActionType } from '../actions/matches.actions';
+import { ActionPayload } from '../store';
+import { Match } from 'src/app/shared/models/match.model';
  
 @Injectable()
 export class MatchesEffects {
@@ -12,12 +15,22 @@ export class MatchesEffects {
       ofType(matchesActionType.getMatches),
       mergeMap(() => this.db.getAllMatches()
         .pipe(
-            map(matches => {
-                return { type: matchesActionType.getMatchesSuccess,payload: { data: matches, isLoaded: true, isError: false } }}),
+            map(matches => 
+                 ({ type: matchesActionType.getMatchesSuccess, payload: { data: matches, isLoaded: true, isError: false } })),
             catchError(() => of({ type: matchesActionType.getMatchesError, payload: { data: [], isLoaded: false, isError: true } }))
         ))
     )
   );
+  
+  updateMatch$ = createEffect(() => this.actions$.pipe(
+      ofType(matchesActionType.updateMatch),
+      mergeMap((match: ActionPayload<Match>) => this.db.updateMatch(match.payload)
+        .pipe(
+          switchMap(() => of({type: matchesActionType.updateMatchSuccess })),
+          catchError(() => of({ type: matchesActionType.updateMatchError }))
+        )  
+  ))
+  )
  
   constructor(private actions$: Actions, private db: DbService) { }
 }

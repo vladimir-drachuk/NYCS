@@ -1,8 +1,10 @@
 <form class="form" [(isFocused)]="isFocused" [isEditMode]="isEditMode" (dblclick)="getEditMode()" appMatchFocused>
     <div class="team team1">{{ match.team1 }}</div>
-    <input class="score team1-score" type="text" [(ngModel)]="match.team1Score" name="team1" [disabled]="isTeam1disabled">
+    <input class="score team1-score" type="text" [value]="match.team1Score" name="team1" 
+           [isInvalid]="isScore1invalid" [disabled]="isTeam1disabled" #team1 appInputValidate>
     <span>:</span>
-    <input class="score" type="text" [(ngModel)]="match.team2Score" name="team2" [disabled]="isTeam1disabled">
+    <input class="score" type="text" [value]="match.team2Score" name="team2" 
+           [isInvalid]="isScore2invalid" [disabled]="isTeam1disabled" #team2 appInputValidate>
     <div class="team team2">{{ match.team2 }}</div>
     <div class="match-stats">{{ match.tourneyStatus }}
         <div class="ot" *ngIf="overTime">{{ showOTinMatch() }}</div>

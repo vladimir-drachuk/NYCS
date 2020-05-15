@@ -6,6 +6,11 @@ const getAll = async (req, res) => {
   res.json(matches);
 };
 
+const updateMatch = (req, res) => {
+  console.log(req.body);
+  res.json('ОК!!').status(200);
+};
+
 // matchesService.createMatch({
 //   team1: 'Lokomotiv',
 //   team2: 'Rotor',
@@ -119,4 +124,4 @@ const getAll = async (req, res) => {
 
 // mock();
 
-module.exports = { getAll };
+module.exports = { getAll, updateMatch };

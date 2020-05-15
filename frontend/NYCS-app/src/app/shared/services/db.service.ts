@@ -16,4 +16,8 @@ export class DbService {
   public getAllMatches(): Observable<Object> {
     return this.http.get(`${this.url}/matches`);
   }
+
+  public updateMatch(match) {
+    return this.http.put(`${this.url}/matches`, match);
+  }
 }

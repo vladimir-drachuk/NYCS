@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Match } from '../../../shared/models/match.model';
 import { isEditMode } from '../../../redux/selectors/appstore.selectors';
 import { editMode, regularMode } from '../../../redux/actions/appstore.actions';
+import { updateMatch } from 'src/app/redux/actions/matches.actions';
 
 @Component({
   selector: 'app-admin-match',
@@ -13,16 +14,18 @@ import { editMode, regularMode } from '../../../redux/actions/appstore.actions';
 export class AdminMatchComponent implements OnInit, OnDestroy {
 
   @Input() match: Match;
+  @ViewChild('team1', { static: false }) public team1Score: ElementRef;
+  @ViewChild('team2', { static: false }) public team2Score: ElementRef;
 
   private subscriber; 
   public isEditMode: boolean;
   public isEditMatch: boolean;
   public isFocused: boolean;
   public overTime: boolean;
-  public isTeam1disabled: boolean = false;
-  public isTeam2disabled: boolean = false;
-  public team1Score: number;
-  public team2Score: number;
+  public isScore1invalid: boolean;
+  public isScore2invalid: boolean;
+  public isTeam1disabled: boolean = true;
+  public isTeam2disabled: boolean = true;
 
   constructor(private store: Store) { }
 
@@ -40,6 +43,11 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
     this.isTeam2disabled = true;
   }
 
+  private isValid(value: string): boolean {
+    console.log()
+    return !Number.isNaN(+value);
+  }
+
   public ngOnInit(): void {
     this.overTime = this.match.isOT || this.match.isKR;
     this.subscriber = this.store.select(isEditMode).subscribe(isEdit => this.isEditMode = isEdit);
@@ -54,9 +62,6 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   public getEditMode(): void {
     if (!this.isEditMode) {
       this.gotoEditMode();
-      this.match.team2Score = 66;
-      this.team1Score = this.match.team1Score;
-      this.team2Score = this.match.team2Score;
     }
   }
 
@@ -69,14 +74,31 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   }
 
   public applyChangeMatch(): void {
-    this.gotoRegularMode();
-    
+    const score1 = this.team1Score.nativeElement.value;
+    const score2 = this.team2Score.nativeElement.value;
+    if (this.isValid(score1) && this.isValid(score2)){
+      this.gotoRegularMode();
+      this.isScore1invalid = false;
+      this.isScore2invalid = false;
+      this.store.dispatch(updateMatch({ 
+        payload: {
+          ...this.match,
+          team1Score: score1.trim() === '' ? null : +score1,
+          team2Score: score2.trim() === '' ? null : +score2 
+        }
+      }));
+    } else {
+        if (!this.isValid(score1)) this.isScore1invalid = true;
+        if (!this.isValid(score2)) this.isScore2invalid = true;
+    }
   }
 
   public cancelChangeMatch(): void {
     this.gotoRegularMode()
-    this.match.team1Score = this.team1Score;
-    this.match.team2Score = this.team2Score;
+    this.isScore1invalid = false;
+    this.isScore2invalid = false;
+    this.team1Score.nativeElement.value = this.match.team1Score;
+    this.team2Score.nativeElement.value = this.match.team2Score;
   }
 
   public ngOnDestroy(): void {

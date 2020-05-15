@@ -12,6 +12,7 @@ import { EditRegularMatchesComponent } from './components/edit-regular-matches/e
 import { FromExcelComponent } from './components/edit-regular-matches/from-excel/from-excel.component';
 import { AdminMatchComponent } from './components/admin-match/admin-match.component';
 import { MatchFocusedDirective } from './directives/match-focused.directive';
+import { InputValidateDirective } from './directives/input-validate.directive';
 
 const routes: Routes = [
   { path: '', component: AdminPageComponent }
@@ -23,7 +24,8 @@ const routes: Routes = [
     EditRegularMatchesComponent,
     FromExcelComponent,
     AdminMatchComponent,
-    MatchFocusedDirective
+    MatchFocusedDirective,
+    InputValidateDirective
   ],
   imports: [
     CommonModule,
