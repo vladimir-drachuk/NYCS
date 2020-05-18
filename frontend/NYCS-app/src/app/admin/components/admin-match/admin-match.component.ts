@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable, Subscriber } from 'rxjs';
 
 import { Match } from '../../../shared/models/match.model';
 import { isEditMode } from '../../../redux/selectors/appstore.selectors';
 import { editMode, regularMode } from '../../../redux/actions/appstore.actions';
 import { updateMatch } from 'src/app/redux/actions/matches.actions';
+import { isLoading } from 'src/app/redux/selectors/matches.selectors';
 
 @Component({
   selector: 'app-admin-match',
@@ -17,10 +19,11 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   @ViewChild('team1', { static: false }) public team1Score: ElementRef;
   @ViewChild('team2', { static: false }) public team2Score: ElementRef;
 
-  private subscriber; 
+  private subscriber;
   public isEditMode: boolean;
   public isEditMatch: boolean;
   public isFocused: boolean;
+  public isLoadingMode: Observable<boolean> = this.store.select(isLoading);
   public overTime: boolean;
   public isScore1invalid: boolean;
   public isScore2invalid: boolean;
@@ -28,6 +31,12 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   public isTeam2disabled: boolean = true;
 
   constructor(private store: Store) { }
+
+  
+  public ngOnInit(): void {
+    this.overTime = this.match.isOT || this.match.isKR;
+    this.subscriber = this.store.select(isEditMode).subscribe(isEdit => this.isEditMode = isEdit);
+  }
 
   private gotoEditMode(): void {
     this.isEditMatch = true;
@@ -44,14 +53,12 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   }
 
   private isValid(value: string): boolean {
-    console.log()
     return !Number.isNaN(+value);
   }
 
-  public ngOnInit(): void {
-    this.overTime = this.match.isOT || this.match.isKR;
-    this.subscriber = this.store.select(isEditMode).subscribe(isEdit => this.isEditMode = isEdit);
-  }
+  public getRandomInt(max): number {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
   public showOTinMatch(): string {
     let result = '';
@@ -66,18 +73,35 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   }
 
   public getClearMatch(): void {
-    console.log('clear');
+    this.store.dispatch(updateMatch({ 
+      payload: {
+        ...this.match,
+        team1Score: null,
+        team2Score: null,
+        isOT: false,
+        isKR: false,
+      }
+    }));
   }
 
-  public getDeleteMatch(): void {
-    console.log('delete');
+  public getRandomMatch(): void {
+    const score1: number = this.getRandomInt(24);
+    const score2: number = 24 - score1;
+    this.store.dispatch(updateMatch({ 
+      payload: {
+        ...this.match,
+        team1Score: score1,
+        team2Score: score2,
+        isOT: false,
+        isKR: false,
+      }
+    }));
   }
 
   public applyChangeMatch(): void {
-    const score1 = this.team1Score.nativeElement.value;
-    const score2 = this.team2Score.nativeElement.value;
+    const score1: string = this.team1Score.nativeElement.value;
+    const score2: string = this.team2Score.nativeElement.value;
     if (this.isValid(score1) && this.isValid(score2)){
-      this.gotoRegularMode();
       this.isScore1invalid = false;
       this.isScore2invalid = false;
       this.store.dispatch(updateMatch({ 
@@ -87,9 +111,10 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
           team2Score: score2.trim() === '' ? null : +score2 
         }
       }));
+      this.gotoRegularMode();
     } else {
-        if (!this.isValid(score1)) this.isScore1invalid = true;
-        if (!this.isValid(score2)) this.isScore2invalid = true;
+      if (!this.isValid(score1)) this.isScore1invalid = true;
+      if (!this.isValid(score2)) this.isScore2invalid = true;
     }
   }
 

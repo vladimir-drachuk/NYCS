@@ -28,10 +28,8 @@ export class CarouselComponent {
   }
 
   constructor(private cdr: ChangeDetectorRef, private store: Store) {
-    this.store.select(matchesSelector.getAll).subscribe((matches: Match[]) => {
-      matches.sort((a, b) => +b.isComplete - +a.isComplete)
+    this.store.select(matchesSelector.getAllSorted).subscribe((matches: Match[]) => {
       this.carouselItems = this.fillCarousel(matches);
-
       if (matches.length > this.maxCount) {
         this.cdr.detectChanges();
         this.moveTo(7);

@@ -1,6 +1,6 @@
 const getScore = require('./getScore');
 
-const getStat = (team, matches) => {
+const getRegularStat = (team, matches) => {
   const matchesTeam = matches.filter(
     match => team.id === match.team1ID || team.id === match.team2ID
   );
@@ -94,4 +94,4 @@ const getStat = (team, matches) => {
   return Object.assign(team, { stats });
 };
 
-module.exports = getStat;
+module.exports = getRegularStat;

@@ -1,0 +1,49 @@
+:host {
+    user-select: none;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mat-dialog-content {
+    position: relative;
+    height: 58vh; // mat option to display 10 matches without scrolling in my notebook
+    .control-button-list {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        .control-button {
+            display: block;
+            width: 150px;
+            margin: 5px;
+        }
+    }
+}
+
+.paginator-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    pagination-controls {
+        padding-top: 15px;
+        &::ng-deep .ngx-pagination .current {
+            background: #3f51b5;
+        }
+    }
+    mat-form-field {
+        padding-top: 8px;
+    }
+}
+
+.red-button {
+    color: white;
+    background-color: lightcoral;
+}
+
+.green-button {
+    color: white;
+    background-color: lightgreen;
+}

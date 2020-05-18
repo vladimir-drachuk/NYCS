@@ -1,0 +1,28 @@
+<h4 class="title" mat-dialog-title>Regular Schedule Editing</h4>
+<div mat-dialog-content>
+  <div class="control-button-list">
+    <button mat-stroked-button color="primary" class="control-button" (click)="openFromExcel()">Load from Excel</button>
+    <button mat-stroked-button color="primary" class="control-button" (click)="addMatch()">Add Match</button>
+    <button mat-stroked-button color="primary" class="control-button" (click)="clearSchedule()">Clear Schedule</button>
+  </div>
+  
+  <app-edit-match *ngFor="let match of matches | paginate: { itemsPerPage: itemsPerPage , currentPage: paginatorPage }"
+                  [match]="match" (remove)="deleteMatch($event)">
+  </app-edit-match>
+</div>
+
+<div mat-dialog-actions>
+  <div class="paginator-controls">
+    <pagination-controls class="controller" (pageChange)="paginatorPage = $event"></pagination-controls>
+    <div class="number-pages">matches {{ getPaginatorStart() }}-{{ getPaginatorEnd(matches.length) }} of {{ matches.length }}</div>
+    <mat-form-field>
+      <mat-label>Select matches per page</mat-label>
+      <mat-select [(value)]="itemsPerPage">
+        <mat-option *ngFor="let item of itemsPerPageOptions" [value]="item">{{ item }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button mat-button class="red-button" (click)="onNoClick()">Cancel</button>
+  <button mat-button class="green-button" (click)="onYesClick()">Apply</button>
+</div>

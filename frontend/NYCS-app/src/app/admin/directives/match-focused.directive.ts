@@ -1,5 +1,4 @@
 import { Directive, ElementRef, Input, Output, EventEmitter } from '@angular/core';
-import { Store } from '@ngrx/store';
 
 @Directive({
   selector: '[appMatchFocused]',
@@ -15,7 +14,7 @@ export class MatchFocusedDirective {
   @Input() public isFocused: boolean; 
   @Output() public isFocusedChange: EventEmitter<boolean> = new EventEmitter()
 
-  constructor(private elem: ElementRef, private store: Store) { }
+  constructor(private elem: ElementRef) { }
 
   public onMouseEnter(): void {
     this.isFocusedChange.emit(true);

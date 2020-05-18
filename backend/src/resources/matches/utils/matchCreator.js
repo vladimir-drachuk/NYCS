@@ -17,9 +17,13 @@ const completeMatch = matchData => {
     if (matchData.tourneyStatus === 'Regular' || !matchData.tourneyStatus) {
       if (matchData.team1Score + matchData.team2Score > REGULAR * 2) {
         matchData.isOT = true;
+      } else {
+        matchData.isOT = false;
       }
       if (matchData.team1Score + matchData.team2Score >= roundsToKnife) {
         matchData.isKR = true;
+      } else {
+        matchData.isKR = false;
       }
 
       // Playoff

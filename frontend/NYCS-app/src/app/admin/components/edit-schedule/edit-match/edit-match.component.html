@@ -1,0 +1,7 @@
+<div class="match-id" [attr.data-id]="match._id">ID</div>
+<div class="team">{{ match.team1 }}</div>
+<div class="score"> {{ match.team1Score }} </div>
+<div>{{ match.isComplete ? ':' : '-' }}</div>
+<div class="score">{{ match.team2Score}}</div>
+<div class="team">{{ match.team2 }}</div>
+<button mat-stroked-button class="red" (click)="deleteMatch()">Delete</button>

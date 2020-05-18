@@ -6,9 +6,9 @@ const getAll = async (req, res) => {
   res.json(matches);
 };
 
-const updateMatch = (req, res) => {
-  console.log(req.body);
-  res.json('ОК!!').status(200);
+const updateMatch = async (req, res) => {
+  await matchesService.updateMatch(req.body);
+  res.status(200).json({ ok: true });
 };
 
 // matchesService.createMatch({

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-
-import { EditRegularMatchesComponent } from './edit-regular-matches/edit-regular-matches.component';
-import { Match } from '../../shared/models/match.model';
-import * as matchesSelectors from '../../redux/selectors/matches.selectors'
 import { Observable } from 'rxjs';
 
+import { EditScheduleComponent } from './edit-schedule/edit-schedule.component';
+import { Match } from '../../shared/models/match.model';
+import * as matchesSelectors from '../../redux/selectors/matches.selectors'
 
 @Component({
   selector: 'app-admin-page',
@@ -20,8 +19,9 @@ export class AdminPageComponent {
   constructor(public dialog: MatDialog, private store: Store) { };
 
   public openEditSchedule(): void {
-    this.dialog.open(EditRegularMatchesComponent, {
-      width: '50%',
+    this.dialog.open(EditScheduleComponent, {
+      width: '60%',
+      height: '90%'
     });
   }
 

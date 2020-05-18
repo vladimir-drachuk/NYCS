@@ -13,9 +13,22 @@ export const isError = createSelector(
     (obj: MatchesState) => obj.isError
 )
 
+export const isLoading = createSelector(
+    selectMatchesObj,
+    (obj: MatchesState) => obj.isProcessLoading
+)
+
 export const getAll = createSelector(
     selectMatchesObj,
     (obj: MatchesState) => obj.data.filter(match => match) // app throw error wihout filter
+)
+
+export const getAllSorted = createSelector(
+    selectMatchesObj,
+    (obj: MatchesState) => {
+        const sortMatches = [...obj.data]; 
+        return sortMatches.sort((a, b) => +b.isComplete - +a.isComplete)
+    }
 )
 
 export const getRegular = createSelector(

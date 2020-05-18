@@ -6,13 +6,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AdminPageComponent } from './components/admin-page.component';
-import { EditRegularMatchesComponent } from './components/edit-regular-matches/edit-regular-matches.component';
-import { FromExcelComponent } from './components/edit-regular-matches/from-excel/from-excel.component';
+import { EditScheduleComponent } from './components/edit-schedule/edit-schedule.component';
+import { FromExcelComponent } from './components/edit-schedule/from-excel/from-excel.component';
 import { AdminMatchComponent } from './components/admin-match/admin-match.component';
 import { MatchFocusedDirective } from './directives/match-focused.directive';
 import { InputValidateDirective } from './directives/input-validate.directive';
+import { EditMatchComponent } from './components/edit-schedule/edit-match/edit-match.component';
+import { AddMatchComponent } from './components/edit-schedule/add-match/add-match.component';
 
 const routes: Routes = [
   { path: '', component: AdminPageComponent }
@@ -21,17 +26,22 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AdminPageComponent, 
-    EditRegularMatchesComponent,
+    EditScheduleComponent,
     FromExcelComponent,
     AdminMatchComponent,
     MatchFocusedDirective,
-    InputValidateDirective
+    InputValidateDirective,
+    EditMatchComponent,
+    AddMatchComponent
   ],
   imports: [
     CommonModule,
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    NgxPaginationModule,
     MatFormFieldModule,
     FormsModule,
     RouterModule.forChild(routes)

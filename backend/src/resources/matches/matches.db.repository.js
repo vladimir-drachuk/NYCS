@@ -7,4 +7,6 @@ const getAllCompleteRegular = () =>
 
 const createMatch = matchInfo => Match.create(matchInfo);
 
-module.exports = { getAll, getAllCompleteRegular, createMatch };
+const updateMatch = match => Match.updateOne({ _id: match._id }, match);
+
+module.exports = { getAll, getAllCompleteRegular, createMatch, updateMatch };

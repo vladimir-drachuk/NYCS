@@ -1,4 +1,5 @@
 <form class="form" [(isFocused)]="isFocused" [isEditMode]="isEditMode" (dblclick)="getEditMode()" appMatchFocused>
+
     <div class="team team1">{{ match.team1 }}</div>
     <input class="score team1-score" type="text" [value]="match.team1Score" name="team1" 
            [isInvalid]="isScore1invalid" [disabled]="isTeam1disabled" #team1 appInputValidate>
@@ -6,24 +7,29 @@
     <input class="score" type="text" [value]="match.team2Score" name="team2" 
            [isInvalid]="isScore2invalid" [disabled]="isTeam1disabled" #team2 appInputValidate>
     <div class="team team2">{{ match.team2 }}</div>
+    
     <div class="match-stats">{{ match.tourneyStatus }}
         <div class="ot" *ngIf="overTime">{{ showOTinMatch() }}</div>
     </div>
+
     <div class="option-buttons">
         <button *ngIf="!isEditMode && isFocused" 
                 mat-icon-button color="primary" 
+                title="Edit score"
                 (click)="getEditMode()">
                 <mat-icon>edit</mat-icon>
         </button>
         <button *ngIf="!isEditMode && isFocused" 
-                mat-icon-button color="accent" 
+                mat-icon-button color="accent"
+                title="Clear score" 
                 (click)="getClearMatch()">
                 <mat-icon>refresh</mat-icon>
         </button>
         <button *ngIf="!isEditMode && isFocused" 
-                mat-icon-button color="warn" 
-                (click)="getDeleteMatch()">
-                <mat-icon>delete</mat-icon>
+                mat-icon-button color="warn"
+                title="Random score"
+                (click)="getRandomMatch()">
+                <mat-icon>contact_support</mat-icon>
         </button>
         <button *ngIf="isEditMode && isEditMatch" 
                 mat-icon-button class="green" 
@@ -35,6 +41,7 @@
                 (click)="cancelChangeMatch()">
                 <mat-icon>cancel</mat-icon>
         </button>
+        <mat-spinner *ngIf="isFocused && isLoadingMode | async" class="spinner" diameter="20"></mat-spinner>
     </div>
 </form>
 
