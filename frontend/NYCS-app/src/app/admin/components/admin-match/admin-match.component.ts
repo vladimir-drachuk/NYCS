@@ -6,7 +6,7 @@ import { Match } from '../../../shared/models/match.model';
 import { isEditMode } from '../../../redux/selectors/appstore.selectors';
 import { editMode, regularMode } from '../../../redux/actions/appstore.actions';
 import { updateMatch } from 'src/app/redux/actions/matches.actions';
-import { isLoading } from 'src/app/redux/selectors/matches.selectors';
+import { isMatchLoading } from 'src/app/redux/selectors/matches.selectors';
 
 @Component({
   selector: 'app-admin-match',
@@ -23,7 +23,7 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   public isEditMode: boolean;
   public isEditMatch: boolean;
   public isFocused: boolean;
-  public isLoadingMode: Observable<boolean> = this.store.select(isLoading);
+  public isLoadingMode: Observable<boolean> = this.store.select(isMatchLoading);
   public overTime: boolean;
   public isScore1invalid: boolean;
   public isScore2invalid: boolean;
@@ -31,9 +31,8 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   public isTeam2disabled: boolean = true;
 
   constructor(private store: Store) { }
-
   
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.overTime = this.match.isOT || this.match.isKR;
     this.subscriber = this.store.select(isEditMode).subscribe(isEdit => this.isEditMode = isEdit);
   }
@@ -126,7 +125,7 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
     this.team2Score.nativeElement.value = this.match.team2Score;
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.subscriber.unsubscribe();
   }
 }

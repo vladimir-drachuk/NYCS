@@ -35,8 +35,8 @@ export class FromExcelComponent implements OnInit {
     return result;
   };
 
-  public onLoadClick(text: string): void {
-    const data: string[][] = text.split('\u000A').map(item => item.split('\u0009'));
+  public onLoadClick(textarea: HTMLTextAreaElement): void {
+    const data: string[][] = textarea.value.split('\u000A').map(item => item.split('\u0009'));
     if (this.validateExcelData(data)) {
       const returnMatches = data.map((dataRow: string[]) => ({
         team1: dataRow[0],
@@ -53,6 +53,12 @@ export class FromExcelComponent implements OnInit {
         loser: null
       }))
       this.dialogRef.close(returnMatches);
-    }      
+    } else {
+      textarea.classList.add('invalid')
+    }
+  }
+
+  public resetClass(textarea: HTMLTextAreaElement) {
+    textarea.classList.remove('invalid');
   }
 }

@@ -16,7 +16,8 @@ export interface TeamsState {
 export interface MatchesState {
   data: Match[];
   isLoaded: boolean;
-  isProcessLoading: boolean;
+  isProcessUpdateLoading: boolean;
+  isProcessScheduleLoadinng: boolean;
   isError: boolean;
 }
 

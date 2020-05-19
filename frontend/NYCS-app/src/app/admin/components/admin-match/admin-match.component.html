@@ -3,7 +3,7 @@
     <div class="team team1">{{ match.team1 }}</div>
     <input class="score team1-score" type="text" [value]="match.team1Score" name="team1" 
            [isInvalid]="isScore1invalid" [disabled]="isTeam1disabled" #team1 appInputValidate>
-    <span>:</span>
+    <span>{{ match.isComplete ? ":" : "-" }}</span>
     <input class="score" type="text" [value]="match.team2Score" name="team2" 
            [isInvalid]="isScore2invalid" [disabled]="isTeam1disabled" #team2 appInputValidate>
     <div class="team team2">{{ match.team2 }}</div>

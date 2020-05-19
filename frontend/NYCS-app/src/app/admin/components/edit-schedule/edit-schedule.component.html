@@ -13,7 +13,7 @@
 
 <div mat-dialog-actions>
   <div class="paginator-controls">
-    <pagination-controls class="controller" (pageChange)="paginatorPage = $event"></pagination-controls>
+    <pagination-controls class="controller" (pageChange)="paginatorPage = $event" [maxSize]="maxSize"></pagination-controls>
     <div class="number-pages">matches {{ getPaginatorStart() }}-{{ getPaginatorEnd(matches.length) }} of {{ matches.length }}</div>
     <mat-form-field>
       <mat-label>Select matches per page</mat-label>

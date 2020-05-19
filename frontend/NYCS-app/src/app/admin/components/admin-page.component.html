@@ -1,14 +1,16 @@
 <h2 class="title">NYCS Administation Panel</h2>
-<div class="admin-wrapper">
+<div *ngIf="!(isScheduleLoading | async), else elseBlock" class="admin-wrapper">
     <div class="matches">
         <app-admin-match *ngFor="let match of matches | async" [match]="match"></app-admin-match>
-        <button (click)="show()">btn</button>
     </div>
     <div class="options">
-        <button mat-stroked-button (click)="openEditSchedule()">Edit Schedule</button>
+        <button mat-stroked-button color="primary" (click)="openEditSchedule()">Edit Schedule</button>
     </div>
 </div>
 
-
-
-
+<ng-template #elseBlock>
+    <div class="else-block">
+        <mat-spinner></mat-spinner>
+        <div>Loading your Schedule...</div>
+    </div>
+</ng-template>

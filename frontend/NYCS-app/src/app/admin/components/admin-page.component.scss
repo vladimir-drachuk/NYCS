@@ -16,3 +16,14 @@
 .options {
     flex: 1;
 }
+
+.else-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    div {
+        margin: 20px;
+    }
+}

@@ -4,8 +4,9 @@ import { Store } from '@ngrx/store';
 
 import { FromExcelComponent } from './from-excel/from-excel.component';
 import { Match } from 'src/app/shared/models/match.model';
-import { getAll } from 'src/app/redux/selectors/matches.selectors';
+import { getRegular } from 'src/app/redux/selectors/matches.selectors';
 import { AddMatchComponent } from './add-match/add-match.component';
+import { changeShedule } from 'src/app/redux/actions/matches.actions';
 
 @Component({
   selector: 'app-edit-schedule',
@@ -16,6 +17,7 @@ export class EditScheduleComponent implements OnInit {
 
   public matches: Match[]; 
   public paginatorPage: number = 1;
+  public maxSize: number = 5;
   public itemsPerPageOptions: number[] = [5, 10, 15, 20];
   public itemsPerPage: number = this.itemsPerPageOptions[1];
 
@@ -24,7 +26,7 @@ export class EditScheduleComponent implements OnInit {
               private store: Store) { }
 
   ngOnInit(): void {
-    this.store.select(getAll).subscribe((matches: Match[]) => {
+    this.store.select(getRegular).subscribe((matches: Match[]) => {
       this.matches = [...matches];
     });
   }
@@ -68,7 +70,7 @@ export class EditScheduleComponent implements OnInit {
   public onYesClick(): void {
     const yes = confirm('Do you really want to change tourney schedule?');
     if (yes) {
-      console.log('Apply...');
+      this.store.dispatch(changeShedule({ payload: this.matches }));
     } 
     this.dialogRef.close();    
   }

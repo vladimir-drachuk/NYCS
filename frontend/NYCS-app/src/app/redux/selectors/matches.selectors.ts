@@ -13,9 +13,14 @@ export const isError = createSelector(
     (obj: MatchesState) => obj.isError
 )
 
-export const isLoading = createSelector(
+export const isMatchLoading = createSelector(
     selectMatchesObj,
-    (obj: MatchesState) => obj.isProcessLoading
+    (obj: MatchesState) => obj.isProcessUpdateLoading
+)
+
+export const isScheduleLoading = createSelector(
+    selectMatchesObj,
+    (obj: MatchesState) => obj.isProcessScheduleLoadinng
 )
 
 export const getAll = createSelector(

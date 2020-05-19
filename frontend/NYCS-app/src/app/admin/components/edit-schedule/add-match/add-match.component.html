@@ -1,21 +1,21 @@
 <div class="content" mat-dialog-content>
-        <mat-form-field>
-            <mat-label>Team1</mat-label>
-            <mat-select [(value)]="team1" (selectionChange)="onChangeSelects()">
-                <mat-option *ngFor="let team of teams | async" [value]="team.name">{{ team.name }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div class="vs">vs</div>
-        <mat-form-field>
-            <mat-label>Team2</mat-label>
-            <mat-select [(value)]="team2" (selectionChange)="onChangeSelects()">
-                <mat-option *ngFor="let team of teams | async" [value]="team.name">{{ team.name }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+    <mat-form-field>
+        <mat-label>Team1</mat-label>
+        <mat-select [(value)]="team1" (selectionChange)="onChangeSelects()">
+            <mat-option *ngFor="let team of teams | async" [value]="team.name">{{ team.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="vs">vs</div>
+    <mat-form-field>
+        <mat-label>Team2</mat-label>
+        <mat-select [(value)]="team2" (selectionChange)="onChangeSelects()">
+            <mat-option *ngFor="let team of teams | async" [value]="team.name">{{ team.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button mat-stroked-button (click)="onCancelClick()">Cancel</button>
-    <button mat-stroked-button (click)="onAddClick()" [disabled]="isAddDisabled">Add</button>
-  </div>
+    <button mat-stroked-button color="primary" (click)="onCancelClick()">Cancel</button>
+    <button mat-stroked-button color="primary" (click)="onAddClick()" [disabled]="isAddDisabled">Add</button>
+</div>

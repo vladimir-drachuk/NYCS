@@ -35,4 +35,21 @@ const updateMatch = async match => {
   return match;
 };
 
-module.exports = { getAll, createMatch, updateMatch };
+const changeSchedule = async matches => {
+  await matchesRepo.dropMatchesRepo();
+  for (let match of matches) {
+    if (!match._id) {
+      match = await createMatch(match);
+    } else {
+      match = await matchesRepo.createMatch(match);
+    }
+  }
+  const teams = await teamsRepo.getAll();
+  const matchesRegular = await matchesRepo.getAllCompleteRegular();
+  for (const team of teams) {
+    await teamsRepo.updateTeam(team.id, getRegularStat(team, matchesRegular));
+  }
+  return matches;
+};
+
+module.exports = { getAll, createMatch, updateMatch, changeSchedule };

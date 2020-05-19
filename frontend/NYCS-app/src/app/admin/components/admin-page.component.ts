@@ -15,6 +15,7 @@ import * as matchesSelectors from '../../redux/selectors/matches.selectors'
 export class AdminPageComponent {
 
   public matches: Observable<Match[]> = this.store.select(matchesSelectors.getAll);
+  public isScheduleLoading: Observable<boolean> = this.store.select(matchesSelectors.isScheduleLoading);
 
   constructor(public dialog: MatDialog, private store: Store) { };
 
@@ -23,10 +24,5 @@ export class AdminPageComponent {
       width: '60%',
       height: '90%'
     });
-  }
-
-  public show() {
-    const sbsc = this.matches.subscribe(matches => console.log(matches));
-    sbsc.unsubscribe();
   }
 }

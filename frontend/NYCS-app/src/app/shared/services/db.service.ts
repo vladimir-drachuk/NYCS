@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { Match } from '../models/match.model';
+
 @Injectable()
 export class DbService {
 
@@ -17,7 +19,11 @@ export class DbService {
     return this.http.get(`${this.url}/matches`);
   }
 
-  public updateMatch(match) {
+  public createSchedule(matches: Match[]): Observable<Object> {
+    return this.http.post(`${this.url}/matches`, matches)
+  }
+
+  public updateMatch(match: Match): Observable<Object> {
     return this.http.put(`${this.url}/matches`, match);
   }
 }
