@@ -8,7 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 import { AdminPageComponent } from './components/admin-page.component';
 import { EditScheduleComponent } from './components/edit-schedule/edit-schedule.component';
@@ -41,8 +45,12 @@ const routes: Routes = [
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatTabsModule,
     NgxPaginationModule,
     MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
     FormsModule,
     RouterModule.forChild(routes)
   ]

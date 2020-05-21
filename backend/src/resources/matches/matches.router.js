@@ -7,4 +7,6 @@ router
   .post(matchesController.changeSchedule)
   .put(matchesController.updateMatch);
 
+router.route('/time').put(matchesController.updateTime);
+
 module.exports = router;

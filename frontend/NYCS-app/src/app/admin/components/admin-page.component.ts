@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { EditScheduleComponent } from './edit-schedule/edit-schedule.component';
 import { Match } from '../../shared/models/match.model';
-import * as matchesSelectors from '../../redux/selectors/matches.selectors'
+import * as matchesSelectors from '../../redux/selectors/matches.selectors';
 
 @Component({
   selector: 'app-admin-page',

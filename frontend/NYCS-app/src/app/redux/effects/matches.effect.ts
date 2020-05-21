@@ -8,6 +8,7 @@ import { matchesActionType } from '../actions/matches.actions';
 import { ActionPayload } from '../store';
 import { Match } from 'src/app/shared/models/match.model';
 import { teamsActionType } from '../actions/teams.actions';
+import { UpdateTime } from 'src/app/shared/models/updateMatchTime';
  
 @Injectable()
 export class MatchesEffects {
@@ -35,7 +36,19 @@ export class MatchesEffects {
     )
   ));
 
-  changeSchedule = createEffect(() =>this.actions$.pipe(
+  updateTime$ = createEffect(() => this.actions$.pipe(
+    ofType(matchesActionType.updateTime),
+    mergeMap((match: ActionPayload<UpdateTime>) => this.db$.updateTime(match.payload)
+      .pipe(
+        switchMap(() => of({ type: matchesActionType.updateMatchSuccess },
+                           { type: teamsActionType.getTeams },
+                           { type: matchesActionType.getMatches })),
+        catchError(() => of({ type: matchesActionType.updateMatchError }))
+      )  
+    )
+  ));
+
+  changeSchedule$ = createEffect(() =>this.actions$.pipe(
     ofType(matchesActionType.changeShedule),
     mergeMap((matches: ActionPayload<Match[]>) => this.db$.createSchedule(matches.payload)
       .pipe(

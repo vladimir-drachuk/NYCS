@@ -10,6 +10,8 @@ const createMatch = matchInfo => Match.create(matchInfo);
 
 const updateMatch = match => Match.updateOne({ _id: match._id }, match);
 
+const updateTime = (id, time) => Match.updateOne({ _id: id }, { time });
+
 const dropMatchesRepo = () => mongoose.connection.collections.matches.drop();
 
 module.exports = {
@@ -17,5 +19,6 @@ module.exports = {
   getAllCompleteRegular,
   createMatch,
   updateMatch,
+  updateTime,
   dropMatchesRepo
 };

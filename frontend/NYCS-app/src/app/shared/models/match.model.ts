@@ -12,6 +12,7 @@ interface Match {
     tourneyStatus: string;
     winner: string;
     loser: string;
+    time: Date;
 }
 
 const defaultMatch: Match = {
@@ -27,7 +28,8 @@ const defaultMatch: Match = {
     isKR: false,
     tourneyStatus: null,
     winner: null,
-    loser: null
+    loser: null,
+    time: null,
 }
 
 export { Match, defaultMatch };

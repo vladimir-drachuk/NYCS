@@ -44,15 +44,18 @@ export class EditScheduleComponent implements OnInit {
     const dialogRef = this.dialog.open(FromExcelComponent, {
       width: '300px',
     });
-    dialogRef.afterClosed().subscribe((matches: Match[]) => matches.forEach((match) => 
-      this.matches.push(match)))
+    dialogRef.afterClosed().subscribe((matches: Match[]) => {
+      if (matches) matches.forEach((match) => this.matches.push(match))
+    })
   }
 
   public addMatch() : void {
     const dialogRef = this.dialog.open(AddMatchComponent, {
       width: '460px',
     });
-    dialogRef.afterClosed().subscribe((match: Match) => this.matches.push(match))
+    dialogRef.afterClosed().subscribe((match: Match) => {
+      if (match) this.matches.push(match)
+    })
   }
 
   public clearSchedule(): void {

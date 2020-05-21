@@ -35,6 +35,13 @@ const updateMatch = async match => {
   return match;
 };
 
+const updateTime = async (id, timeString) => {
+  const timeArray = timeString.split('/');
+  const time = new Date(timeArray[2], timeArray[0] - 1, timeArray[1]);
+  const updated = await matchesRepo.updateTime(id, time);
+  return updated;
+};
+
 const changeSchedule = async matches => {
   await matchesRepo.dropMatchesRepo();
   for (let match of matches) {
@@ -52,4 +59,10 @@ const changeSchedule = async matches => {
   return matches;
 };
 
-module.exports = { getAll, createMatch, updateMatch, changeSchedule };
+module.exports = {
+  getAll,
+  createMatch,
+  updateMatch,
+  updateTime,
+  changeSchedule
+};

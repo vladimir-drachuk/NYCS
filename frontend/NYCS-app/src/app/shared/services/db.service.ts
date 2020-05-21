@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Match } from '../models/match.model';
+import { UpdateTime } from '../models/updateMatchTime';
 
 @Injectable()
 export class DbService {
@@ -25,5 +26,9 @@ export class DbService {
 
   public updateMatch(match: Match): Observable<Object> {
     return this.http.put(`${this.url}/matches`, match);
+  }
+
+  public updateTime(time: UpdateTime): Observable<Object> {
+    return this.http.put(`${this.url}/matches/time`, time)
   }
 }

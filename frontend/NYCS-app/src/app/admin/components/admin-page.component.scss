@@ -1,3 +1,13 @@
+:host {
+    position: relative;
+}
+
+.edit-button {
+    position: absolute;
+    top: 35px;
+    left: 30px;
+}
+
 .title {
     text-align: center;
     font-size: 35px;
@@ -5,16 +15,9 @@
     margin: 30px;
 }
 
-.admin-wrapper {
-    display: flex;
-}
-
-.matches {
-    flex: 2;
-}
-
-.options {
-    flex: 1;
+.matches-wrapper {
+    width: 1000px;
+    margin: 30px auto;
 }
 
 .else-block {
@@ -26,4 +29,27 @@
     div {
         margin: 20px;
     }
+}
+
+.icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #3f51b5;
+    text-align: center;
+    padding-top: 5px;
+    margin: 3px;
+    mat-icon {
+        color: white;
+    }
+}
+
+mat-tab {
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    top: 12px;
+    left: -4px;
 }

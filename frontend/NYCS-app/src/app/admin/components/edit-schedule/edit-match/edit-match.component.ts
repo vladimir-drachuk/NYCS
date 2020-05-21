@@ -20,5 +20,4 @@ export class EditMatchComponent implements OnInit {
   public deleteMatch(): void {
     this.remove.emit(this.match);
   } 
-
 }

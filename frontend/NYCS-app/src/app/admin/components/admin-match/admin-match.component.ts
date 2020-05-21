@@ -5,7 +5,7 @@ import { Observable, Subscriber } from 'rxjs';
 import { Match } from '../../../shared/models/match.model';
 import { isEditMode } from '../../../redux/selectors/appstore.selectors';
 import { editMode, regularMode } from '../../../redux/actions/appstore.actions';
-import { updateMatch } from 'src/app/redux/actions/matches.actions';
+import { updateMatch, updateTime } from 'src/app/redux/actions/matches.actions';
 import { isMatchLoading } from 'src/app/redux/selectors/matches.selectors';
 
 @Component({
@@ -96,6 +96,16 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
       }
     }));
   }
+
+  public changeTime(value: string): void {
+    this.store.dispatch(updateTime({
+      payload: {
+        matchID: this.match._id,
+        time: value
+      }
+    }))
+  }
+
 
   public applyChangeMatch(): void {
     const score1: string = this.team1Score.nativeElement.value;
