@@ -7,3 +7,8 @@ export const isEditMode = createSelector(
     selectAppstoreObj,
     (obj: AppState) => obj.isEdit
 )
+
+export const isPlayoff = createSelector(
+    selectAppstoreObj,
+    (obj: AppState) => obj.isPLayoff 
+)

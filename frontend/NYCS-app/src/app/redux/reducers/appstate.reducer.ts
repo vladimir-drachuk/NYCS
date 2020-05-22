@@ -12,9 +12,9 @@ const initialState: AppState = {
 const reducer = createReducer(initialState,
     on(appActions.editMode, (state: AppState) => ({ ...state, isEdit: true })),
     on(appActions.regularMode, (state: AppState) => ({ ...state, isEdit: false })),
-    on(appActions.toPlayoffMode),
+    on(appActions.toPlayoffMode, (state: AppState) => ({ ...state, isPLayoff: true })),
     on(appActions.toRegularMode),
-    on(appActions.playoffModeActivate, (state: AppState) => ({ ...state, isPLayoff: true })),
+    on(appActions.playoffModeActivate),
     on(appActions.playoffModeError, (state: AppState) => ({ ...state, isPLayoff: false }))
 );
 

@@ -8,7 +8,6 @@ const goToNextRound = async (req, res) => {
     default:
       break;
   }
-  console.log('ready');
   res.status(200).json({ ok: true });
 };
 

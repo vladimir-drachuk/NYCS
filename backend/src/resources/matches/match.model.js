@@ -8,7 +8,10 @@ const matchSchema = new Schema(
     team2: String,
     team2ID: String,
     isOneHalf: Boolean,
-    time: Date,
+    time: {
+      type: Date,
+      default: undefined
+    },
     winner: {
       type: String,
       default: null

@@ -5,8 +5,10 @@ import { Observable } from 'rxjs';
 
 import { EditScheduleComponent } from './edit-schedule/edit-schedule.component';
 import { Match } from '../../shared/models/match.model';
-import * as matchesSelectors from '../../redux/selectors/matches.selectors';
 import { toPlayoffMode } from 'src/app/redux/actions/appstate.actions';
+import * as matchesSelectors from '../../redux/selectors/matches.selectors';
+import * as appstoreSelectors from '../../redux/selectors/appstore.selectors'; 
+
 
 @Component({
   selector: 'app-admin-page',
@@ -17,6 +19,7 @@ export class AdminPageComponent {
 
   public matches: Observable<Match[]> = this.store.select(matchesSelectors.getAll);
   public isScheduleLoading: Observable<boolean> = this.store.select(matchesSelectors.isScheduleLoading);
+  public isPlayoff: Observable<boolean> = this.store.select(appstoreSelectors.isPlayoff);
 
   constructor(public dialog: MatDialog, private store: Store) { };
 

@@ -7,11 +7,12 @@
       <span>Regular</span>
     </ng-template>
     <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
-      <app-admin-match *ngFor="let match of matches | async" [match]="match" [disabled]="false"></app-admin-match>
+      <app-admin-match *ngFor="let match of matches | async | divide: 'Regular'" [match]="match" [disabled]="false"></app-admin-match>
     </div>
     <div class="buttons">
       <button mat-stroked-button color="primary" (click)="openEditSchedule()">Edit Schedule</button>
-      <button mat-stroked-button color="primary" (click)="goToPlayoff()" [disabled]="matches | async | disabled: 'Regular'">Go to Playoff</button>
+      <button mat-stroked-button color="primary" (click)="goToPlayoff()" 
+              [disabled]="(matches | async | disabled: 'Regular') || (isPlayoff | async)">Go to Playoff</button>
     </div>
   </mat-tab>
   <mat-tab>
@@ -20,7 +21,9 @@
       <div class="icon"><mat-icon>date_range</mat-icon></div>
       <span>Playoff</span>
     </ng-template>
-    Content2
+    <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
+      <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff'" [match]="match" [disabled]="false"></app-admin-match>
+    </div>
     <div class="buttons">
       <button mat-stroked-button color="primary" (click)="openEditSchedule()">Destroy Playoff</button>
       <button mat-stroked-button color="primary" (click)="openEditSchedule()">Go to Finals</button>
@@ -32,7 +35,9 @@
       <div class="icon"><mat-icon>date_range</mat-icon></div>
       <span>NYCS Final</span>
     </ng-template>
-    Content 3
+    <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
+      <app-admin-match *ngFor="let match of matches | async | divide: 'NYCS'" [match]="match" [disabled]="false"></app-admin-match>
+    </div>
   </mat-tab>
 </mat-tab-group>
 

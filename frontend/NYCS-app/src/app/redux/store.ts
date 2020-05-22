@@ -1,9 +1,11 @@
 import { Match } from '../shared/models/match.model';
 import { Team } from '../shared/models/team.model';
+import { Series } from '../shared/models/series.model';
 
 export interface State {
     teams: TeamsState;
     matches: MatchesState;
+    series: SeriesState;
     appState: AppState;
 }
 
@@ -19,6 +21,12 @@ export interface MatchesState {
   isProcessUpdateLoading: boolean;
   isProcessScheduleLoadinng: boolean;
   isError: boolean;
+}
+
+export interface SeriesState {
+  data: Series[],
+  isLoaded: boolean,
+  isError: boolean
 }
 
 export interface AppState {

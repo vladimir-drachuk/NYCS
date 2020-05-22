@@ -22,7 +22,8 @@ import { MatchFocusedDirective } from './directives/match-focused.directive';
 import { InputValidateDirective } from './directives/input-validate.directive';
 import { EditMatchComponent } from './components/edit-schedule/edit-match/edit-match.component';
 import { AddMatchComponent } from './components/edit-schedule/add-match/add-match.component';
-import { DisabledPipe } from './pipies/disabled.pipe';
+import { DisabledPipe } from './pipes/disabled.pipe';
+import { DividePipe } from './pipes/divide.pipe';
 
 const routes: Routes = [
   { path: '', component: AdminPageComponent }
@@ -38,7 +39,8 @@ const routes: Routes = [
     InputValidateDirective,
     EditMatchComponent,
     AddMatchComponent,
-    DisabledPipe
+    DisabledPipe,
+    DividePipe
   ],
   imports: [
     CommonModule,
