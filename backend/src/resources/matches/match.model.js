@@ -40,6 +40,10 @@ const matchSchema = new Schema(
     tourneyStatus: {
       type: String,
       default: 'Regular'
+    },
+    series: {
+      type: String,
+      default: null
     }
   },
   { versionKey: false }

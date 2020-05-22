@@ -25,34 +25,35 @@
   </div>
 
   <div class="option-buttons">
-    <button *ngIf="!isEditMode && isFocused" 
+    <button *ngIf="!isEditMode && isFocused && !disabled" 
             mat-icon-button color="primary" 
             title="Edit score"
             (click)="getEditMode()">
            <mat-icon>edit</mat-icon>
     </button>
-    <button *ngIf="!isEditMode && isFocused" 
+    <button *ngIf="!isEditMode && isFocused && !disabled" 
             mat-icon-button color="accent"
             title="Clear score" 
             (click)="getClearMatch()">
             <mat-icon>refresh</mat-icon>
     </button>
-    <button *ngIf="!isEditMode && isFocused" 
+    <button *ngIf="!isEditMode && isFocused && !disabled" 
             mat-icon-button color="warn"
             title="Random score"
             (click)="getRandomMatch()">
             <mat-icon>contact_support</mat-icon>
     </button>
-    <button *ngIf="!isEditMode && isFocused"
+    <button *ngIf="!isEditMode && isFocused && !disabled"
+            title="Set Match Date"
             mat-icon-button (click)="picker.open()">
             <mat-icon>event</mat-icon>
     </button>
-    <button *ngIf="isEditMode && isEditMatch" 
+    <button *ngIf="isEditMode && isEditMatch && !disabled" 
             mat-icon-button class="green" 
             (click)="applyChangeMatch()">
             <mat-icon>done_outline</mat-icon>
      </button>
-     <button *ngIf="isEditMode && isEditMatch" 
+     <button *ngIf="isEditMode && isEditMatch && !disabled" 
              mat-icon-button class="red" 
              (click)="cancelChangeMatch()">
              <mat-icon>cancel</mat-icon>

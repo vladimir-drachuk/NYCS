@@ -31,4 +31,8 @@ export class DbService {
   public updateTime(time: UpdateTime): Observable<Object> {
     return this.http.put(`${this.url}/matches/time`, time)
   }
+
+  public goToPlayoff(value: string): Observable<Object> {
+    return this.http.post(`${this.url}/series`, { type: value });
+  }
 }

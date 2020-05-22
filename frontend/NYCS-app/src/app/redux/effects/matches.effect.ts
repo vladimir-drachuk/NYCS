@@ -9,6 +9,7 @@ import { ActionPayload } from '../store';
 import { Match } from 'src/app/shared/models/match.model';
 import { teamsActionType } from '../actions/teams.actions';
 import { UpdateTime } from 'src/app/shared/models/updateMatchTime';
+import { appstateActionsType } from '../actions/appstate.actions';
  
 @Injectable()
 export class MatchesEffects {
@@ -41,14 +42,13 @@ export class MatchesEffects {
     mergeMap((match: ActionPayload<UpdateTime>) => this.db$.updateTime(match.payload)
       .pipe(
         switchMap(() => of({ type: matchesActionType.updateMatchSuccess },
-                           { type: teamsActionType.getTeams },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: matchesActionType.updateMatchError }))
       )  
     )
   ));
 
-  changeSchedule$ = createEffect(() =>this.actions$.pipe(
+  changeSchedule$ = createEffect(() => this.actions$.pipe(
     ofType(matchesActionType.changeShedule),
     mergeMap((matches: ActionPayload<Match[]>) => this.db$.createSchedule(matches.payload)
       .pipe(
@@ -59,6 +59,17 @@ export class MatchesEffects {
       )
     )
   ));
+
+  toPlayoffMode$ = createEffect(() => this.actions$.pipe(
+    ofType(appstateActionsType.toPlayoffMode),
+    mergeMap(() => this.db$.goToPlayoff('Semi-finals')
+      .pipe(
+        switchMap(() => of({ type: appstateActionsType.playoffModeActivate },
+                           { type: matchesActionType.getMatches })),
+        catchError(() => of({ type: appstateActionsType.playoffModeError}))
+      )
+    )
+  ))
  
   constructor(private actions$: Actions, private db$: DbService) { }
 }

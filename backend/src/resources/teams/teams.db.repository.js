@@ -7,4 +7,6 @@ const getByName = name => Team.findOne({ name });
 const updateTeam = (id, updateInfo) =>
   Team.updateOne({ _id: id }, updateInfo).exec();
 
-module.exports = { getAll, getByName, updateTeam };
+const getHalf = half => Team.find({ half });
+
+module.exports = { getAll, getByName, updateTeam, getHalf };

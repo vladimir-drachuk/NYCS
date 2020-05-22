@@ -1,16 +1,21 @@
 import { AppState } from "../store";
 import { createReducer, on, Action } from '@ngrx/store';
 
-import { editMode, regularMode } from '../actions/appstore.actions'
+import * as appActions from '../actions/appstate.actions'
 
 
 const initialState: AppState = {
-    isEdit: false
+    isEdit: false,
+    isPLayoff: false
 };
 
 const reducer = createReducer(initialState,
-    on(editMode, (state) => ({ ...state, isEdit: true })),
-    on(regularMode, (state) => ({ ...state, isEdit: false }))
+    on(appActions.editMode, (state: AppState) => ({ ...state, isEdit: true })),
+    on(appActions.regularMode, (state: AppState) => ({ ...state, isEdit: false })),
+    on(appActions.toPlayoffMode),
+    on(appActions.toRegularMode),
+    on(appActions.playoffModeActivate, (state: AppState) => ({ ...state, isPLayoff: true })),
+    on(appActions.playoffModeError, (state: AppState) => ({ ...state, isPLayoff: false }))
 );
 
 export function appstateReducer(state: AppState, action: Action) {

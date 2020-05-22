@@ -23,6 +23,7 @@ export interface MatchesState {
 
 export interface AppState {
   isEdit: boolean;
+  isPLayoff: boolean;
 }
   
 export interface ActionPayload<T> {

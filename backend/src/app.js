@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const teamsRouter = require('./resources/teams/teams.router');
 const matchesRouter = require('./resources/matches/matches.router');
+const seriesRouter = require('./resources/series/series.router');
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use('/', (req, res, next) => {
 
 app.use('/teams', teamsRouter);
 app.use('/matches', matchesRouter);
+app.use('/series', seriesRouter);
 
 module.exports = app;

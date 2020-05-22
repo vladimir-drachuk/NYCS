@@ -20,4 +20,9 @@ const changeSchedule = async (req, res) => {
   res.status(200).json({ ok: true });
 };
 
-module.exports = { getAll, updateMatch, updateTime, changeSchedule };
+module.exports = {
+  getAll,
+  updateMatch,
+  updateTime,
+  changeSchedule
+};

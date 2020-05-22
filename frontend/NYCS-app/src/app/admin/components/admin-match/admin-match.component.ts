@@ -4,7 +4,7 @@ import { Observable, Subscriber } from 'rxjs';
 
 import { Match } from '../../../shared/models/match.model';
 import { isEditMode } from '../../../redux/selectors/appstore.selectors';
-import { editMode, regularMode } from '../../../redux/actions/appstore.actions';
+import { editMode, regularMode } from '../../../redux/actions/appstate.actions';
 import { updateMatch, updateTime } from 'src/app/redux/actions/matches.actions';
 import { isMatchLoading } from 'src/app/redux/selectors/matches.selectors';
 
@@ -16,6 +16,7 @@ import { isMatchLoading } from 'src/app/redux/selectors/matches.selectors';
 export class AdminMatchComponent implements OnInit, OnDestroy {
 
   @Input() match: Match;
+  @Input() disabled: boolean;
   @ViewChild('team1', { static: false }) public team1Score: ElementRef;
   @ViewChild('team2', { static: false }) public team2Score: ElementRef;
 
@@ -66,7 +67,7 @@ export class AdminMatchComponent implements OnInit, OnDestroy {
   }
   
   public getEditMode(): void {
-    if (!this.isEditMode) {
+    if (!this.isEditMode && !this.disabled) {
       this.gotoEditMode();
     }
   }
