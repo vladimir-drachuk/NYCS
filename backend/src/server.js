@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { PORT, MONGO_CONNECTION_STRING } = require('./common/config');
 const teamsService = require('./resources/teams/teams.service');
 
-const matchesRepo = require('./resources/matches/matches.db.repository');
+// const matchesRepo = require('./resources/matches/matches.db.repository');
 
 mongoose.connect(MONGO_CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -16,7 +16,7 @@ mongoose.connection.once('open', async () => {
   await teamsService.initTeams();
   console.log('All teams updated');
 
-  matchesRepo.clearPlayoff();
+  // matchesRepo.clearPlayoff();
 
   app.listen(PORT, () =>
     console.log(`App is running on http://localhost:${PORT}`)

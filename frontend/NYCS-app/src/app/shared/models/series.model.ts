@@ -6,8 +6,8 @@ export interface Series {
     team2ID: string;
     winner: string;
     loser: string;
+    half: string;
     team1Score: number;
     team2Score: number;
     isComplete: boolean;
-
 }

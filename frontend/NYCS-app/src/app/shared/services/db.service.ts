@@ -20,6 +20,10 @@ export class DbService {
     return this.http.get(`${this.url}/matches`);
   }
 
+  public getAllSeries(): Observable<Object> {
+    return this.http.get(`${this.url}/series`)
+  }
+
   public createSchedule(matches: Match[]): Observable<Object> {
     return this.http.post(`${this.url}/matches`, matches)
   }

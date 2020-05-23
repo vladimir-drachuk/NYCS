@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { reducers } from './redux/reducers/app.reducer';
 import { TeamsEffects } from './redux/effects/teams.effect';
 import { MatchesEffects } from './redux/effects/matches.effect';
+import { SeriesEffects } from './redux/effects/series.effect';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { MatchesEffects } from './redux/effects/matches.effect';
       }
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([TeamsEffects, MatchesEffects]),
+    EffectsModule.forRoot([TeamsEffects, MatchesEffects, SeriesEffects]),
     StoreRouterConnectingModule.forRoot()
   ],
   providers: [],

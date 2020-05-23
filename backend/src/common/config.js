@@ -15,5 +15,6 @@ module.exports = {
   PLAYOFF: +process.env.PLAYOFF_MATCH_ROUNDS,
   REGULAR_OT: +process.env.REGULAR_OVERTIME,
   PLAYOFF_OT: +process.env.PLAYOFF_OVERTIME,
-  SERIES_DURATION: +process.env.SERIES_DURATION
+  SERIES_DURATION: +process.env.SERIES_DURATION,
+  SERIES_FORMAT: process.env.SERIES_FORMAT
 };

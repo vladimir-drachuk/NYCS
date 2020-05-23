@@ -6,11 +6,15 @@ const getAll = () => Match.find({});
 const getAllCompleteRegular = () =>
   Match.find({ isComplete: true, tourneyStatus: 'Regular' });
 
+const getBySeriesId = id => Match.find({ series: id });
+
 const createMatch = matchInfo => Match.create(matchInfo);
 
 const updateMatch = match => Match.updateOne({ _id: match._id }, match);
 
-const updateTime = (id, time) => Match.updateOne({ _id: id }, { time });
+const updateTime = (_id, time) => Match.updateOne({ _id }, { time });
+
+const deleteMatch = _id => Match.deleteOne({ _id });
 
 const dropMatchesRepo = () => mongoose.connection.collections.matches.drop();
 
@@ -28,9 +32,11 @@ const clearPlayoff = () =>
 module.exports = {
   getAll,
   getAllCompleteRegular,
+  getBySeriesId,
   createMatch,
   updateMatch,
   updateTime,
+  deleteMatch,
   dropMatchesRepo,
   clearPlayoff
 };

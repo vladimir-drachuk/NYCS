@@ -10,6 +10,7 @@ import { Match } from 'src/app/shared/models/match.model';
 import { teamsActionType } from '../actions/teams.actions';
 import { UpdateTime } from 'src/app/shared/models/updateMatchTime';
 import { appstateActionsType } from '../actions/appstate.actions';
+import { seriesActionType } from '../actions/series.actions';
  
 @Injectable()
 export class MatchesEffects {
@@ -31,7 +32,8 @@ export class MatchesEffects {
       .pipe(
         switchMap(() => of({ type: matchesActionType.updateMatchSuccess },
                            { type: teamsActionType.getTeams },
-                           { type: matchesActionType.getMatches })),
+                           { type: matchesActionType.getMatches },
+                           { type: seriesActionType.getSeries })),
         catchError(() => of({ type: matchesActionType.updateMatchError }))
       )  
     )

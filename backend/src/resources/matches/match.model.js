@@ -47,6 +47,10 @@ const matchSchema = new Schema(
     series: {
       type: String,
       default: null
+    },
+    half: {
+      type: String,
+      default: null
     }
   },
   { versionKey: false }

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 const matchesRepo = require('./matches.db.repository');
 const teamsRepo = require('../teams/teams.db.repository');
+const seriesService = require('../series/series.service');
 const matchCreator = require('./utils/matchCreator');
 const getRegularStat = require('../teams/utils/getStat');
 
@@ -29,10 +30,14 @@ const updateMatch = async match => {
     ? matchCreator.completeMatch(match)
     : matchCreator.incompleteMatch(match);
   await matchesRepo.updateMatch(match);
-  const matches = await matchesRepo.getAllCompleteRegular();
-  await teamsRepo.updateTeam(team1.id, getRegularStat(team1, matches));
-  await teamsRepo.updateTeam(team2.id, getRegularStat(team2, matches));
-  return match;
+  if (match.tourneyStatus === 'Regular') {
+    const matches = await matchesRepo.getAllCompleteRegular();
+    await teamsRepo.updateTeam(team1.id, getRegularStat(team1, matches));
+    await teamsRepo.updateTeam(team2.id, getRegularStat(team2, matches));
+  } else {
+    await seriesService.updateSeries(match);
+  }
+  return;
 };
 
 const updateTime = async (id, timeString) => {

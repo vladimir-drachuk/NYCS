@@ -12,7 +12,8 @@ const initialState: SeriesState = {
 
 const reducer = createReducer(initialState,
     on(actions.getSeriesAction),
-    
+    on(actions.getSeriesSuccessAction, (state, action) => action.payload),
+    on(actions.getSeriesErrorAction, (state, action) => action.payload),
 )
 
 export function seriesReducer(state: SeriesState, action: Action) {

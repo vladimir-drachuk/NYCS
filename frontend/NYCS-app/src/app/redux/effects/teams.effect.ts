@@ -10,7 +10,7 @@ export class TeamsEffects {
  
   loadTeams$ = createEffect(() => this.actions$.pipe( 
       ofType(teamsActionType.getTeams),
-      mergeMap(() => this.db.getAllTeams()
+      mergeMap(() => this.db$.getAllTeams()
         .pipe(
             map(teams => ({ type: teamsActionType.getTeamsSuccess, payload: { data: teams, isLoaded: true, isError: false } })),
             catchError(() => of({ type: teamsActionType.getTeamsError, payload: { data: [], isLoaded: false, isError: true } }))
@@ -18,5 +18,5 @@ export class TeamsEffects {
     )
   );
  
-  constructor(private actions$: Actions, private db: DbService) { }
+  constructor(private actions$: Actions, private db$: DbService) { }
 }

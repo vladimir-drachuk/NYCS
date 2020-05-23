@@ -10,9 +10,7 @@ export class DisabledPipe implements PipeTransform {
     let result: boolean;
     switch (criteria) {
       case 'Regular':
-        const check1 = matches.find((match: Match) => match.tourneyStatus !== criteria);
-        // const check2 = matches.filter((match: Match) => !match.isComplete && match.tourneyStatus === criteria).length
-        result = !check1;
+        result = !!(matches.filter((match: Match) => !match.isComplete && match.tourneyStatus === criteria).length)
         break;
       default:
         break;
