@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscriber } from 'rxjs';
 
 import { Match } from '../../../shared/models/match.model';
-import { isEditMode } from '../../../redux/selectors/appstore.selectors';
+import { isEditMode } from '../../../redux/selectors/appstate.selectors';
 import { editMode, regularMode } from '../../../redux/actions/appstate.actions';
 import { updateMatch, updateTime } from 'src/app/redux/actions/matches.actions';
 import { isMatchLoading } from 'src/app/redux/selectors/matches.selectors';

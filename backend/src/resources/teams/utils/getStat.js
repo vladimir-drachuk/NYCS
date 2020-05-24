@@ -75,6 +75,8 @@ const getRegularStat = (team, matches) => {
     .map(match => (team.id === match.winner ? 'W' : 'L'))
     .join('');
 
+  const halfLeader = team.stats ? team.stats.halfLeader : false;
+
   const stats = {
     wins,
     winsOT,
@@ -89,7 +91,8 @@ const getRegularStat = (team, matches) => {
     points,
     nycsPercent,
     halfPercent,
-    score
+    score,
+    halfLeader
   };
   return Object.assign(team, { stats });
 };

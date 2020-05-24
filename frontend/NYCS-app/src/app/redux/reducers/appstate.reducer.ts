@@ -23,13 +23,14 @@ const reducer = createReducer(initialState,
     on(appActions.toPlayoffMode, (state: AppState) => ({ ...state, isLoading: true })),
     on(appActions.playoffModeActivate, (state: AppState) => ({ ...state, isPLayoff: true, isLoading: false })),
     on(appActions.playoffModeError, (state: AppState) => ({ ...state, isPLayoff: false, isLoading: false, isError: true })),
-    on(appActions.initTourneyStatus, (state: AppState, action: ActionPayload<Series[]>) => {
-        let newState;
-        newState = (action.payload.length > 0)
-         ? { ...state, isPLayoff: true }
-         : { ...state, isPLayoff: false };
-        return newState;
-    }),
+    on(appActions.toHalfFinals, (state: AppState) => ({ ...state, isLoading: true })),
+    on(appActions.toHalfFinalsSuccess, (state: AppState) => ({ ...state, isLoading: false, isHalfFinals: true })),
+    on(appActions.toHalfFinalsError, (state: AppState) => ({ ...state, isLoading: false, isError: true })),
+    on(appActions.initTourneyStatus, (state: AppState, action: ActionPayload<Series[]>) => ({
+            ...state, 
+            isPLayoff: (action.payload.length > 0),
+            isHalfFinals: (action.payload.filter((series: Series) => series.tag === 'Half-Finals').length > 0), 
+        })),     
 );
 
 export function appstateReducer(state: AppState, action: Action) {

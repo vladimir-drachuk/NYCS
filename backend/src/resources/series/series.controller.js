@@ -10,6 +10,9 @@ const goToNextRound = async (req, res) => {
     case 'Semi-Finals':
       await seriesService.createSemiFinals();
       break;
+    case 'Half-Finals':
+      await seriesService.createHalfFinals();
+      break;
     default:
       break;
   }

@@ -84,5 +84,16 @@ export class MatchesEffects {
     )
   ));
 
+  toHalfFinals$ = createEffect(() => this.actions$.pipe(
+    ofType(appstateActionsType.toHalfFinals),
+    mergeMap(() => this.db$.goToPlayoffNextRound('Half-Finals')
+      .pipe(
+        switchMap(() => of({ type: appstateActionsType.toHalfFinalsSuccess },
+                           { type: matchesActionType.getMatches })),
+        catchError(() => of({ type: appstateActionsType.toHalfFinalsError}))
+      )
+    )
+  ));
+
   constructor(private actions$: Actions, private db$: DbService) { }
 }

@@ -6,9 +6,10 @@ import { Observable } from 'rxjs';
 import { EditScheduleComponent } from './edit-schedule/edit-schedule.component';
 import { Match } from '../../shared/models/match.model';
 import { Series } from 'src/app/shared/models/series.model';
-import { toPlayoffMode, toRegularChampMode } from 'src/app/redux/actions/appstate.actions';
+import { AppState } from 'src/app/redux/store';
+import * as appstateSelectors from '../../redux/selectors/appstate.selectors';
+import * as appstateActions from 'src/app/redux/actions/appstate.actions';
 import * as matchesSelectors from '../../redux/selectors/matches.selectors';
-import * as appstateSelectors from '../../redux/selectors/appstore.selectors';
 import * as seriesSelectors from '../../redux/selectors/series.selectors';
 
 
@@ -23,6 +24,7 @@ export class AdminPageComponent {
   public series: Observable<Series[]> = this.store.select(seriesSelectors.getAll);
   public isScheduleLoading: Observable<boolean> = this.store.select(matchesSelectors.isScheduleLoading);
   public isPlayoff: Observable<boolean> = this.store.select(appstateSelectors.isPlayoff);
+  public isHalfFinals: Observable<boolean> = this.store.select(appstateSelectors.isHalfFinals)
   public isLoading: Observable<boolean> = this.store.select(appstateSelectors.isLoading);
 
   constructor(public dialog: MatDialog, private store: Store) { };
@@ -35,10 +37,14 @@ export class AdminPageComponent {
   }
 
   public goToPlayoff(): void {
-    this.store.dispatch(toPlayoffMode());
+    this.store.dispatch(appstateActions.toPlayoffMode());
   }
 
-  public destroySemiFinals() {
-    this.store.dispatch(toRegularChampMode())
+  public destroySemiFinals(): void {
+    this.store.dispatch(appstateActions.toRegularChampMode())
+  }
+
+  public goToHalfFinals(): void {
+    this.store.dispatch(appstateActions.toHalfFinals())
   }
 }

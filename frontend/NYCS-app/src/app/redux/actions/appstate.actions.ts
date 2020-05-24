@@ -14,6 +14,9 @@ export enum appstateActionsType {
     toRegularChampMode = '[APPSTATE] deactivated to regular mode',
     regularChampModeActivate = '[APPSTATE] championship return to regular part',
     regularChampModeError = '[APPSTATE] don`t returned to regular championsip',
+    toHalfFinals = '[APPTSATE] half finals activation',
+    toHalfFinalsSuccess = '[APPSTATE] half finals is activated',
+    toHalfFinalsError = '[APPSTATE] half finals activation error'
 }
 
 export const editMode = createAction(appstateActionsType.editMode);
@@ -25,3 +28,6 @@ export const regularChampModeActivate = createAction(appstateActionsType.regular
 export const regularChampModeError = createAction(appstateActionsType.regularChampModeError);
 export const playoffModeActivate = createAction(appstateActionsType.playoffModeActivate);
 export const playoffModeError = createAction(appstateActionsType.playoffModeError);
+export const toHalfFinals = createAction(appstateActionsType.toHalfFinals);
+export const toHalfFinalsSuccess = createAction(appstateActionsType.toHalfFinalsSuccess);
+export const toHalfFinalsError = createAction(appstateActionsType.toHalfFinalsError);

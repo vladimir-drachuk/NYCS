@@ -63,7 +63,7 @@ const correctSeriesMatches = async (series, seriesMatches) => {
     }
     if (gamesToWin - seriesLeadScore > seriesMatchesEmpty) {
       const playoffRound =
-        series.tag === 'Semi-Finals' || series.tag === 'Finals'
+        series.tag === 'Semi-Finals' || series.tag === 'Half-Finals'
           ? `Playoff ${series.tag}`
           : series.tag;
       const isReverse = SERIES_FORMAT[seriesMatchesAmount] !== 'H';
@@ -118,7 +118,44 @@ const createSemiFinals = async () => {
   return;
 };
 
+const createHalfFinals = async () => {
+  const semiFinalsSeries = await seriesRepo.getByTag('Semi-Finals');
+  const wSeriesSemiFinals = semiFinalsSeries.filter(
+    series => series.half === 'white'
+  )[0];
+  const bSeriesSemiFinals = semiFinalsSeries.filter(
+    series => series.half === 'black'
+  )[0];
+  if (wSeriesSemiFinals.isComplete && bSeriesSemiFinals.isComplete) {
+    const halfLeaders = await teamsRepo.getHalfLeaders();
+    const wLeader = halfLeaders.filter(leader => leader.half === 'white')[0];
+    const bLeader = halfLeaders.filter(leader => leader.half === 'black')[0];
+    const wOpponent = await teamsRepo.getById(wSeriesSemiFinals.winner);
+    const bOpponent = await teamsRepo.getById(bSeriesSemiFinals.winner);
+    const wSeries = await createSeries(wLeader, wOpponent, 'Half-Finals');
+    const bSeries = await createSeries(bLeader, bOpponent, 'Half-Finals');
+    for (let i = 0; i < gamesToWin; i++) {
+      if (SERIES_FORMAT[i] === 'H') {
+        await createSeriaMatch(wSeries, 'Playoff Half-Finals');
+        await createSeriaMatch(bSeries, 'Playoff Half-Finals');
+      } else {
+        await createSeriaMatch(wSeries, 'Playoff Half-Finals', true);
+        await createSeriaMatch(bSeries, 'Playoff Half-Finals', true);
+      }
+    }
+  }
+  return;
+};
+
 const deleteSeries = async playoffRound => {
+  if (playoffRound === 'Semi-Finals') {
+    const leaders = await teamsRepo.getHalfLeaders();
+    for (const team of leaders) {
+      await teamsRepo.updateTeam(team._id, {
+        stats: Object.assign(team.stats, { halfLeader: false })
+      });
+    }
+  }
   const allSeries = await seriesRepo.getByTag(playoffRound);
   for (const series of allSeries) {
     const allMatches = await matchesPepo.getBySeriesId(series._id);
@@ -130,4 +167,10 @@ const deleteSeries = async playoffRound => {
   return;
 };
 
-module.exports = { getAll, createSemiFinals, updateSeries, deleteSeries };
+module.exports = {
+  getAll,
+  createSemiFinals,
+  createHalfFinals,
+  updateSeries,
+  deleteSeries
+};

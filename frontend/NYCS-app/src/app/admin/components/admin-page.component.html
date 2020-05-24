@@ -28,35 +28,37 @@
     <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
       <div class="playoff-matches">
         <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'white'" 
-                         [match]="match" [disabled]="false">
+                         [match]="match" [disabled]="isHalfFinals | async">
         </app-admin-match>
       </div>
       <div class="playoff-matches">
         <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'black'" 
-                         [match]="match" [disabled]="false">
+                         [match]="match" [disabled]="isHalfFinals | async">
         </app-admin-match>
       </div>
       <div class="buttons">
         <button mat-stroked-button color="primary" (click)="destroySemiFinals()"
-                [disabled]="(isLoading | async) || !(isPlayoff | async)">Destroy Semi-Finals
+                [disabled]="(isLoading | async) || (isHalfFinals | async)">Destroy Semi-Finals
         </button>
-        <button mat-stroked-button color="primary" (click)="openEditSchedule()" 
-                [disabled]="(isLoading | async) || !(isPlayoff | async)">To Half Finals
+        <button mat-stroked-button color="primary" (click)="goToHalfFinals()" 
+                [disabled]="(matches | async | disabled: 'Semi-Finals') || (isLoading | async) || (isHalfFinals| async)">To Half Finals
         </button>
       </div>
       <div class="playoff-matches">
-        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Finals':'white'" 
+        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Half-Finals':'white'" 
                          [match]="match" [disabled]="false">
         </app-admin-match>
       </div>
       <div>
-        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Finals':'black'" 
+        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Half-Finals':'black'" 
                          [match]="match" [disabled]="false" class="playoff-matches">
         </app-admin-match>
       </div>
       <div class="buttons">
         <button mat-stroked-button color="primary" (click)="openEditSchedule()">Destroy Half Finals</button>
-        <button mat-stroked-button color="primary" (click)="openEditSchedule()">To NYCS Finals</button>
+        <button mat-stroked-button color="primary" (click)="openEditSchedule()"
+                [disabled]="(matches | async | disabled: 'Half-Finals')">To NYCS Finals
+        </button>
       </div>
     </div>
   </mat-tab>
