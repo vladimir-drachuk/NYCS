@@ -32,6 +32,11 @@ export interface SeriesState {
 export interface AppState {
   isEdit: boolean;
   isPLayoff: boolean;
+  isHalfFinals: boolean;
+  isNYCSFInals: boolean;
+  isChampComplete: boolean;
+  isLoading: boolean;
+  isError: boolean;
 }
   
 export interface ActionPayload<T> {

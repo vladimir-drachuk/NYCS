@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Match } from '../models/match.model';
@@ -36,7 +36,11 @@ export class DbService {
     return this.http.put(`${this.url}/matches/time`, time)
   }
 
-  public goToPlayoff(value: string): Observable<Object> {
+  public goToPlayoffNextRound(value: string): Observable<Object> {
     return this.http.post(`${this.url}/series`, { type: value });
+  }
+
+  public deleteSeries(value: string): Observable<Object> {
+    return this.http.request('delete', `${this.url}/series`,{ body: { type: value } })
   }
 }

@@ -64,14 +64,25 @@ export class MatchesEffects {
 
   toPlayoffMode$ = createEffect(() => this.actions$.pipe(
     ofType(appstateActionsType.toPlayoffMode),
-    mergeMap(() => this.db$.goToPlayoff('Semi-finals')
+    mergeMap(() => this.db$.goToPlayoffNextRound('Semi-Finals')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.playoffModeActivate },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: appstateActionsType.playoffModeError}))
       )
     )
-  ))
- 
+  ));
+
+  toRegularChampMode$ = createEffect(() => this.actions$.pipe(
+    ofType(appstateActionsType.toRegularChampMode),
+    mergeMap(() => this.db$.deleteSeries('Semi-Finals')
+      .pipe(
+        switchMap(() => of({ type: appstateActionsType.regularChampModeActivate },
+                           { type: matchesActionType.getMatches })),
+        catchError(() => of({ type: appstateActionsType.regularChampModeError}))
+      )
+    )
+  ));
+
   constructor(private actions$: Actions, private db$: DbService) { }
 }

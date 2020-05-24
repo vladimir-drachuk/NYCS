@@ -40,7 +40,7 @@ const createSeriaMatch = (series, tourneyStatus, isReverse) =>
     tourneyStatus
   });
 
-const correctSeriesMatches = async (series, seriesMatches /**/) => {
+const correctSeriesMatches = async (series, seriesMatches) => {
   if (series.isComplete) {
     series.isComplete = false;
     series.winner = false;
@@ -50,15 +50,26 @@ const correctSeriesMatches = async (series, seriesMatches /**/) => {
     series.team1Score > series.team2Score
       ? series.team1Score
       : series.team2Score;
-  const seriesMatchesEmpty = seriesMatches.filter(match => !match.isComplete);
-  while (gamesToWin - seriesLeadScore === seriesMatchesEmpty) {
-    if (gamesToWin - seriesLeadScore < seriesLeadScore) {
+  let seriesMatchesAmount = seriesMatches.length;
+  let seriesMatchesEmpty = seriesMatches.filter(match => !match.isComplete)
+    .length;
+  while (gamesToWin - seriesLeadScore !== seriesMatchesEmpty) {
+    if (gamesToWin - seriesLeadScore < seriesMatchesEmpty) {
       await matchesPepo.deleteMatch(
         seriesMatches[seriesMatches.length - 1]._id
       );
+      seriesMatchesEmpty -= 1;
+      seriesMatchesAmount -= 1;
     }
-    if (gamesToWin - seriesLeadScore > seriesLeadScore) {
-      // await createSeriaMatch(series, series.)
+    if (gamesToWin - seriesLeadScore > seriesMatchesEmpty) {
+      const playoffRound =
+        series.tag === 'Semi-Finals' || series.tag === 'Finals'
+          ? `Playoff ${series.tag}`
+          : series.tag;
+      const isReverse = SERIES_FORMAT[seriesMatchesAmount] !== 'H';
+      await createSeriaMatch(series, playoffRound, isReverse);
+      seriesMatchesEmpty += 1;
+      seriesMatchesAmount += 1;
     }
   }
 };
@@ -107,4 +118,16 @@ const createSemiFinals = async () => {
   return;
 };
 
-module.exports = { getAll, createSemiFinals, updateSeries };
+const deleteSeries = async playoffRound => {
+  const allSeries = await seriesRepo.getByTag(playoffRound);
+  for (const series of allSeries) {
+    const allMatches = await matchesPepo.getBySeriesId(series._id);
+    for (const match of allMatches) {
+      await matchesPepo.deleteMatch(match._id);
+    }
+    await seriesRepo.deleteSeries(series._id);
+  }
+  return;
+};
+
+module.exports = { getAll, createSemiFinals, updateSeries, deleteSeries };

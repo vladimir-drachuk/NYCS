@@ -6,16 +6,23 @@ import * as appActions from '../actions/appstate.actions'
 
 const initialState: AppState = {
     isEdit: false,
-    isPLayoff: false
+    isPLayoff: false,
+    isHalfFinals: false,
+    isNYCSFInals: false,
+    isChampComplete: false,
+    isLoading: false,
+    isError: false,
 };
 
 const reducer = createReducer(initialState,
     on(appActions.editMode, (state: AppState) => ({ ...state, isEdit: true })),
     on(appActions.regularMode, (state: AppState) => ({ ...state, isEdit: false })),
-    on(appActions.toPlayoffMode, (state: AppState) => ({ ...state, isPLayoff: true })),
-    on(appActions.toRegularMode),
-    on(appActions.playoffModeActivate),
-    on(appActions.playoffModeError, (state: AppState) => ({ ...state, isPLayoff: false })),
+    on(appActions.toRegularChampMode, (state: AppState) => ({ ...state, isLoading: true })),
+    on(appActions.regularChampModeActivate, (state: AppState) => ({ ...state, isPLayoff: false, isLoading: false })),
+    on(appActions.regularChampModeError,  (state: AppState) => ({ ...state, isPLayoff: true, isLoading: false, isError: true })),
+    on(appActions.toPlayoffMode, (state: AppState) => ({ ...state, isLoading: true })),
+    on(appActions.playoffModeActivate, (state: AppState) => ({ ...state, isPLayoff: true, isLoading: false })),
+    on(appActions.playoffModeError, (state: AppState) => ({ ...state, isPLayoff: false, isLoading: false, isError: true })),
     on(appActions.initTourneyStatus, (state: AppState, action: ActionPayload<Series[]>) => {
         let newState;
         newState = (action.payload.length > 0)

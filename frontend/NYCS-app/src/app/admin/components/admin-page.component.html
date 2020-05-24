@@ -7,12 +7,16 @@
       <span>Regular</span>
     </ng-template>
     <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
-      <app-admin-match *ngFor="let match of matches | async | divide: 'Regular'" [match]="match" [disabled]="isPlayoff | async"></app-admin-match>
+      <app-admin-match *ngFor="let match of matches | async | divide: 'Regular'" 
+                       [match]="match" [disabled]="isPlayoff | async">
+      </app-admin-match>
     </div>
     <div class="buttons">
-      <button mat-stroked-button color="primary" (click)="openEditSchedule()">Edit Schedule</button>
+      <button mat-stroked-button color="primary" (click)="openEditSchedule()" 
+              [disabled]="(isPlayoff | async) || (isLoading | async)">Edit Schedule</button>
       <button mat-stroked-button color="primary" (click)="goToPlayoff()" 
-              [disabled]="(matches | async | disabled: 'Regular') || (isPlayoff | async)">Go to Playoff</button>
+              [disabled]="(matches | async | disabled: 'Regular') || (isPlayoff | async) || (isLoading | async)">Go to Playoff
+      </button>
     </div>
   </mat-tab>
   <mat-tab>
@@ -22,22 +26,38 @@
       <span>Playoff</span>
     </ng-template>
     <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
-      <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'white'" 
-                       [match]="match" [disabled]="false">
-      </app-admin-match>
-      <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'black'" 
-                       [match]="match" [disabled]="false">
-      </app-admin-match>
-      <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Finals':'white'" 
-                       [match]="match" [disabled]="false">
-      </app-admin-match>
-      <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Finals':'black'" 
-                       [match]="match" [disabled]="false">
-      </app-admin-match>
-    </div>
-    <div class="buttons">
-      <button mat-stroked-button color="primary" (click)="openEditSchedule()">Destroy Playoff</button>
-      <button mat-stroked-button color="primary" (click)="openEditSchedule()">Go to Finals</button>
+      <div class="playoff-matches">
+        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'white'" 
+                         [match]="match" [disabled]="false">
+        </app-admin-match>
+      </div>
+      <div class="playoff-matches">
+        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'black'" 
+                         [match]="match" [disabled]="false">
+        </app-admin-match>
+      </div>
+      <div class="buttons">
+        <button mat-stroked-button color="primary" (click)="destroySemiFinals()"
+                [disabled]="(isLoading | async) || !(isPlayoff | async)">Destroy Semi-Finals
+        </button>
+        <button mat-stroked-button color="primary" (click)="openEditSchedule()" 
+                [disabled]="(isLoading | async) || !(isPlayoff | async)">To Half Finals
+        </button>
+      </div>
+      <div class="playoff-matches">
+        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Finals':'white'" 
+                         [match]="match" [disabled]="false">
+        </app-admin-match>
+      </div>
+      <div>
+        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Finals':'black'" 
+                         [match]="match" [disabled]="false" class="playoff-matches">
+        </app-admin-match>
+      </div>
+      <div class="buttons">
+        <button mat-stroked-button color="primary" (click)="openEditSchedule()">Destroy Half Finals</button>
+        <button mat-stroked-button color="primary" (click)="openEditSchedule()">To NYCS Finals</button>
+      </div>
     </div>
   </mat-tab>
   <mat-tab>

@@ -7,7 +7,7 @@ const getAll = async (req, res) => {
 
 const goToNextRound = async (req, res) => {
   switch (req.body.type) {
-    case 'Semi-finals':
+    case 'Semi-Finals':
       await seriesService.createSemiFinals();
       break;
     default:
@@ -16,4 +16,9 @@ const goToNextRound = async (req, res) => {
   res.status(200).json({ ok: true });
 };
 
-module.exports = { getAll, goToNextRound };
+const deleteSeries = async (req, res) => {
+  await seriesService.deleteSeries(req.body.type);
+  res.status(200).json({ ok: true });
+};
+
+module.exports = { getAll, goToNextRound, deleteSeries };
