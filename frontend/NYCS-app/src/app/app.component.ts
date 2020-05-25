@@ -10,7 +10,7 @@ import { getSeriesAction } from './redux/actions/series.actions';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: animations.opacity()
+  animations: animations.opacity() // ???
 })
 export class AppComponent {
 

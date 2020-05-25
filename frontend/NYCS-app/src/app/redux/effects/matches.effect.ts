@@ -68,18 +68,18 @@ export class MatchesEffects {
       .pipe(
         switchMap(() => of({ type: appstateActionsType.playoffModeActivate },
                            { type: matchesActionType.getMatches })),
-        catchError(() => of({ type: appstateActionsType.playoffModeError}))
+        catchError(() => of({ type: appstateActionsType.playoffModeError }))
       )
     )
   ));
 
-  toRegularChampMode$ = createEffect(() => this.actions$.pipe(
+  destroyPlayoff$ = createEffect(() => this.actions$.pipe(
     ofType(appstateActionsType.toRegularChampMode),
     mergeMap(() => this.db$.deleteSeries('Semi-Finals')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.regularChampModeActivate },
                            { type: matchesActionType.getMatches })),
-        catchError(() => of({ type: appstateActionsType.regularChampModeError}))
+        catchError(() => of({ type: appstateActionsType.regularChampModeError }))
       )
     )
   ));
@@ -90,7 +90,40 @@ export class MatchesEffects {
       .pipe(
         switchMap(() => of({ type: appstateActionsType.toHalfFinalsSuccess },
                            { type: matchesActionType.getMatches })),
-        catchError(() => of({ type: appstateActionsType.toHalfFinalsError}))
+        catchError(() => of({ type: appstateActionsType.toHalfFinalsError }))
+      )
+    )
+  ));
+
+  destroyHalfFinals$ = createEffect(() => this.actions$.pipe(
+    ofType(appstateActionsType.destroyHalfFinals),
+    mergeMap(() => this.db$.deleteSeries('Half-Finals')
+      .pipe(
+        switchMap(() => of({ type: appstateActionsType.destroyHalfFinalSuccess },
+                           { type: matchesActionType.getMatches })),
+        catchError(() => of({ type: appstateActionsType.destroyHalfFinalError }))
+      )
+    )
+  ));
+
+  toHYCSFinals$ = createEffect(() => this.actions$.pipe(
+    ofType(appstateActionsType.toNYCSFinals),
+    mergeMap(() => this.db$.goToPlayoffNextRound('NYCS Finals')
+      .pipe(
+        switchMap(() => of({ type: appstateActionsType.toNYCSFinalsSuccess },
+                           { type: matchesActionType.getMatches })),
+        catchError(() => of({ type: appstateActionsType.toNYCSFinalsError }))
+      )
+    )
+  ));
+
+  destroyNYCSFinals$ = createEffect(() => this.actions$.pipe(
+    ofType(appstateActionsType.destroyNYCSFinals),
+    mergeMap(() => this.db$.deleteSeries('NYCS Finals')
+      .pipe(
+        switchMap(() => of({ type: appstateActionsType.destroyNYCSFinalSuccess },
+                           { type: matchesActionType.getMatches })),
+        catchError(() => of({ type: appstateActionsType.destroyNYCSFinalError }))
       )
     )
   ));

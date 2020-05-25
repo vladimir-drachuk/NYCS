@@ -17,7 +17,6 @@ import { TeamsEffects } from './redux/effects/teams.effect';
 import { MatchesEffects } from './redux/effects/matches.effect';
 import { SeriesEffects } from './redux/effects/series.effect';
 
-
 @NgModule({
   declarations: [
     AppComponent,

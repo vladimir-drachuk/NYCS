@@ -147,6 +147,25 @@ const createHalfFinals = async () => {
   return;
 };
 
+const createNYCSFinals = async () => {
+  const halfFinalsSeries = await seriesRepo.getByTag('Half-Finals');
+  const wSeriesFinals = halfFinalsSeries.filter(
+    series => series.half === 'white'
+  )[0];
+  const bSeriesFinals = halfFinalsSeries.filter(
+    series => series.half === 'black'
+  )[0];
+  if (wSeriesFinals.isComplete && bSeriesFinals.isComplete) {
+    const wTeam = await teamsRepo.getById(wSeriesFinals.winner);
+    const bTeam = await teamsRepo.getById(bSeriesFinals.winner);
+    const nycsSeries = await createSeries(wTeam, bTeam, 'NYCS Finals');
+    for (let i = 0; i < gamesToWin; i++) {
+      await createSeriaMatch(nycsSeries, 'NYCS Finals');
+    }
+  }
+  return;
+};
+
 const deleteSeries = async playoffRound => {
   if (playoffRound === 'Semi-Finals') {
     const leaders = await teamsRepo.getHalfLeaders();
@@ -171,6 +190,7 @@ module.exports = {
   getAll,
   createSemiFinals,
   createHalfFinals,
+  createNYCSFinals,
   updateSeries,
   deleteSeries
 };

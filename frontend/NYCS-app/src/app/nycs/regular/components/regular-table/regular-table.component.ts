@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Team, Stats } from '../../../../shared/models/team.model'
+import { animations } from 'src/app/animations';
 
 @Component({
   selector: 'app-regular-table',
   templateUrl: './regular-table.component.html',
-  styleUrls: ['./regular-table.component.scss']
+  styleUrls: ['./regular-table.component.scss'],
+  animations: animations.opacity()
 })
 export class RegularTableComponent {
 

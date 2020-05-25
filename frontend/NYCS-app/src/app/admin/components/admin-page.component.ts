@@ -24,7 +24,8 @@ export class AdminPageComponent {
   public series: Observable<Series[]> = this.store.select(seriesSelectors.getAll);
   public isScheduleLoading: Observable<boolean> = this.store.select(matchesSelectors.isScheduleLoading);
   public isPlayoff: Observable<boolean> = this.store.select(appstateSelectors.isPlayoff);
-  public isHalfFinals: Observable<boolean> = this.store.select(appstateSelectors.isHalfFinals)
+  public isHalfFinals: Observable<boolean> = this.store.select(appstateSelectors.isHalfFinals);
+  public isNYCSFinals: Observable<boolean> = this.store.select(appstateSelectors.isNYCSFinals)
   public isLoading: Observable<boolean> = this.store.select(appstateSelectors.isLoading);
 
   constructor(public dialog: MatDialog, private store: Store) { };
@@ -34,6 +35,10 @@ export class AdminPageComponent {
       width: '60%',
       height: '90%'
     });
+  }
+
+  public selectTab(isPlayoff: boolean, isNYCSFinals: boolean): number {
+    return +isPlayoff + +isNYCSFinals;
   }
 
   public goToPlayoff(): void {
@@ -46,5 +51,21 @@ export class AdminPageComponent {
 
   public goToHalfFinals(): void {
     this.store.dispatch(appstateActions.toHalfFinals())
+  }
+
+  public destroyHalfFinals(): void {
+    this.store.dispatch(appstateActions.destroyHalfFinals())
+  }
+
+  public goToNYCSFinals(): void {
+    this.store.dispatch(appstateActions.toNYCSFinals());
+  }
+
+  public destroyNYCSFinals(): void {
+    this.store.dispatch(appstateActions.destroyNYCSFinals());
+  }
+
+  public completeChamp(): void {
+    console.log('Champinship is completed');
   }
 }

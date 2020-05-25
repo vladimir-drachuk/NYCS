@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { Team } from '../../../shared/models/team.model';
-import { animations } from '../../../animations';
 import * as teamsSelectors from '../../../redux/selectors/teams.selectors';
 
 
@@ -11,7 +10,6 @@ import * as teamsSelectors from '../../../redux/selectors/teams.selectors';
   selector: 'app-regular',
   templateUrl: './regular.component.html',
   styleUrls: ['./regular.component.scss'],
-  animations: animations.opacity()
 })
 export class RegularComponent {
 

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScheduleComponent } from './components/schedule.component';
 import { Routes, RouterModule } from '@angular/router';
+
+import { ScheduleComponent } from './components/schedule.component';
 import { MatchComponent } from './components/match/match.component';
 
 const routes: Routes = [
@@ -9,7 +10,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ScheduleComponent,
+  declarations: [
+    ScheduleComponent,
     MatchComponent
   ],
   imports: [

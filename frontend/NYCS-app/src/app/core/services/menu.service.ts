@@ -6,8 +6,8 @@ export class MenuService {
 
   public menuItems: MenuItem[] = [
     {
-      title: 'Regular',
-      path: 'regular'
+      title: 'Standings',
+      path: 'standings'
     },
     {
       title: 'Playoff',
@@ -17,6 +17,10 @@ export class MenuService {
       title: 'Schedule',
       path: 'schedule'
     },
+    {
+      title: 'Results',
+      path: 'results'
+    }
   ];
 
   constructor() { }

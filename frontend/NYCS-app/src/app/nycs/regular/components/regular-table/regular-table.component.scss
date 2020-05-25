@@ -1,4 +1,14 @@
 mat-table {
   width: 95%;
   margin: 20px auto;
+  box-shadow: none;
+  border: 1px solid lightgrey;
+    mat-header-row {
+      background-color: transparent;
+    }
+}
+
+.mat-column-position {
+    margin-right: 20px;
+    max-width: 40px;
 }

@@ -16,7 +16,16 @@ export enum appstateActionsType {
     regularChampModeError = '[APPSTATE] don`t returned to regular championsip',
     toHalfFinals = '[APPTSATE] half finals activation',
     toHalfFinalsSuccess = '[APPSTATE] half finals is activated',
-    toHalfFinalsError = '[APPSTATE] half finals activation error'
+    toHalfFinalsError = '[APPSTATE] half finals activation error',
+    destroyHalfFinals = '[APPSTATE] destroy half finals activation',
+    destroyHalfFinalSuccess = '[APPSTATE] destroy half finals',
+    destroyHalfFinalError = '[APPSTATE] destroy half finals error',
+    toNYCSFinals = '[APPTSATE] NYCS finals activation',
+    toNYCSFinalsSuccess = '[APPSTATE] NYCS finals is activated',
+    toNYCSFinalsError = '[APPSTATE] NYCS finals activation error',
+    destroyNYCSFinals = '[APPSTATE] destroy NYCS finals activation',
+    destroyNYCSFinalSuccess = '[APPSTATE] destroy NYCS finals',
+    destroyNYCSFinalError = '[APPSTATE] destroy NYCS finals error',
 }
 
 export const editMode = createAction(appstateActionsType.editMode);
@@ -31,3 +40,13 @@ export const playoffModeError = createAction(appstateActionsType.playoffModeErro
 export const toHalfFinals = createAction(appstateActionsType.toHalfFinals);
 export const toHalfFinalsSuccess = createAction(appstateActionsType.toHalfFinalsSuccess);
 export const toHalfFinalsError = createAction(appstateActionsType.toHalfFinalsError);
+export const destroyHalfFinals = createAction(appstateActionsType.destroyHalfFinals);
+export const destroyHalfFinalSuccess = createAction(appstateActionsType.destroyHalfFinalSuccess);
+export const destroyHalfFinalError = createAction(appstateActionsType.destroyHalfFinalError);
+export const toNYCSFinals = createAction(appstateActionsType.toNYCSFinals);
+export const toNYCSFinalsSuccess = createAction(appstateActionsType.toNYCSFinalsSuccess);
+export const toNYCSFinalsError = createAction(appstateActionsType.toNYCSFinalsError);
+export const destroyNYCSFinals = createAction(appstateActionsType.destroyNYCSFinals);
+export const destroyNYCSFinalSuccess = createAction(appstateActionsType.destroyNYCSFinalSuccess);
+export const destroyNYCSFinalError = createAction(appstateActionsType.destroyNYCSFinalError);
+

@@ -18,6 +18,11 @@ export const isHalfFinals = createSelector(
     (obj: AppState) => obj.isHalfFinals
 )
 
+export const isNYCSFinals = createSelector(
+    selectAppstoreObj,
+    (obj: AppState) => obj.isNYCSFInals
+)
+
 export const isLoading = createSelector(
     selectAppstoreObj,
     (obj: AppState) => obj.isLoading
