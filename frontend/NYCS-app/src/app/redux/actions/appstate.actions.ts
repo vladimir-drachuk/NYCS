@@ -26,6 +26,12 @@ export enum appstateActionsType {
     destroyNYCSFinals = '[APPSTATE] destroy NYCS finals activation',
     destroyNYCSFinalSuccess = '[APPSTATE] destroy NYCS finals',
     destroyNYCSFinalError = '[APPSTATE] destroy NYCS finals error',
+    completeChamp = '[APPSTATE] championship complete activation',
+    completeChampSuccess = '[APPSTATE] championship is completed',
+    completeChampError = '[APPSTATE] championship complete activation error',
+    correctFinals = '[APPSTATE] correct finals activation',
+    correctFinalsSuccess = '[APPSTATE] championship is active again',
+    correctFinalsError = '[APPSTATE] attempt return to championship is failed'
 }
 
 export const editMode = createAction(appstateActionsType.editMode);
@@ -49,4 +55,10 @@ export const toNYCSFinalsError = createAction(appstateActionsType.toNYCSFinalsEr
 export const destroyNYCSFinals = createAction(appstateActionsType.destroyNYCSFinals);
 export const destroyNYCSFinalSuccess = createAction(appstateActionsType.destroyNYCSFinalSuccess);
 export const destroyNYCSFinalError = createAction(appstateActionsType.destroyNYCSFinalError);
+export const completeChamp = createAction(appstateActionsType.completeChamp);
+export const completeChampSuccess = createAction(appstateActionsType.completeChampSuccess);
+export const completeChampError = createAction(appstateActionsType.completeChampError);
+export const correctFinals = createAction(appstateActionsType.correctFinals);
+export const correctFinalsSuccess = createAction(appstateActionsType.correctFinalsSuccess);
+export const correctFinalsError = createAction(appstateActionsType.correctFinalsError);
 

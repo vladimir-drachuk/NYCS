@@ -6,6 +6,8 @@ const getById = _id => Team.findOne({ _id });
 
 const getByName = name => Team.findOne({ name });
 
+const getByTotalPlace = place => Team.findOne({ 'stats.totalPlace': place });
+
 const getHalfLeaders = () => Team.find({ 'stats.halfLeader': true });
 
 const updateTeam = (id, updateInfo) =>
@@ -19,5 +21,6 @@ module.exports = {
   getByName,
   updateTeam,
   getHalf,
-  getHalfLeaders
+  getHalfLeaders,
+  getByTotalPlace
 };

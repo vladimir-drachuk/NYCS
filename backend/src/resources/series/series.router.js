@@ -5,6 +5,7 @@ router
   .route('/')
   .get(seriesController.getAll)
   .post(seriesController.goToNextRound)
+  .put(seriesController.correctFinals)
   .delete(seriesController.deleteSeries);
 
 module.exports = router;

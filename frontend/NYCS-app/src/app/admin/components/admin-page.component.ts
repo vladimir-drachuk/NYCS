@@ -25,7 +25,8 @@ export class AdminPageComponent {
   public isScheduleLoading: Observable<boolean> = this.store.select(matchesSelectors.isScheduleLoading);
   public isPlayoff: Observable<boolean> = this.store.select(appstateSelectors.isPlayoff);
   public isHalfFinals: Observable<boolean> = this.store.select(appstateSelectors.isHalfFinals);
-  public isNYCSFinals: Observable<boolean> = this.store.select(appstateSelectors.isNYCSFinals)
+  public isNYCSFinals: Observable<boolean> = this.store.select(appstateSelectors.isNYCSFinals);
+  public isChampComplete: Observable<boolean> = this.store.select(appstateSelectors.isChampComplete);
   public isLoading: Observable<boolean> = this.store.select(appstateSelectors.isLoading);
 
   constructor(public dialog: MatDialog, private store: Store) { };
@@ -66,6 +67,10 @@ export class AdminPageComponent {
   }
 
   public completeChamp(): void {
-    console.log('Champinship is completed');
+    this.store.dispatch(appstateActions.completeChamp());
+  }
+
+  public correctFinals(): void {
+    this.store.dispatch(appstateActions.correctFinals());
   }
 }

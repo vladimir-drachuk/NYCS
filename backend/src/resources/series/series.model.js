@@ -29,7 +29,8 @@ const seriesSchema = new Schema(
     isComplete: {
       type: Boolean,
       default: false
-    }
+    },
+    isChampComplete: Boolean
   },
   { versionKey: false }
 );

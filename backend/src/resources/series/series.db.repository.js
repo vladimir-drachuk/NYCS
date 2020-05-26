@@ -13,11 +13,15 @@ const updateSeries = updateInfo =>
 
 const deleteSeries = _id => Series.deleteOne({ _id });
 
+const completeChamp = () =>
+  Series.updateOne({ tag: 'NYCS Finals' }, { isChampComplete: true });
+
 module.exports = {
   getAll,
   getById,
   getByTag,
   createSeries,
   updateSeries,
-  deleteSeries
+  deleteSeries,
+  completeChamp
 };

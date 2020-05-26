@@ -20,10 +20,11 @@ const createSeries = async (team1Info, team2Info, tag) => {
     team1ID: team1Info._id,
     team2ID: team2Info._id,
     isComplete: false,
+    isChampComplete: tag === 'NYCS Finals' ? false : null,
     half:
       team1Info.half === team2Info.half
         ? team1Info.half
-        : 'error: teams in different halfs'
+        : 'teams in different halfs'
   });
   return series;
 };
@@ -45,6 +46,7 @@ const correctSeriesMatches = async (series, seriesMatches) => {
     series.isComplete = false;
     series.winner = false;
     series.loser = false;
+    if (series.tag === 'NYCS Finals') series.isChampComplete = false;
   }
   const seriesLeadScore =
     series.team1Score > series.team2Score
@@ -186,11 +188,30 @@ const deleteSeries = async playoffRound => {
   return;
 };
 
+const correctFinals = async () => {
+  const nycsFinal = await seriesRepo.getByTag('NYCS Finals');
+  const champion = await teamsRepo.getById(nycsFinal[0].winner);
+  const second = await teamsRepo.getById(nycsFinal[0].loser);
+  nycsFinal[0].isChampComplete = false;
+  await seriesRepo.updateSeries(nycsFinal[0]);
+  await teamsRepo.updateTeam(champion._id, {
+    stats: Object.assign(champion.stats, { totalPlace: null })
+  });
+  await teamsRepo.updateTeam(second._id, {
+    stats: Object.assign(second.stats, { totalPlace: null })
+  });
+  return;
+};
+
+const completeChamp = () => seriesRepo.completeChamp();
+
 module.exports = {
   getAll,
   createSemiFinals,
   createHalfFinals,
   createNYCSFinals,
   updateSeries,
-  deleteSeries
+  deleteSeries,
+  completeChamp,
+  correctFinals
 };

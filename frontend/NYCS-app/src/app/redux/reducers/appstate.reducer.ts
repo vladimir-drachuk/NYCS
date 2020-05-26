@@ -35,11 +35,18 @@ const reducer = createReducer(initialState,
     on(appActions.destroyNYCSFinals, (state: AppState) => ({ ...state, isLoading: true })),
     on(appActions.destroyNYCSFinalSuccess, (state: AppState) => ({ ...state, isLoading: false, isNYCSFInals: false })),
     on(appActions.destroyNYCSFinalError, (state: AppState) => ({ ...state, isLoading: false, isNYCSFInals: true, isError: true })),
+    on(appActions.completeChamp, (state: AppState) => ({ ...state, isLoading: true })),
+    on(appActions.completeChampSuccess, (state: AppState) => ({ ...state, isLoading: false, isChampComplete: true })),
+    on(appActions.completeChampError, (state: AppState) => ({ ...state, isChampComplete: false, isError: true })),
+    on(appActions.correctFinals, (state: AppState) => ({ ...state, isLoading: true })),
+    on(appActions.correctFinalsSuccess, (state: AppState) => ({ ...state, isLoading: false, isChampComplete: false })),
+    on(appActions.correctFinalsError, (state: AppState) => ({ ...state, isChampComplete: true, isError: true })),
     on(appActions.initTourneyStatus, (state: AppState, action: ActionPayload<Series[]>) => ({
             ...state, 
             isPLayoff: (action.payload.length > 0),
             isHalfFinals: (action.payload.filter((series: Series) => series.tag === 'Half-Finals').length > 0),
-            isNYCSFInals: (action.payload.filter((series: Series) => series.tag === 'NYCS Finals').length > 0)
+            isNYCSFInals: (action.payload.filter((series: Series) => series.tag === 'NYCS Finals').length > 0),
+            isChampComplete: (action.payload.filter((series: Series) => series.tag === 'NYCS Finals')[0].isChampComplete)
         })),     
 );
 

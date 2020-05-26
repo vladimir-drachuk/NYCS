@@ -10,4 +10,5 @@ export interface Series {
     team1Score: number;
     team2Score: number;
     isComplete: boolean;
+    isChampComplete?: boolean;
 }

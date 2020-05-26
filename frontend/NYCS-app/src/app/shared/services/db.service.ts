@@ -40,6 +40,10 @@ export class DbService {
     return this.http.post(`${this.url}/series`, { type: value });
   }
 
+  public correctFinals(): Observable<Object> {
+    return this.http.put(`${this.url}/series`, {});
+  }
+
   public deleteSeries(value: string): Observable<Object> {
     return this.http.request('delete', `${this.url}/series`,{ body: { type: value } })
   }

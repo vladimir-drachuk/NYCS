@@ -1,90 +1,97 @@
 <h2 class="title">NYCS Administation Panel</h2>
 
-<mat-tab-group mat-align-tabs="center" [selectedIndex]="selectTab((isPlayoff | async), (isNYCSFinals | async))">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <div class="icon" *ngIf="!(isPlayoff | async)"><mat-icon>date_range</mat-icon></div>
-      <div class="icon" *ngIf="(isPlayoff | async)"><mat-icon>done</mat-icon></div>
-      <span>Regular</span>
-    </ng-template>
-    <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
-      <app-admin-match *ngFor="let match of matches | async | divide: 'Regular'" 
-                       [match]="match" [disabled]="isPlayoff | async">
-      </app-admin-match>
-    </div>
-    <div class="buttons">
-      <button mat-stroked-button color="primary" (click)="openEditSchedule()" 
-              [disabled]="(isPlayoff | async) || (isLoading | async)">Edit Schedule</button>
-      <button mat-stroked-button color="primary" (click)="goToPlayoff()" 
-              [disabled]="(matches | async | disabled: 'Regular') || (isPlayoff | async) || (isLoading | async)">Go to Playoff
-      </button>
-    </div>
-  </mat-tab>
-  <mat-tab [disabled]="!(isPlayoff | async)">
-    <ng-template mat-tab-label>
-      <mat-icon class="arrow">arrow_right_alt</mat-icon>
-      <div class="icon" *ngIf="!(isNYCSFinals | async)"><mat-icon>date_range</mat-icon></div>
-      <div class="icon" *ngIf="(isNYCSFinals | async)"><mat-icon>done</mat-icon></div>
-      <span>Playoff</span>
-    </ng-template>
-    <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
-      <div class="playoff-matches">
-        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'white'" 
-                         [match]="match" [disabled]="isHalfFinals | async">
-        </app-admin-match>
-      </div>
-      <div class="playoff-matches">
-        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'black'" 
-                         [match]="match" [disabled]="isHalfFinals | async">
+<div class="mat-tab-wrapper">
+  <mat-tab-group mat-align-tabs="center" [selectedIndex]="selectTab((isPlayoff | async), (isNYCSFinals | async))">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="icon" *ngIf="!(isPlayoff | async)"><mat-icon>date_range</mat-icon></div>
+        <div class="icon" *ngIf="(isPlayoff | async)"><mat-icon>done</mat-icon></div>
+        <span>Regular</span>
+      </ng-template>
+      <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
+        <app-admin-match *ngFor="let match of matches | async | divide: 'Regular'" 
+                        [match]="match" [disabled]="isPlayoff | async">
         </app-admin-match>
       </div>
       <div class="buttons">
-        <button mat-stroked-button color="primary" (click)="destroySemiFinals()"
-                [disabled]="(isLoading | async) || (isHalfFinals | async)">Destroy Semi-Finals
-        </button>
-        <button mat-stroked-button color="primary" (click)="goToHalfFinals()" 
-                [disabled]="(matches | async | disabled: 'Semi-Finals') || (isLoading | async) || (isHalfFinals| async)">To Half Finals
+        <button mat-stroked-button color="primary" (click)="openEditSchedule()" 
+                [disabled]="(isPlayoff | async) || (isLoading | async)">Edit Schedule</button>
+        <button mat-stroked-button color="primary" (click)="goToPlayoff()" 
+                [disabled]="(matches | async | disabled: 'Regular') || (isPlayoff | async) || (isLoading | async)">Go to Playoff
         </button>
       </div>
-      <div class="playoff-matches">
-        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Half-Finals':'white'" 
-                         [match]="match" [disabled]="(isNYCSFinals | async)">
+    </mat-tab>
+    <mat-tab [disabled]="!(isPlayoff | async)">
+      <ng-template mat-tab-label>
+        <mat-icon class="arrow">arrow_right_alt</mat-icon>
+        <div class="icon" *ngIf="!(isNYCSFinals | async)"><mat-icon>date_range</mat-icon></div>
+        <div class="icon" *ngIf="(isNYCSFinals | async)"><mat-icon>done</mat-icon></div>
+        <span>Playoff</span>
+      </ng-template>
+      <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
+        <div class="playoff-matches">
+          <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'white'" 
+                          [match]="match" [disabled]="isHalfFinals | async">
+          </app-admin-match>
+        </div>
+        <div class="playoff-matches">
+          <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Semi-Finals':'black'" 
+                          [match]="match" [disabled]="isHalfFinals | async">
+          </app-admin-match>
+        </div>
+        <div class="buttons">
+          <button mat-stroked-button color="primary" (click)="destroySemiFinals()"
+                  [disabled]="(isLoading | async) || (isHalfFinals | async)">Destroy Semi-Finals
+          </button>
+          <button mat-stroked-button color="primary" (click)="goToHalfFinals()" 
+                  [disabled]="(matches | async | disabled: 'Semi-Finals') || (isLoading | async) || (isHalfFinals| async)">To Half Finals
+          </button>
+        </div>
+        <div class="playoff-matches">
+          <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Half-Finals':'white'" 
+                          [match]="match" [disabled]="(isNYCSFinals | async)">
+          </app-admin-match>
+        </div>
+        <div class="playoff-matches">
+          <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Half-Finals':'black'" 
+                          [match]="match" [disabled]="(isNYCSFinals | async)">
+          </app-admin-match>
+        </div>
+        <div class="buttons" *ngIf="(isHalfFinals | async)">
+          <button mat-stroked-button color="primary" (click)="destroyHalfFinals()"
+                  [disabled]="(isLoading | async) || (isNYCSFinals | async)">Destroy Half Finals</button>
+          <button mat-stroked-button color="primary" (click)="goToNYCSFinals()"
+                  [disabled]="(matches | async | disabled: 'Half-Finals') || (isLoading | async) || (isNYCSFinals | async)">To NYCS Finals
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab [disabled]="!(isNYCSFinals | async)">
+      <ng-template mat-tab-label>
+        <mat-icon class="arrow">arrow_right_alt</mat-icon>
+        <div class="icon" *ngIf="!(isChampComplete | async)"><mat-icon>date_range</mat-icon></div>
+        <div class="icon" *ngIf="(isChampComplete | async)"><mat-icon>done</mat-icon></div>
+        <span>NYCS Final</span>
+      </ng-template>
+      <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
+        <app-admin-match *ngFor="let match of matches | async | divide: 'NYCS'" 
+                        [match]="match" [disabled]="(isChampComplete | async)">
         </app-admin-match>
       </div>
-      <div class="playoff-matches">
-        <app-admin-match *ngFor="let match of matches | async | divide: 'Playoff':'Half-Finals':'black'" 
-                         [match]="match" [disabled]="(isNYCSFinals | async)">
-        </app-admin-match>
-      </div>
-      <div class="buttons" *ngIf="(isHalfFinals | async)">
-        <button mat-stroked-button color="primary" (click)="destroyHalfFinals()"
-                [disabled]="(isLoading | async) || (isNYCSFinals | async)">Destroy Half Finals</button>
-        <button mat-stroked-button color="primary" (click)="goToNYCSFinals()"
-                [disabled]="(matches | async | disabled: 'Half-Finals') || (isLoading | async) || (isNYCSFinals | async)">To NYCS Finals
+      <div class="buttons">
+        <button mat-stroked-button color="primary" (click)="destroyNYCSFinals()"
+                [disabled]="(isLoading | async) || (isChampComplete | async)">Destroy Finals</button>
+        <button mat-stroked-button color="primary" (click)="completeChamp()"
+                [disabled]="(matches | async | disabled: 'Finals') || (isChampComplete | async)">Complete Champ
         </button>
       </div>
-    </div>
-  </mat-tab>
-  <mat-tab [disabled]="!(isNYCSFinals | async)">
-    <ng-template mat-tab-label>
-      <mat-icon class="arrow">arrow_right_alt</mat-icon>
-      <div class="icon"><mat-icon>date_range</mat-icon></div>
-      <span>NYCS Final</span>
-    </ng-template>
-    <div *ngIf="!(isScheduleLoading | async), else elseBlock" class="matches-wrapper">
-      <app-admin-match *ngFor="let match of matches | async | divide: 'NYCS'" 
-                       [match]="match" [disabled]="false">
-      </app-admin-match>
-    </div>
-    <div class="buttons">
-      <button mat-stroked-button color="primary" (click)="destroyNYCSFinals()"
-              [disabled]="(isLoading | async)">Destroy Finals</button>
-      <button mat-stroked-button color="primary" (click)="completeChamp()"
-              [disabled]="(matches | async | disabled: 'Finals')">Complete Champ
-      </button>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+      <div *ngIf="(isChampComplete | async)" class="complete">
+        The Championship is Completed. Happy New Year! If you want to correct finals click 
+        <button mat-button color="primary" (click)="correctFinals()">here</button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
 
 <ng-template #elseBlock>
     <div class="else-block">
