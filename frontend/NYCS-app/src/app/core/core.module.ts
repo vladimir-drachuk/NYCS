@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NguCarouselModule } from '@ngu/carousel';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { HeaderComponent } from './components/header/header.component';
@@ -29,6 +30,7 @@ import { Page404Component } from './components/page404/page404.component';
     NguCarouselModule,
     RouterModule,
     MatMenuModule,
+    MatIconModule,
     MatButtonToggleModule
   ],
   exports: [

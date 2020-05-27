@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { Observable } from 'rxjs/internal/Observable';
+import { Team } from 'src/app/shared/models/team.model';
+import { getAll } from 'src/app/redux/selectors/teams.selectors';
 
 @Component({
   selector: 'app-results',
@@ -7,7 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsComponent implements OnInit {
 
-  constructor() { }
+  public teams: Observable<Team[]> = this.store.select(getAll);
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }

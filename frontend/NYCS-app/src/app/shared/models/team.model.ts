@@ -18,6 +18,12 @@ interface Stats {
     losesHalf: number;
     wlStr: string;
     score: number;
+    points: number;
+    games: number;
+    nycsPercent: number;
+    halfPercent: number;
+    halfLeader: boolean;
+    totalPlace: number;
 }
 
 export { Team, Stats }

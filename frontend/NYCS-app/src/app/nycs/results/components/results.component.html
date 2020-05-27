@@ -1,1 +1,3 @@
-<p>mat-table with results</p>
+<app-place-slot *ngFor="let team of teams | async | sortslots; let index = index" 
+                [team]="team" [place]="index + 1">
+</app-place-slot>

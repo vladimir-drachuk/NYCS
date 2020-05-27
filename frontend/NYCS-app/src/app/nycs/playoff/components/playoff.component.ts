@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { Series } from 'src/app/shared/models/series.model';
+import { getAll } from 'src/app/redux/selectors/series.selectors';
 
 @Component({
   selector: 'app-playoff',
@@ -7,7 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayoffComponent implements OnInit {
 
-  constructor() { }
+  public series: Observable<Series[]> = this.store.select(getAll);
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }

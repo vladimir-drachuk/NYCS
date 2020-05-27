@@ -1,6 +1,7 @@
-import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
 import { NguCarouselConfig } from '@ngu/carousel';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
 import { Match, defaultMatch } from '../../../../shared/models/match.model';
 import * as matchesSelector from '../../../../redux/selectors/matches.selectors';
@@ -10,7 +11,9 @@ import * as matchesSelector from '../../../../redux/selectors/matches.selectors'
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit, OnDestroy {
+
+  private subscription: Subscription;
   public name = 'Angular';
   public slideNo = 0;
   public withAnim = true;
@@ -27,8 +30,10 @@ export class CarouselComponent {
     velocity: 0.2
   }
 
-  constructor(private cdr: ChangeDetectorRef, private store: Store) {
-    this.store.select(matchesSelector.getAllSorted).subscribe((matches: Match[]) => {
+  constructor(private cdr: ChangeDetectorRef, private store: Store) { }
+
+  ngOnInit(): void {
+    this.subscription = this.store.select(matchesSelector.getAllSorted).subscribe((matches: Match[]) => {
       this.carouselItems = this.fillCarousel(matches);
       if (matches.length > this.maxCount) {
         this.cdr.detectChanges();
@@ -51,7 +56,7 @@ export class CarouselComponent {
     this.myCarousel.moveTo(slide, this.withAnim);
   }
 
-    // reset() {
-  //   this.myCarousel.reset(!this.resetAnim);
-  // }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

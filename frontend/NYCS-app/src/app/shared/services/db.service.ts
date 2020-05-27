@@ -8,43 +8,41 @@ import { UpdateTime } from '../models/updateMatchTime';
 @Injectable()
 export class DbService {
 
-  private url = 'http://localhost:4000';
-
   constructor(private http: HttpClient) { }
 
   public getAllTeams(): Observable<Object> {
-    return this.http.get(`${this.url}/teams`);
+    return this.http.get('teams');
   }
 
   public getAllMatches(): Observable<Object> {
-    return this.http.get(`${this.url}/matches`);
+    return this.http.get('matches');
   }
 
   public getAllSeries(): Observable<Object> {
-    return this.http.get(`${this.url}/series`)
+    return this.http.get('series')
   }
 
   public createSchedule(matches: Match[]): Observable<Object> {
-    return this.http.post(`${this.url}/matches`, matches)
+    return this.http.post('matches', matches)
   }
 
   public updateMatch(match: Match): Observable<Object> {
-    return this.http.put(`${this.url}/matches`, match);
+    return this.http.put('matches', match);
   }
 
   public updateTime(time: UpdateTime): Observable<Object> {
-    return this.http.put(`${this.url}/matches/time`, time)
+    return this.http.put('matches/time', time)
   }
 
   public goToPlayoffNextRound(value: string): Observable<Object> {
-    return this.http.post(`${this.url}/series`, { type: value });
+    return this.http.post('series', { type: value });
   }
 
   public correctFinals(): Observable<Object> {
-    return this.http.put(`${this.url}/series`, {});
+    return this.http.put('series', {});
   }
 
   public deleteSeries(value: string): Observable<Object> {
-    return this.http.request('delete', `${this.url}/series`,{ body: { type: value } })
+    return this.http.request('delete', 'series', { body: { type: value } })
   }
 }
