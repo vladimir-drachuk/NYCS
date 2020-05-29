@@ -5,4 +5,9 @@ const getAll = async (req, res) => {
   res.json(teams);
 };
 
-module.exports = { getAll };
+const getOnlyStats = async (req, res) => {
+  const statsArray = await teamServise.getAll();
+  res.status(200).json(statsArray);
+};
+
+module.exports = { getAll, getOnlyStats };

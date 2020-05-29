@@ -13,6 +13,7 @@ export interface TeamsState {
   data: Team[];
   isLoaded: boolean;
   isError: boolean;
+  isTeamsInit: boolean;
 }
 
 export interface MatchesState {

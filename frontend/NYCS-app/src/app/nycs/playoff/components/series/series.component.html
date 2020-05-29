@@ -1,5 +1,11 @@
-<div>{{ series.team1 }}</div>
-<div>{{ series.team1Score }}</div>
-<div>:</div>
-<div>{{ series.team2Score }} </div>
-<div>{{ series.team2 }}</div>
+<div class="series">
+    <div>{{ series.team1 }}</div>
+    <div>{{ series.team1Score }}</div>
+    <div>:</div>
+    <div>{{ series.team2Score }} </div>
+    <div>{{ series.team2 }}</div>
+</div>
+<app-series-match *ngFor="let match of matches | async" [match]="match"></app-series-match>
+
+
+

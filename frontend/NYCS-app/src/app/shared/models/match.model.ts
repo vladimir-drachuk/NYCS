@@ -10,6 +10,7 @@ interface Match {
     isOT: boolean;
     isKR: boolean;
     tourneyStatus: string;
+    series: string;
     half: string;
     winner: string;
     loser: string;
@@ -32,6 +33,7 @@ const defaultMatch: Match = {
     winner: null,
     loser: null,
     time: null,
+    series: null
 }
 
 export { Match, defaultMatch };

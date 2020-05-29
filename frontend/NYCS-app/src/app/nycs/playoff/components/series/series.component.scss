@@ -1,10 +1,15 @@
 :host {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    border: 1px solid lightgrey;
+    align-items: center;
     width: 1000px;
     height: 300px;
-    border: 1px solid lightgrey;
-    margin: 30px;
-    padding-top: 40px;
+}
+
+.series {
+    display: flex;
+    justify-content: space-around;
     font-size: 30px;
 }

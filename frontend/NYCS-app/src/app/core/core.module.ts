@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MenuService } from './services/menu.service';
 import { TeamsComponent } from './components/header/nav-menu/teams/teams.component';
 import { Page404Component } from './components/page404/page404.component';
+import { LoadSpinnerComponent } from './components/load-spinner/load-spinner.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { Page404Component } from './components/page404/page404.component';
     NavMenuComponent,
     FooterComponent,
     TeamsComponent,
-    Page404Component
+    Page404Component,
+    LoadSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { Page404Component } from './components/page404/page404.component';
     MatButtonToggleModule
   ],
   exports: [
+    LoadSpinnerComponent,
     HeaderComponent,
     FooterComponent,
     Page404Component,

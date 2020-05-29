@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PlayoffComponent } from './components/playoff.component';
 import { SeriesComponent } from './components/series/series.component';
+import { SeriesMatchComponent } from './components/series/series-match/series-match.component';
 
 const routes: Routes = [
   { path: '', component: PlayoffComponent }
@@ -12,7 +13,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     PlayoffComponent,
-    SeriesComponent
+    SeriesComponent,
+    SeriesMatchComponent,
   ],
   imports: [
     CommonModule,

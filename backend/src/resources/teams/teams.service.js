@@ -14,6 +14,15 @@ const initTeams = async () => {
 
 const getAll = () => teamsRepo.getAll();
 
+const getOnlyStats = async () => {
+  const teams = await getAll();
+  const statsArray = teams.map(team => ({
+    _id: team._id,
+    stats: team.stats
+  }));
+  return statsArray;
+};
+
 const getPlace = async teamCriteria => {
   let whiteTeams;
   let blackTeams;
@@ -89,4 +98,4 @@ const deletePlace = async teamCriteria => {
   }
 };
 
-module.exports = { initTeams, getAll, getPlace, deletePlace };
+module.exports = { initTeams, getAll, getOnlyStats, getPlace, deletePlace };

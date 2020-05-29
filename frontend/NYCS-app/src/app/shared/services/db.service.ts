@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Match } from '../models/match.model';
@@ -12,6 +12,10 @@ export class DbService {
 
   public getAllTeams(): Observable<Object> {
     return this.http.get('teams');
+  }
+
+  public getOnlyTeamStats(): Observable<Object> {
+    return this.http.get('teams/stats');
   }
 
   public getAllMatches(): Observable<Object> {

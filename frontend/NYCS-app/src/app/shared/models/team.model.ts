@@ -1,10 +1,12 @@
 interface Team {
     _id: string;
     name: string;
+    shortname: string;
     half: string;
     teamtag: string;
     description: string;
     stats: Stats;
+    logo: TeamLogo;
 }
 
 interface Stats {
@@ -26,4 +28,14 @@ interface Stats {
     totalPlace: number;
 }
 
-export { Team, Stats }
+interface TeamLogo {
+    src: string;
+    alt: string;
+}
+
+interface StatsTeam {
+    _id: string;
+    stats: Stats;
+}
+
+export { Team, Stats, StatsTeam }

@@ -31,7 +31,7 @@ export class MatchesEffects {
     mergeMap((match: ActionPayload<Match>) => this.db$.updateMatch(match.payload)
       .pipe(
         switchMap(() => of({ type: matchesActionType.updateMatchSuccess },
-                           { type: teamsActionType.getTeams },
+                           { type: teamsActionType.getOnlyStats },
                            { type: matchesActionType.getMatches },
                            { type: seriesActionType.getSeries })),
         catchError(() => of({ type: matchesActionType.updateMatchError }))
@@ -55,7 +55,7 @@ export class MatchesEffects {
     mergeMap((matches: ActionPayload<Match[]>) => this.db$.createSchedule(matches.payload)
       .pipe(
         switchMap(() => of({ type: matchesActionType.changeSheduleSuccess },
-                           { type: teamsActionType.getTeams },
+                           { type: teamsActionType.getOnlyStats },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: matchesActionType.changeSheduleError }))
       )
@@ -67,7 +67,7 @@ export class MatchesEffects {
     mergeMap(() => this.db$.goToPlayoffNextRound('Semi-Finals')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.playoffModeActivate },
-                           { type: teamsActionType.getTeams },
+                           { type: teamsActionType.getOnlyStats },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: appstateActionsType.playoffModeError }))
       )
@@ -79,7 +79,7 @@ export class MatchesEffects {
     mergeMap(() => this.db$.deleteSeries('Semi-Finals')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.regularChampModeActivate },
-                           { type: teamsActionType.getTeams },
+                           { type: teamsActionType.getOnlyStats },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: appstateActionsType.regularChampModeError }))
       )
@@ -91,7 +91,7 @@ export class MatchesEffects {
     mergeMap(() => this.db$.goToPlayoffNextRound('Half-Finals')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.toHalfFinalsSuccess },
-                           { type: teamsActionType.getTeams },
+                           { type: teamsActionType.getOnlyStats },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: appstateActionsType.toHalfFinalsError }))
       )
@@ -103,7 +103,7 @@ export class MatchesEffects {
     mergeMap(() => this.db$.deleteSeries('Half-Finals')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.destroyHalfFinalSuccess },        
-                           { type: teamsActionType.getTeams },
+                           { type: teamsActionType.getOnlyStats },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: appstateActionsType.destroyHalfFinalError }))
       )
@@ -115,7 +115,7 @@ export class MatchesEffects {
     mergeMap(() => this.db$.goToPlayoffNextRound('NYCS Finals')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.toNYCSFinalsSuccess },
-                           { type: teamsActionType.getTeams },
+                           { type: teamsActionType.getOnlyStats },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: appstateActionsType.toNYCSFinalsError }))
       )
@@ -127,7 +127,7 @@ export class MatchesEffects {
     mergeMap(() => this.db$.deleteSeries('NYCS Finals')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.destroyNYCSFinalSuccess },
-                           { type: teamsActionType.getTeams },
+                           { type: teamsActionType.getOnlyStats },
                            { type: matchesActionType.getMatches })),
         catchError(() => of({ type: appstateActionsType.destroyNYCSFinalError }))
       )
@@ -139,8 +139,7 @@ export class MatchesEffects {
     mergeMap(() => this.db$.goToPlayoffNextRound('Complete')
       .pipe(
         switchMap(() => of({ type: appstateActionsType.completeChampSuccess },
-                           { type: teamsActionType.getTeams },
-                           { type: teamsActionType.getTeams })),
+                           { type: teamsActionType.getOnlyStats })),
         catchError(() => of({ type: appstateActionsType.completeChampError }))
       )
     )
@@ -151,8 +150,7 @@ export class MatchesEffects {
     mergeMap(() => this.db$.correctFinals()
       .pipe(
         switchMap(() => of({ type: appstateActionsType.correctFinalsSuccess },
-                           { type: teamsActionType.getTeams },
-                           { type: teamsActionType.getTeams })),
+                           { type: teamsActionType.getOnlyStats })),
         catchError(() => of({ type: appstateActionsType.correctFinalsError }))
       )
     )

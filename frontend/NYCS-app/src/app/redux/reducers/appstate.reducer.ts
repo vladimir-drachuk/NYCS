@@ -47,7 +47,8 @@ const reducer = createReducer(initialState,
             isHalfFinals: (action.payload.filter((series: Series) => series.tag === 'Half-Finals').length > 0),
             isNYCSFInals: (action.payload.filter((series: Series) => series.tag === 'NYCS Finals').length > 0),
             isChampComplete: (action.payload.filter((series: Series) => series.tag === 'NYCS Finals')[0].isChampComplete)
-        })),     
+        })
+    )     
 );
 
 export function appstateReducer(state: AppState, action: Action) {

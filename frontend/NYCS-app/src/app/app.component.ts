@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { animations } from './animations';
 import { getTeamsAction } from './redux/actions/teams.actions';
 import { getMatchesAction } from './redux/actions/matches.actions';
 import { getSeriesAction } from './redux/actions/series.actions';
+import * as teamsSelectors from './redux/selectors/teams.selectors';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,9 @@ import { getSeriesAction } from './redux/actions/series.actions';
 })
 export class AppComponent {
 
+  public isTeamsLoaded: Observable<boolean> = this.store.select(teamsSelectors.initTeams);
+  public isTeamsLoadError: Observable<boolean> = this.store.select(teamsSelectors.isError);
+
   constructor(private store: Store) { 
     this.initStore(); 
   } 
@@ -21,6 +26,6 @@ export class AppComponent {
   private initStore(): void {
     this.store.dispatch(getTeamsAction());
     this.store.dispatch(getMatchesAction());
-    this.store.dispatch(getSeriesAction())
+    this.store.dispatch(getSeriesAction());
   }
 }

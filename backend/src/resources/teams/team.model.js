@@ -4,9 +4,11 @@ const { Schema } = mongoose;
 const teamSchema = new Schema(
   {
     name: String,
+    shortname: String,
     teamtag: String,
     half: String,
     description: String,
+    logo: Object,
     stats: Object
   },
   { versionKey: false }

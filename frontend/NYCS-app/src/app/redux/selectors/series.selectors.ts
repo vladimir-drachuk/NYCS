@@ -7,3 +7,8 @@ export const getAll = createSelector(
     selectSeriesObj,
     (obj: SeriesState) => obj.data
 )
+
+export const isLoaded = createSelector(
+    selectSeriesObj,
+    (obj: SeriesState) => obj.isLoaded
+)

@@ -1,4 +1,5 @@
 export interface Series {
+    _id: String;
     tag: string;
     team1: string;
     team2: string;
