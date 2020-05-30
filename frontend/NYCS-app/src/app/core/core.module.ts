@@ -15,6 +15,8 @@ import { MenuService } from './services/menu.service';
 import { TeamsComponent } from './components/header/nav-menu/teams/teams.component';
 import { Page404Component } from './components/page404/page404.component';
 import { LoadSpinnerComponent } from './components/load-spinner/load-spinner.component';
+import { MatchWinnerDirective } from './directives/match-winner.directive';
+import { CarouselButtonsDirective } from './directives/carousel-buttons.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { LoadSpinnerComponent } from './components/load-spinner/load-spinner.com
     FooterComponent,
     TeamsComponent,
     Page404Component,
-    LoadSpinnerComponent
+    LoadSpinnerComponent,
+    MatchWinnerDirective,
+    CarouselButtonsDirective
   ],
   imports: [
     CommonModule,

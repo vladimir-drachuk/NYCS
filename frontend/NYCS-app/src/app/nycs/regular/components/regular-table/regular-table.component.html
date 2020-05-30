@@ -2,62 +2,87 @@
 
   <ng-container matColumnDef="position">
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let element;">{{ teams.indexOf(element) + 1 }}</mat-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ teams.indexOf(element) + 1 }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="logo">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>
+      <img [src]="element.logo.src" class="logo" [alt]="element.logo.alt">
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="team">
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ element.name }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="half">
     <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.half }}</mat-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ element.half }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="games">
-    <mat-header-cell *matHeaderCellDef> GAMES </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.stats.games }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="win-lost">
-    <mat-header-cell *matHeaderCellDef> NYCS </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showNycsStat(element.stats) }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="pct1">
-    <mat-header-cell *matHeaderCellDef> pct </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showPercent(element.stats.nycsPercent) }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="halfstat">
-    <mat-header-cell *matHeaderCellDef> HALF </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showHalfStat(element.stats) }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="pct2">
-    <mat-header-cell *matHeaderCellDef> pct </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showPercent(element.stats.halfPercent) }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef> 
+      <span class="head-label" [matTooltip]="tooltipText[0]" matTooltipPosition="above"> GAMES </span>  
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ element.stats.games }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="rounds">
-    <mat-header-cell *matHeaderCellDef> ROUNDS </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showRounds(element.stats) }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef> 
+      <span class="head-label" [matTooltip]="tooltipText[1]" matTooltipPosition="above"> ROUNDS </span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ showRounds(element.stats) }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="plus-minus">
-    <mat-header-cell *matHeaderCellDef> DIFF </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showPlusMinus(element.stats) }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef>
+      <span class="head-label" [matTooltip]="tooltipText[2]" matTooltipPosition="above"> DIFF </span>  
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ showPlusMinus(element.stats) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="win-lost">
+    <mat-header-cell *matHeaderCellDef>
+      <span class="head-label" [matTooltip]="tooltipText[3]" matTooltipPosition="above"> NYCS </span>  
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ showNycsStat(element.stats) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="pct1">
+    <mat-header-cell *matHeaderCellDef>
+      <span class="head-label" [matTooltip]="tooltipText[4]" matTooltipPosition="above"> pct </span>  
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ showPercent(element.stats.nycsPercent) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="halfstat">
+    <mat-header-cell *matHeaderCellDef> 
+      <span class="head-label" [matTooltip]="tooltipText[5]" matTooltipPosition="above"> HALF </span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ showHalfStat(element.stats) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="pct2">
+    <mat-header-cell *matHeaderCellDef>
+      <span class="head-label" [matTooltip]="tooltipText[6]" matTooltipPosition="above"> pct </span> 
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ showPercent(element.stats.halfPercent) }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="last-4">
-    <mat-header-cell *matHeaderCellDef> LAST 4 </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ showWinLostString(element.stats.wlStr) }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef>
+      <span class="head-label" [matTooltip]="tooltipText[7]" matTooltipPosition="above"> LAST 4 </span> 
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ showWinLostString(element.stats.wlStr) }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="points">
-    <mat-header-cell *matHeaderCellDef> PTS </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.stats.points }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef>
+      <span class="head-label" [matTooltip]="tooltipText[8]" matTooltipPosition="above"> PTS </span> 
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element; let i = index" [index]="i" appColored>{{ element.stats.points }}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -2,7 +2,29 @@
     margin: 0 auto;
 }
 
-.team-container {
+.match-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 150px;
+}
+
+img {
+    width: 30px;
+}
+
+.date {
+    text-align: center;
+    font-size: 11px;
+}
+
+table {
+    width: 80%;
+    .name {
+        text-align: start;
+    }
+    .score {
+        text-align: end;
+    }
 }

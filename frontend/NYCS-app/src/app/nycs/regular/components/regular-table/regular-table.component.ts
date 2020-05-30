@@ -10,7 +10,19 @@ import { animations } from 'src/app/animations';
 })
 export class RegularTableComponent {
 
-  displayedColumns: string[] = ['position', 'team', 'half', 'games', 'rounds', 'plus-minus', 'win-lost', 'pct1', 'halfstat', 'pct2', 'last-4', 'points'];
+  public displayedColumns: string[] = [
+    'position', 'logo', 'team', 'half', 'games',
+    'rounds', 'plus-minus', 'points', 'last-4',
+    'win-lost', 'pct1', 'halfstat', 'pct2'
+  ];
+  public tooltipText: string[] = [
+    'Games Played', 'Rounds Won - Rounds Lost',
+    'Difference between Won and Lost Rounds',
+    'Games: Won - Won in Overtime - Lost in Overtime - Lost',
+    'Regular Win Percentage', 'Games Versus Half Opponents: Won - Lost',
+    'Win Persentage in Half Games', 'Statictics in last Four Regular Games',
+    'Points'
+  ];
   @Input() teams: Team[];
 
   public showRounds(stats: Stats): string {

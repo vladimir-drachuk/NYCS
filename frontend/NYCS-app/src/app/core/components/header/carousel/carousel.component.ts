@@ -20,6 +20,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   public resetAnim = true;
   public maxCount = 6;
   public carouselItems: Match[] = Array(this.maxCount + 1).fill(defaultMatch);
+  public isBtnShow: boolean;
 
   @ViewChild('myCarousel') myCarousel;
   carouselConfig: NguCarouselConfig = {
@@ -54,6 +55,10 @@ export class CarouselComponent implements OnInit, OnDestroy {
 
   public moveTo(slide): void {
     this.myCarousel.moveTo(slide, this.withAnim);
+  }
+
+  public buttonsChange(event: boolean): void {
+    this.isBtnShow = event;
   }
 
   ngOnDestroy(): void {

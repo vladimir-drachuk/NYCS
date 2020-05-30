@@ -1,7 +1,15 @@
-<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems">
+<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems" 
+			  (isBtnChange)="buttonsChange($event)" appCarouselButtons
+			  class="carousel">
 	<div *nguCarouselDef="let item;" class="item">
     <app-matches-list [match]="item"></app-matches-list>
 	</div>
-	<button NguCarouselNext class="rightRs">&gt;</button>
-	<button NguCarouselPrev class="leftRs">&lt;</button>
+
+	<button *ngIf="isBtnShow" NguCarouselNext class="button rightRs" #rightButton>
+		<mat-icon>arrow_forward_ios</mat-icon>
+	</button>
+	<button *ngIf="isBtnShow" NguCarouselPrev class="button leftRs" #leftButton>
+		<mat-icon>arrow_back_ios</mat-icon>
+	</button>
+
 </ngu-carousel>

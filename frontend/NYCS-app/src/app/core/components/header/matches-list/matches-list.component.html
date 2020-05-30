@@ -1,8 +1,16 @@
-<div class="team-container">
-    <div class="team">{{ match.team1 }}</div>
-    <div class="result">{{ match.team1Score }}</div>
-</div>
-<div class="team-container">
-    <div class="team">{{ match.team2 }}</div>
-    <div class="result">{{ match.team2Score }}</div>
+<div class="date">{{ match.time | date: 'EEEE, MMMM d' }}</div>
+<div class="match-wrapper">
+    <table>
+        <tr [match]="match" [team]="team1 | async" appMatchWinner>
+            <td><img [src]="(team1 | async).logo.src" [alt]="(team1 | async).logo.alt"></td>
+            <td class="name">{{ (team1 | async).shortname }}</td>
+            <td class="score">{{ match.team1Score }}</td>
+        </tr>
+        <tr [match]="match" [team]="team2 | async" appMatchWinner>
+            <td><img [src]="(team2 | async).logo.src" [alt]="(team2 | async).logo.alt"></td>
+            <td class="name">{{ (team2 | async).shortname }}</td>
+            <td class="score">{{ match.team2Score }}</td>
+        </tr>
+    </table>
+    <div class="ot">OT</div>
 </div>

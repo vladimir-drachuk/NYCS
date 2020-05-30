@@ -1,14 +1,66 @@
 mat-table {
   width: 95%;
-  margin: 20px auto;
+  margin: 40px auto;
   box-shadow: none;
   border: 1px solid lightgrey;
     mat-header-row {
-      background-color: transparent;
+      background-color: black;
+      .mat-column-points {
+        border-bottom: 3px solid #0183da;
+      }
     }
 }
 
+.head-label {
+  cursor: pointer;
+}
+
+.mat-column-pct1,
+.mat-column-last-4 {
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mat-header-cell {
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  border-right: 1px solid black;
+  text-decoration: underline;
+  font-size: 13px;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content:center;
+  font-size: 14px;
+}
+
 .mat-column-position {
-    margin-right: 20px;
+  font-size: 20px !important;
+  font-weight: 700;
+}
+
+.mat-column-position {
+    padding-right: 10px;
     max-width: 40px;
+}
+
+.mat-column-logo {
+  max-width: 45px;
+}
+
+.mat-column-team {
+  justify-content: flex-start;
+}
+
+.logo {
+  height: 25px;
+}
+
+.mat-column-points {
+  font-weight: 700;
+}
+
+mat-cell.mat-column-points {
+  background-color: #EAEAEA !important;
 }
