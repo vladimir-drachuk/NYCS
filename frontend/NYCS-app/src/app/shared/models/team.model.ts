@@ -4,6 +4,7 @@ interface Team {
     shortname: string;
     half: string;
     teamtag: string;
+    colors: TeamColors;
     description: string;
     stats: Stats;
     logo: TeamLogo;
@@ -36,6 +37,11 @@ interface TeamLogo {
 interface StatsTeam {
     _id: string;
     stats: Stats;
+}
+
+interface TeamColors {
+    primary: string;
+    secondary: string;
 }
 
 export { Team, Stats, StatsTeam }

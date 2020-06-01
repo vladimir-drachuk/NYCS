@@ -1,1 +1,4 @@
-<app-series *ngFor="let item of series | async" [series]="item"></app-series>
+<app-series *ngFor="let item of showSeries" [series]="item" @opacity></app-series>
+<button mat-stroked-button color="primary" (click)="showMoreSeries()" 
+        [disabled]="moreButtonDisable()">more series
+</button>

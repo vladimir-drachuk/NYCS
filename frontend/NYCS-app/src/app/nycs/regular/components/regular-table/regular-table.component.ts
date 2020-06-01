@@ -19,7 +19,7 @@ export class RegularTableComponent {
     'Games Played', 'Rounds Won - Rounds Lost',
     'Difference between Won and Lost Rounds',
     'Games: Won - Won in Overtime - Lost in Overtime - Lost',
-    'Regular Win Percentage', 'Games Versus Half Opponents: Won - Lost',
+    'Regular Win Percentage', 'Games against Half Opponents: Won - Lost',
     'Win Persentage in Half Games', 'Statictics in last Four Regular Games',
     'Points'
   ];

@@ -1,7 +1,52 @@
-ul {
+nav {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .active {
-  background-color: blue;
+  color: #AAA;
 }
+
+.nycs-logo {
+  position: relative;
+  margin-right: 7px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  img {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: all 0.5s;
+    &:hover {
+      width: 90px;
+      transform: translate(-15px, -15px);
+    }
+  }
+}
+
+.menu-list {
+  display: flex;
+  color: white;
+}
+
+.menu-item {
+  list-style-type: none;
+  padding: 18px 10px;
+  outline: none;
+  cursor: pointer;
+  border-bottom: 4px solid transparent;
+  transition: all 0.5s;
+  &:hover {
+    border-color: #0183da;
+    color: #AAA;
+  }
+  &:active {
+    color: #555;
+    transition: none;
+  }
+}
+

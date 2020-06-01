@@ -1,14 +1,18 @@
 <nav>
-  <mat-button-toggle-group>
 
-    <mat-button-toggle
+  <div class="nycs-logo">
+    <img src="../../../../../assets/images/nycs-logo.png" alt="logo">
+  </div>
+
+  <ul class="menu-list">
+    <li class="menu-item"
       *ngFor="let item of menuList"
-      [routerLink]="item.path">{{ item.title }}
-    </mat-button-toggle>
-
-    <mat-button-toggle checked>
+      [routerLink]="item.path"
+      routerLinkActive="active">{{ item.title }}
+    </li>
+    <li class="menu-item">
       <app-teams></app-teams>
-    </mat-button-toggle>
+    </li>
+  </ul>
 
-  </mat-button-toggle-group>
 </nav>

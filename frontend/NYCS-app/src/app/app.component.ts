@@ -19,7 +19,7 @@ export class AppComponent {
   public isTeamsLoaded: Observable<boolean> = this.store.select(teamsSelectors.initTeams);
   public isTeamsLoadError: Observable<boolean> = this.store.select(teamsSelectors.isError);
 
-  constructor(private store: Store) { 
+  constructor(private store: Store) {
     this.initStore(); 
   } 
 

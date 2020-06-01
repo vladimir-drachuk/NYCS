@@ -1,5 +1,5 @@
 <div class="date">{{ match.time | date: 'EEEE, MMMM d' }}</div>
-<div class="match-wrapper">
+<div class="match-wrapper"> 
     <table>
         <tr [match]="match" [team]="team1 | async" appMatchWinner>
             <td><img [src]="(team1 | async).logo.src" [alt]="(team1 | async).logo.alt"></td>
@@ -12,5 +12,5 @@
             <td class="score">{{ match.team2Score }}</td>
         </tr>
     </table>
-    <div class="ot">OT</div>
+    <div class="ot">{{ showOT() }}</div>
 </div>
