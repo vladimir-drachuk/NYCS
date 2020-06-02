@@ -1,0 +1,79 @@
+// :host {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-around;
+//     border: 1px solid lightgrey;
+//     align-items: center;
+//     width: 1000px;
+//     height: 300px;
+// }
+
+// .series {
+//     display: flex;
+//     justify-content: space-around;
+//     font-size: 30px;
+// }
+
+.lightcolor {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    height: 50px;
+    padding-top: 15px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    -webkit-box-shadow: 0px 3px 6px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 6px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 6px -2px rgba(0,0,0,0.75);
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
+
+.series-head-wrapper {
+    position: relative;
+    margin-bottom: 100px;
+    display: flex;
+    height: 105px;
+}
+
+.team-wrapper {
+    display: flex;
+    height: 100%;
+    flex: 1;
+}
+
+.color-aria {
+    position: relative;
+    flex: 1;
+    height: 0;
+}
+
+.waterline-text {
+    position: absolute;
+    width: 100%;
+    top: -25px;
+    font-size: 130px;
+    color: rgba(255, 255, 255, 0.1);
+    font-family: 'Endzone Sans Bold', sans-serif;
+}
+
+.team-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    &::ng-deep {
+        text-align: center;
+    }
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: -55px;
+    width: 80px;
+}
+

@@ -19,6 +19,7 @@ const createSeries = async (team1Info, team2Info, tag) => {
     team2: team2Info.name,
     team1ID: team1Info._id,
     team2ID: team2Info._id,
+    boFormat: SERIES_DURATION,
     isComplete: false,
     isChampComplete: tag === 'NYCS Finals' ? false : null,
     half:
@@ -36,7 +37,7 @@ const createSeriaMatch = (series, tourneyStatus, isReverse) =>
     team1ID: isReverse ? series.team2ID : series.team1ID,
     team2ID: isReverse ? series.team1ID : series.team2ID,
     series: series._id,
-    isOneHHalf: true,
+    isOneHalf: true,
     half: series.half,
     tourneyStatus
   });

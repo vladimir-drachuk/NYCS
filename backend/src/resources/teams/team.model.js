@@ -7,6 +7,7 @@ const teamSchema = new Schema(
     shortname: String,
     teamtag: String,
     half: String,
+    colors: Object,
     description: String,
     logo: Object,
     stats: Object

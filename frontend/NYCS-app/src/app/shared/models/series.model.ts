@@ -8,6 +8,7 @@ export interface Series {
     winner: string;
     loser: string;
     half: string;
+    boFormat: number;
     team1Score: number;
     team2Score: number;
     isComplete: boolean;

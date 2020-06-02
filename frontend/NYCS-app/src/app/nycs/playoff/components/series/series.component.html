@@ -1,34 +1,18 @@
-<div class="title">{{ getSeriesTitle() }}</div>
-<div class="series-wrapper">
-    <div class="team-wrapper" [color]="getColor(1, 'secondary')" appTeamAreaBorderBottom>
-        <div class="color-aria" [teamColor]="getColor(1, 'primary')" appTeamAreaColored>
-            <div class="waterline-text">{{ getShortName(1) }}</div>
-            <img [src]="getImageParams(1, 'src')" 
-                 [alt]="getImageParams(1, 'alt')"
-                 class="logo">
-        </div>
-        <div class="team-content"></div>
+<mat-card>
+    <div class="info">
+        <div class="bo7">{{ 'Bo' + series.boFormat }}</div>
+        <div class="half" *ngIf="isHalfShown()">{{ series.half.toUpperCase() }}</div>
     </div>
-    <div class="team-wrapper" [color]="getColor(2, 'secondary')" appTeamAreaBorderBottom>
-        <div class="team-content"></div>
-        <div class="color-aria" [teamColor]="getColor(2, 'primary')" [isMirror]="true" appTeamAreaColored>
-            <div class="waterline-text">{{ getShortName(2) }}</div>
-            <img [src]="getImageParams(2, 'src')" 
-                 [alt]="getImageParams(2, 'alt')"
-                 class="logo">
-        </div>
+    <div class="team" [series]="series" [teamID]="team1._id" appWinnerFontStrong>
+        <div class="name left">{{ series.team1 }}</div>
+        <img class="logo" [src]="team1.logo.src" [alt]="team1.logo.alt">
+        <div class="score left">{{ series.team1Score }}</div>
+    </div> 
+    <div>-</div>
+    <div class="team" [series]="series" [teamID]="team2._id" appWinnerFontStrong>
+        <div class="score">{{ series.team2Score }}</div>
+        <img class="logo" [src]="team2.logo.src" [alt]="team2.logo.alt">
+        <div class="name">{{ series.team2 }}</div>
     </div>
-</div>
-<!-- 
-<div class="series">
-    <div>{{ series.team1 }}</div>
-    <div>{{ series.team1Score }}</div>
-    <div>:</div>
-    <div>{{ series.team2Score }} </div>
-    <div>{{ series.team2 }}</div>
-</div> -->
-
-<!-- <app-series-match *ngFor="let match of matches | async" [match]="match"></app-series-match> -->
-
-
-
+    <button mat-stroked-button color="primary" (click)="toDetailedPage()">Details</button>
+</mat-card>

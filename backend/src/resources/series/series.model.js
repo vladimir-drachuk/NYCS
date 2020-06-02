@@ -9,6 +9,7 @@ const seriesSchema = new Schema(
     team2: String,
     team1ID: String,
     team2ID: String,
+    boFormat: Number,
     half: String,
     winner: {
       type: String,

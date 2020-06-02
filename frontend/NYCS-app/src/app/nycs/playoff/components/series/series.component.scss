@@ -1,65 +1,48 @@
-// :host {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-around;
-//     border: 1px solid lightgrey;
-//     align-items: center;
-//     width: 1000px;
-//     height: 300px;
-// }
+:host {
+    margin: 5px 0;
+}
 
-// .series {
-//     display: flex;
-//     justify-content: space-around;
-//     font-size: 30px;
-// }
+mat-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0;
+}
 
-.title {
-    height: 50px;
-    padding-top: 15px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    &::first-letter {
-        text-transform: uppercase;
+.info {
+    flex: 2;
+    font-size: 12px;
+    .bo7 {
+        color: rgba(0, 0, 0, 0.5);
+    }
+    .half {
+        font-weight: 700;;
     }
 }
 
-.series-wrapper {
-    margin-bottom: 100px;
+.team {
+    flex: 20;
     display: flex;
-    height: 105px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.team-wrapper {
-    display: flex;
-    height: 100%;
-    flex: 1;
-}
-
-.color-aria {
-    position: relative;
-    flex: 1;
-    height: 0;
-}
-
-.waterline-text {
-    position: absolute;
-    width: 100%;
-    top: -25px;
-    font-size: 130px;
-    color: rgba(255, 255, 255, 0.1);
-    font-family: 'Endzone Sans Bold', sans-serif;
-}
-
-.team-content {
-    flex: 1;
+.name {
+    flex: 10;
+    padding: 0 20px;
 }
 
 .logo {
-    position: absolute;
-    top: 20px;
-    right: -55px;
-    width: 80px;
+    flex: 1;
+    width: 20px;
+}
+
+.score {
+    flex: 1;
+    padding: 0 5px;
+}
+
+.left {
+    text-align: end;
 }
 

@@ -1,4 +1,12 @@
-<app-series *ngFor="let item of showSeries" [series]="item" @opacity></app-series>
-<button mat-stroked-button color="primary" (click)="showMoreSeries()" 
-        [disabled]="moreButtonDisable()">more series
-</button>
+<div class="wrapper" @opacity>
+    <div *ngIf="nycsFinal$ | async" class="title">NYCS Finals</div>
+    <app-series [series]="nycsFinal$ | async"></app-series>
+    <div *ngIf="(halfFinals$ | async).length" class="title">Half Finals</div>
+    <app-series *ngFor="let item of halfFinals$ | async" [series]="item"></app-series>
+    <div *ngIf="(semiFinals$ | async).length" class="title"> Half Semi-Finals</div>
+    <app-series *ngFor="let item of semiFinals$ | async" [series]="item"></app-series>
+</div>
+<div class="info">
+    <h2>Regulations</h2>
+</div>
+

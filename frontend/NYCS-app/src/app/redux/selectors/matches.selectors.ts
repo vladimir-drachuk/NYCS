@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { State, MatchesState } from '../store';
+import { Match } from 'src/app/shared/models/match.model';
 
 const selectMatchesObj = createFeatureSelector<State, MatchesState>('matches');
 
@@ -38,10 +39,15 @@ export const getAllSorted = createSelector(
 
 export const getRegular = createSelector(
     selectMatchesObj,
-    (obj: MatchesState) => obj.data.filter(match => match.tourneyStatus === 'Regular')
+    (obj: MatchesState) => obj.data.filter((match: Match) => match.tourneyStatus === 'Regular')
 )
 
 export const getComplete = createSelector(
     selectMatchesObj,
-    (obj: MatchesState) => obj.data.filter(match => match.isComplete === true)
+    (obj: MatchesState) => obj.data.filter((match: Match) => match.isComplete === true)
+)
+
+export const getSeriesMatches = createSelector(
+    selectMatchesObj,
+    (obj: MatchesState, props) => obj.data.filter((match: Match) => match.series === props.id)
 )
