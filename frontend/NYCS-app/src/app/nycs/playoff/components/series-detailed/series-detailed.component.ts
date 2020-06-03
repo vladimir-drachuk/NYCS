@@ -26,12 +26,14 @@ export class SeriesDetailedComponent implements OnInit, OnDestroy {
   public team1: Team;
   public team2: Team;
 
+  public stat: string = 'Regular Statistics';
+
   public team1$: Observable<Team> = this.store
     .pipe(select(teamsSelectors.getByTag, { teamtag: this.paramsArr[0]}));
 
   public team2$: Observable<Team> = this.store
     .pipe(select(teamsSelectors.getByTag, { teamtag: this.paramsArr[2]}));
-  
+
   constructor(private store: Store, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -63,7 +65,7 @@ export class SeriesDetailedComponent implements OnInit, OnDestroy {
     if (teamNumber === 1) {
       result = `(${this.team1.stats.wins}-${this.team1.stats.winsOT}-${this.team1.stats.losesOT}-${this.team1.stats.loses})`;
     } else{
-      result = `(${this.team1.stats.wins}-${this.team1.stats.winsOT}-${this.team1.stats.losesOT}-${this.team1.stats.loses})`;
+      result = `(${this.team2.stats.wins}-${this.team2.stats.winsOT}-${this.team2.stats.losesOT}-${this.team2.stats.loses})`;
     }
     return result;
   }
@@ -104,6 +106,14 @@ export class SeriesDetailedComponent implements OnInit, OnDestroy {
       if (this.team2) result = this.team2.shortname;
     }
     return result;
+  }
+
+  public getCompletedMatches(): Match[] {
+    return this.matches.filter((match: Match) => match.isComplete)
+  }
+
+  public getPlannedMatches(): Match[] {
+    return this.matches.filter((match: Match) => !match.isComplete)
   }
 
   ngOnDestroy(): void {

@@ -3,14 +3,18 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayoffComponent } from './components/playoff.component';
 import { SeriesDetailedComponent } from './components/series-detailed/series-detailed.component';
-import { SeriesDetailedMatchComponent } from './components/series-detailed/series-detailed-match/series-detailed-match.component';
 import { TeamAreaColoredDirective } from './directives/team-area-colored.directive';
 import { TeamAreaBorderBottomDirective } from './directives/team-area-border-bottom.directive';
 import { SeriesComponent } from './components/series/series.component';
-import { WinnerFontStrongDirective } from './directives/winner-font-strong.directive';
+import { WinnerSeriesFontStrongDirective } from './directives/winner-series-font-strong.directive';
+import { SeriesDetailedMatchGroupComponent } from
+  './components/series-detailed/series-detailed-match-group/series-detailed-match-group.component';
+import { WinnerMatchFontStrongDirective } from './directives/winner-match-font-strong.directive';
 
 const routes: Routes = [
   { path: '', component: PlayoffComponent },
@@ -21,16 +25,19 @@ const routes: Routes = [
   declarations: [
     PlayoffComponent,
     SeriesDetailedComponent,
-    SeriesDetailedMatchComponent,
+    SeriesDetailedMatchGroupComponent,
     SeriesComponent,
     TeamAreaColoredDirective,
     TeamAreaBorderBottomDirective,
-    WinnerFontStrongDirective,
+    WinnerSeriesFontStrongDirective,
+    WinnerMatchFontStrongDirective
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MatButtonModule,
     MatCardModule,
+    MatTooltipModule,
     RouterModule.forChild(routes)
   ]
 })

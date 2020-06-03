@@ -10,7 +10,6 @@ export class ColoredDirective implements OnInit {
   constructor(private elem: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    if (!(this.index % 2)) this.renderer.setStyle(this.elem.nativeElement, 'background-color', '#FAFAFA')
+   if (!(this.index % 2)) this.renderer.setStyle(this.elem.nativeElement, 'background-color', '#FAFAFA');
   }
-
 }

@@ -43,12 +43,6 @@ const createSeriaMatch = (series, tourneyStatus, isReverse) =>
   });
 
 const correctSeriesMatches = async (series, seriesMatches) => {
-  if (series.isComplete) {
-    series.isComplete = false;
-    series.winner = false;
-    series.loser = false;
-    if (series.tag === 'NYCS Finals') series.isChampComplete = false;
-  }
   const seriesLeadScore =
     series.team1Score > series.team2Score
       ? series.team1Score
@@ -75,6 +69,7 @@ const correctSeriesMatches = async (series, seriesMatches) => {
       seriesMatchesAmount += 1;
     }
   }
+  return;
 };
 
 const updateSeries = async match => {
@@ -93,7 +88,12 @@ const updateSeries = async match => {
       })
     );
   } else {
+    series.isComplete = false;
+    series.winner = false;
+    series.loser = false;
+    if (series.tag === 'NYCS Finals') series.isChampComplete = false;
     await correctSeriesMatches(series, seriesMatches);
+    await seriesRepo.updateSeries(series);
   }
   return;
 };

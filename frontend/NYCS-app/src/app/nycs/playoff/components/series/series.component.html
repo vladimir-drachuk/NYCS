@@ -3,13 +3,13 @@
         <div class="bo7">{{ 'Bo' + series.boFormat }}</div>
         <div class="half" *ngIf="isHalfShown()">{{ series.half.toUpperCase() }}</div>
     </div>
-    <div class="team" [series]="series" [teamID]="team1._id" appWinnerFontStrong>
+    <div class="team" [series]="series" [teamID]="team1._id" appWinnerSeriesFontStrong>
         <div class="name left">{{ series.team1 }}</div>
         <img class="logo" [src]="team1.logo.src" [alt]="team1.logo.alt">
         <div class="score left">{{ series.team1Score }}</div>
-    </div> 
+    </div>
     <div>-</div>
-    <div class="team" [series]="series" [teamID]="team2._id" appWinnerFontStrong>
+    <div class="team" [series]="series" [teamID]="team2._id" appWinnerSeriesFontStrong>
         <div class="score">{{ series.team2Score }}</div>
         <img class="logo" [src]="team2.logo.src" [alt]="team2.logo.alt">
         <div class="name">{{ series.team2 }}</div>

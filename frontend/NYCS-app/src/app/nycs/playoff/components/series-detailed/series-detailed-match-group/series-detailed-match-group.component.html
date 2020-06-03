@@ -1,0 +1,20 @@
+<div class="header">
+  <ng-content></ng-content>
+</div>
+<div *ngFor="let match of matches; let i = index" class="match" [index]="i" appColored>
+  <div class="teams">
+    <div class="team left" [match]="match" [teamID]="match.team1ID" appWinnerMatchFontStrong>{{ match.team1 }}</div>
+    <div>@</div>
+    <div class="team" [match]="match" [teamID]="match.team2ID" appWinnerMatchFontStrong>{{ match.team2 }}</div>
+  </div>
+  <div *ngIf="match.isComplete" class="result">
+    <div>{{ match.team1Score }}</div>
+    <div>-</div>
+    <div>{{ match.team2Score }}</div>
+  </div>
+  <div class="map">{{ match.map + ' ' }}</div>
+  <div class="time">{{ match.time + ' ' }}</div>
+</div>
+
+<div *ngIf="matches.length === 0" class="match no-matches">no matches</div>
+

@@ -1,0 +1,46 @@
+.left {
+  text-align: end;
+}
+
+.header {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+.match {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 15px 0;
+  border-top: none;
+  .teams {
+    flex: 4;
+    display: flex;
+    .team {
+      flex: 1;
+      padding: 0 10px;
+    }
+  }
+
+  .result {
+    flex: 1;
+    display: flex;
+  }
+
+  .map, .time {
+    flex: 2.5;
+    text-align: center;
+  }
+}
+
+.no-matches {
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.5)
+}
+
+
+
+

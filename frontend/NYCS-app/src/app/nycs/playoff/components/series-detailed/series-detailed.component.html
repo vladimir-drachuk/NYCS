@@ -1,55 +1,67 @@
 <div class="series-head-wrapper">
-    <div class="team-wrapper" [color]="getColor(1, 'secondary')" appTeamAreaBorderBottom>
-        <div class="color-aria" [teamColor]="getColor(1, 'primary')" appTeamAreaColored>
-            <div class="waterline-text">{{ getShortName(1) }}</div>
-            <img [src]="getImageParams(1, 'src')" 
-                 [alt]="getImageParams(1, 'alt')"
-                 class="logo">
-        </div>
-        <div class="team-content">
-            <div class="team">
-                <div><strong>{{ team1.name }}</strong></div>
-                <div class="lightcolor">{{ getRegularStat(1) }}</div>
-            </div>
-        </div>
+  <div class="team-wrapper" [color]="getColor(1, 'secondary')" appTeamAreaBorderBottom>
+    <div class="color-aria" [teamColor]="getColor(1, 'primary')" appTeamAreaColored>
+      <div class="waterline-text">{{ getShortName(1) }}</div>
+      <img [src]="getImageParams(1, 'src')"
+            [alt]="getImageParams(1, 'alt')"
+            class="logo">
     </div>
-    <div class="score-wrapper">
-        <div>{{ 'Best Of' + series.boFormat }}</div>
-        <div class="score">
-            
-        </div>
-        <div>{{ series.isComplete ? 'complete' : 'incomplete' }}</div>
+    <div class="team-content">
+      <div class="team">
+        <div><strong>{{ team1.name }}</strong></div>
+        <div class="lightcolor stat" [matTooltip]="stat" matTooltipPosition="below">{{ getRegularStat(1) }}</div>
+      </div>
     </div>
-    <div class="team-wrapper" [color]="getColor(2, 'secondary')" appTeamAreaBorderBottom>
-        <div class="team-content">
-            <div class="team">
-                <div><strong>{{ team2.name }}</strong></div>
-                <div class="lightcolor">{{ getRegularStat(2) }}</div>
-            </div>
-        </div>
-        <div class="color-aria" [teamColor]="getColor(2, 'primary')" [isMirror]="true" appTeamAreaColored>
-            <div class="waterline-text">{{ getShortName(2) }}</div>
-            <img [src]="getImageParams(2, 'src')" 
-                 [alt]="getImageParams(2, 'alt')"
-                 class="logo">
-        </div>
+  </div>
+  <div class="score-wrapper">
+    <div class="lightcolor">{{ 'Best Of ' + series.boFormat }}</div>
+    <div class="score">
+        <div>{{ series.team1Score }}</div>
+        <div>-</div>
+        <div>{{ series.team2Score }}</div>
     </div>
+    <div>{{ series.isComplete ? 'complete' : 'incomplete' }}</div>
+  </div>
+  <div class="team-wrapper" [color]="getColor(2, 'secondary')" appTeamAreaBorderBottom>
+    <div class="team-content">
+      <div class="team">
+        <div><strong>{{ team2.name }}</strong></div>
+        <div class="lightcolor stat" [matTooltip]="stat" matTooltipPosition="below">{{ getRegularStat(2) }}</div>
+      </div>
+    </div>
+    <div class="color-aria" [teamColor]="getColor(2, 'primary')" [isMirror]="true" appTeamAreaColored>
+      <div class="waterline-text">{{ getShortName(2) }}</div>
+      <img [src]="getImageParams(2, 'src')"
+            [alt]="getImageParams(2, 'alt')"
+            class="logo">
+    </div>
+  </div>
 </div>
 
+<div class="series-content-wrapper">
+  <div class="matches">
+    <h2 class="title">Series Matches</h2>
+    <app-series-detailed-match-group [matches]="getCompletedMatches()">Completed</app-series-detailed-match-group>
+    <app-series-detailed-match-group [matches]="getPlannedMatches()">Planned</app-series-detailed-match-group>
+  </div>
+  <div class="format">
+    <h2 class="title">Series</h2>
+    <table >
+      <thead>
+        <td class="format-head" colspan="2">Playoff stage</td>
+      </thead>
+      <tr>
+        <td><strong>HALF:</strong></td>
+        <td>{{ series.half }}</td>
+      </tr>
+      <tr>
+        <td><strong>STAGE:</strong></td>
+        <td>{{ series.tag }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
 
-
-
-
-<!-- 
-<div class="series">
-    <div>{{ series.team1 }}</div>
-    <div>{{ series.team1Score }}</div>
-    <div>:</div>
-    <div>{{ series.team2Score }} </div>
-    <div>{{ series.team2 }}</div>
-</div> -->
-
-<!-- <app-series-match *ngFor="let match of matches | async" [match]="match"></app-series-match> -->
 
 
 

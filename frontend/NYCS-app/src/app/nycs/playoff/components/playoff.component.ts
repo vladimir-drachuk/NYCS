@@ -21,10 +21,10 @@ export class PlayoffComponent implements OnInit {
     .pipe(map((series: Series[]) => series.find((ser: Series) => ser.tag === 'NYCS Finals')));
 
   public halfFinals$: Observable<Series[]> = this.series$
-    .pipe(map((series: Series[]) => series.filter((ser: Series) => ser.tag === 'Half-Finals')))
+    .pipe(map((series: Series[]) => series.filter((ser: Series) => ser.tag === 'Half-Finals')));
 
   public semiFinals$: Observable<Series[]> = this.series$
-    .pipe(map((series: Series[]) => series.filter((ser: Series) => ser.tag === 'Semi-Finals')))
+    .pipe(map((series: Series[]) => series.filter((ser: Series) => ser.tag === 'Semi-Finals')));
 
   constructor(private store: Store) { }
 

@@ -2,9 +2,9 @@ import { Directive, Input, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { Series } from 'src/app/shared/models/series.model';
 
 @Directive({
-  selector: '[appWinnerFontStrong]'
+  selector: '[appWinnerSeriesFontStrong]'
 })
-export class WinnerFontStrongDirective implements OnInit {
+export class WinnerSeriesFontStrongDirective implements OnInit {
 
   @Input() series: Series;
   @Input('teamID') id: string;
