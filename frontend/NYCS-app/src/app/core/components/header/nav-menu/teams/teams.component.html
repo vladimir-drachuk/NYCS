@@ -1,14 +1,26 @@
 <a class="nav-menu-item" [matMenuTriggerFor]="halfs">Teams</a>
 
 <mat-menu #halfs="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="white"><mat-icon>done</mat-icon>White</button>
-  <button mat-menu-item [matMenuTriggerFor]="black"><mat-icon>done</mat-icon>Black</button>
+  <button mat-menu-item [matMenuTriggerFor]="white">
+    <mat-icon class="half-logo">star_border</mat-icon>
+    White
+  </button>
+  <button mat-menu-item [matMenuTriggerFor]="black">
+    <mat-icon class="half-logo">star</mat-icon>
+    Black
+  </button>
 </mat-menu>
 
 <mat-menu #white="matMenu">
-  <button mat-menu-item *ngFor="let item of whiteTeams | async" [routerLink]="item.teamtag">{{ item.name }}</button>
+  <button mat-menu-item *ngFor="let item of whiteTeams | async" [routerLink]="item.teamtag">
+    <img class="logo" [src]="item.logo.src" [alt]="item.logo.alt">
+    {{ item.name }}
+  </button>
 </mat-menu>
 
 <mat-menu #black="matMenu">
-  <button mat-menu-item *ngFor="let item of blackTeams | async" [routerLink]="item.teamtag">{{ item.name }}</button>
+  <button mat-menu-item *ngFor="let item of blackTeams | async" [routerLink]="item.teamtag">
+    <img class="logo" [src]="item.logo.src" [alt]="item.logo.alt">
+    {{ item.name }}
+  </button>
 </mat-menu>

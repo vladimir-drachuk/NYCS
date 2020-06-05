@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription, zip, EMPTY } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 import { Match } from 'src/app/shared/models/match.model';
 import { Series } from 'src/app/shared/models/series.model';
@@ -34,7 +34,14 @@ export class SeriesDetailedComponent implements OnInit, OnDestroy {
   public team2$: Observable<Team> = this.store
     .pipe(select(teamsSelectors.getByTag, { teamtag: this.paramsArr[2]}));
 
-  constructor(private store: Store, private route: ActivatedRoute, private router: Router) { }
+  constructor(private store: Store, private route: ActivatedRoute, private router: Router) {
+    const subscription = this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+          window.scrollTo(0, 0);
+          subscription.unsubscribe()
+      }
+  });
+  }
 
   ngOnInit(): void {
     this.subscription = zip(this.team1$, this.team2$)
@@ -57,7 +64,7 @@ export class SeriesDetailedComponent implements OnInit, OnDestroy {
           return this.store.pipe(select(matchesSelectors.getSeriesMatches, { id: this.series._id }))
         }),
       )
-      .subscribe((matches: Match[]) => this.matches = matches)
+      .subscribe((matches: Match[]) => this.matches = matches);
   }
 
   public getRegularStat(teamNumber: number): string {
